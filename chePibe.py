@@ -4,6 +4,7 @@ from stringsWithArrows import * # eto pone flechitas en los errore
 ###################################################
 
 DIGITS = "0123456789" # los numerito
+LETTERS = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
 
 ###################################################
 # ERRORS                            - bad news D: -
@@ -14,7 +15,7 @@ DIGITS = "0123456789" # los numerito
 # violentitud : media
 errorMessages = {
     "IllegalCharError" : "Che pibe pusiste algo nada que ver, le mandaste",
-    "InvalidSyntaxError" : "Flaco dedicate a otra cosa porque no sabes escribir codigo"
+    "InvalidSyntaxError" : "Flaco tu sintaxis no la entiende ni tu abuelita (saludos)"
 }
 detailsMessages = {
     "intOrFloatExpected" : "\nFlaco pasame un numerito ahi viste",
@@ -153,29 +154,17 @@ class Lexer:
                 self.advance()
             elif self.current_char in DIGITS + ".":
                 tokens.append(self.make_number())
-            elif self.current_char == "+":
-                tokens.append(Token(TT_PLUS, pos_start=self.pos))
-                self.advance()
-            elif self.current_char == "-":
-                tokens.append(Token(TT_MINUS, pos_start=self.pos))
-                self.advance()
-            elif self.current_char == "*":
-                tokens.append(Token(TT_MUL, pos_start=self.pos))
-                self.advance()
-            elif self.current_char == "/":
-                tokens.append(Token(TT_DIV, pos_start=self.pos))
-                self.advance()
-            elif self.current_char == '(':
-                tokens.append(Token(TT_LPAREN, pos_start=self.pos))
-                self.advance()
-            elif self.current_char == ")":
-                tokens.append(Token(TT_RPAREN, pos_start=self.pos))
-                self.advance()
+            elif self.current_char in (LETTERS + "()" ):
+                op, err = self.make_operator()
+                if not err:
+                    tokens.append(op)
+                else:
+                    return op, err
             else:
                 pos_start = self.pos.copy()
                 char = self.current_char
                 self.advance()
-                return [], IllegalCharError(pos_start, self.pos, char) #pa los que no sabes escribir
+                return [], IllegalCharError(pos_start, self.pos, char) #pa los que no saben escribir
 
         tokens.append(Token(TT_EOF, pos_start=self.pos))
         return tokens, None
@@ -202,6 +191,36 @@ class Lexer:
             return Token(TT_INT, int(num_str), pos_start, self.pos)
         else:
             return Token(TT_FLOAT, float(num_str), pos_start, self.pos)
+
+    
+    ###############################
+    # OPERATOR FACTORY      ¡op op!
+    ###############################
+
+    def make_operator(self):
+        op_str = ""
+        pos_start = self.pos.copy()
+
+        while self.current_char != None and self.current_char in (LETTERS + "()" ):
+            op_str += self.current_char
+            self.advance()
+
+        if op_str == "ma":
+            return Token(TT_PLUS, pos_start=pos_start) , None
+        elif op_str == "meno":
+            return Token(TT_MINUS, pos_start=pos_start) , None
+        elif op_str == "por":
+            return Token(TT_MUL, pos_start=pos_start) , None
+        elif op_str == "dividido":
+            return Token(TT_DIV, pos_start=pos_start) , None
+        elif op_str == '(':
+            return Token(TT_LPAREN, pos_start=pos_start) , None
+        elif op_str == ")":
+            return Token(TT_RPAREN, pos_start=pos_start) , None
+        else:
+            char = self.current_char
+            self.advance()
+            return [], IllegalCharError(pos_start, self.pos, char) #pa los que no saben escribir
 ###################################################
 # NODES                           - las cuestione -
 ###################################################
