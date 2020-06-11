@@ -19,7 +19,7 @@ LETTERS_DIGITS = LETTERS + DIGITS
 errorMessages = {
     "IllegalCharError" : "Che pibe pusiste algo nada que ver, le mandaste",
     "InvalidSyntaxError" : "Flaco tu sintaxis no la entiende ni tu abuelita (saludos)",
-    "RuntimeError" : "Che crasheaste todo, fijate que hiciste",
+    "RuntimeError" : "TE VAMOS A LINCHAR SI NO LO ARREGLAS BIGOTE",
     "ExpectedCharError" : "Te faltó poner algo: "
 }
 detailsMessages = {
@@ -30,7 +30,7 @@ detailsMessages = {
     "identifierExpected": "\nDecime un nombre pa la variable viste",
     "equalExpected": "\nTenes que poner 'es' pa poner algo crack",
     "equalAfterNotExpected": "\nChe no sabes español? Tenes que poner 'No es'",
-    "zeroDiv": "\nMacho dividís por cero vos?",
+    "zeroDiv": "\ndividís por cero vos? Usted se tiene que arrepentir de lo que dijo",
     "unknownVariable": "\nCapo no me dijiste que es '"
 }
 
@@ -329,13 +329,13 @@ class Lexer:
             eq_str += self.current_char
             self.advance()
 
-        if eq_str == "igual":
+        if eq_str == "andaPor":
             tok_type = TT_EE
-        elif eq_str == "menor":
+        elif eq_str == "unCachitoMeno":
             tok_type = TT_LT
         elif eq_str == "menorOIgual":
             tok_type = TT_LTE
-        elif eq_str == "mayor":
+        elif eq_str == "unCachitoMa":
             tok_type = TT_GT
         elif eq_str == "mayorOIgual":
             tok_type = TT_GTE
@@ -891,9 +891,10 @@ class Interpreter:
 ###################################################
 
 global_symbol_table = SymbolTable()
-global_symbol_table.set("vacio",Number(0))
+global_symbol_table.set("inviable",Number(0))
 global_symbol_table.set("verda",Number(1))
 global_symbol_table.set("falso",Number(0))
+global_symbol_table.set("milanesa","carne")
 
 def run(fn, text):
     #Generate tokens
