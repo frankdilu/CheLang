@@ -33,25 +33,25 @@ Basic usage:
         Conditions:
             (1 => true 0 => false)
 
-            ==   => es igual
+            ==   => es andaPor
             !=   => no es
 
-            <   => es menor
+            <   => es unCachitoMeno
             <=   => es menorOIgual
             
-            >   => es mayor
+            >   => es unCachitoMa
             >=   => es mayorOIgual
 
             +- => es maomeno 
 
-            1 es igual 1 => 1
-            a es igual 1 => 0
-            a es igual 32 => 1
+            1 es andaPor 1 => 1
+            a es andaPor 1 => 0
+            a es andaPor 32 => 1
             a no es b => 0
             a no es 2 => 1
 
-            5 es menor 6 => 1
-            5 es menor 4 => 0
+            5 es unCachitoMeno 6 => 1
+            5 es unCachitoMeno 4 => 0
 
             5 es maomeno 4 => 0
             5 es maomeno 4 => 1
@@ -60,12 +60,12 @@ Basic usage:
             and => y
             or => o
 
-            1 es igual 1 y 2 es igual 2 => 1
-            1 es igual 1 y 2 es igual 1 => 0
+            1 es andaPor 1 y 2 es andaPor 2 => 1
+            1 es andaPor 1 y 2 es andaPor 1 => 0
 
-            1 es igual 1 o 2 es igual 2 => 1
-            1 es igual 1 o 2 es igual 1 => 1
-            1 es igual 2 o 2 es igual 1 => 0
+            1 es andaPor 1 o 2 es andaPor 2 => 1
+            1 es andaPor 1 o 2 es andaPor 1 => 1
+            1 es andaPor 2 o 2 es andaPor 1 => 0
 
 
 
