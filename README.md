@@ -42,6 +42,8 @@ Basic usage:
             >   => es mayor
             >=   => es mayorOIgual
 
+            +- => es maomeno 
+
             1 es igual 1 => 1
             a es igual 1 => 0
             a es igual 32 => 1
@@ -50,6 +52,9 @@ Basic usage:
 
             5 es menor 6 => 1
             5 es menor 4 => 0
+
+            5 es maomeno 4 => 0
+            5 es maomeno 4 => 1
 
         Conditions Combination:
             and => y
