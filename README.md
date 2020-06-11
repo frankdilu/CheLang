@@ -61,3 +61,14 @@ Basic usage:
             1 es igual 1 o 2 es igual 2 => 1
             1 es igual 1 o 2 es igual 1 => 1
             1 es igual 2 o 2 es igual 1 => 0
+
+
+
+    CREDITS:
+    CodePulse tutorial: https://www.youtube.com/playlist?list=PLZQftyCk7_SdoVexSmwy_tBgs7P0b97yD
+
+    CodePulse tutorial repo: https://github.com/davidcallanan/py-myopl-code
+    
+    Tutorial based on: https://ruslanspivak.com/lsbasi-part1/
+
+    The code its based on CodePulse Tutorial, with modifications.
