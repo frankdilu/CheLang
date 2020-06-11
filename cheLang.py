@@ -158,7 +158,7 @@ TT_GTE = "GTE"
 TT_EOF = "EOF"
 
 KEYWORDS = [
-    "declarame",
+    "che",
     "y",
     "o",
     "no"
@@ -292,7 +292,11 @@ class Lexer:
         elif op_str == "es":
             tok, error, next_str = self.make_equals()
             if error: return [], error
-            if next_str != None: tok.append(self.make_operator(next_str))
+            if next_str != None: 
+                secToks, secErr = self.make_operator(next_str)
+                if secErr: return [], secErr
+                for secTok in secToks:
+                    tok.append(secTok)
             return tok, None
         else:
             tok_type = TT_KEYWORD if op_str in KEYWORDS else TT_IDENTIFIER
@@ -566,7 +570,7 @@ class Parser:
     ###############################
     def expr(self):
         res = ParseResult()
-        if self.current_tok.matches(TT_KEYWORD, "declarame"):
+        if self.current_tok.matches(TT_KEYWORD, "che"):
             res.register_advancement()
             self.advance()
 
