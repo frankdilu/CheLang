@@ -28,7 +28,9 @@ detailsMessages = {
     "closeParentesisExpected": "\nFlaco porque no cerras los partentesis?",
     "identifierExpected": "\nDecime un nombre pa la variable viste",
     "equalExpected": "\nDecime que le pongo a la variable viste",
-    "equalAfterNotExpected": "\nChe no sabes español? Tenes que poner 'No es'"
+    "equalAfterNotExpected": "\nChe no sabes español? Tenes que poner 'No es'",
+    "zeroDiv": "\nMacho dividís por cero vos?",
+    "unknownVariable": "\nCapo no me dijiste que es '"
 }
 
 ###############################
@@ -44,7 +46,7 @@ class Error:
     def as_string(self):
         result = f"{self.error_name}: {self.details} \n"
         result += f"En {self.pos_start.fn}, linea {self.pos_start.ln + 1} o por ahí" #era re croto viste
-        result += "\n\n" + string_with_arrows(self.pos_start.ftxt, self.pos_start, self.pos_end)
+        result += "\n" + string_with_arrows(self.pos_start.ftxt, self.pos_start, self.pos_end)
         return result
 
 
@@ -176,7 +178,7 @@ class Token:
             self.pos_end.advance()
         
         if pos_end:
-            self.pos_start = pos_end
+            self.pos_end = pos_end.copy()
 
     def matches(self, type_, value):
         return self.type == type_ and self.value == value
@@ -286,12 +288,12 @@ class Lexer:
         elif op_str == "no":
             tok, error = self.make_not_equals()
             if error: return [], error
-            return tok
+            return tok, None
         elif op_str == "es":
             tok, error, next_str = self.make_equals()
             if error: return [], error
             if next_str != None: tok.append(self.make_operator(next_str))
-            return tok
+            return tok, None
         else:
             tok_type = TT_KEYWORD if op_str in KEYWORDS else TT_IDENTIFIER
             return [Token(tok_type, op_str, pos_start, self.pos)], None
@@ -332,7 +334,7 @@ class Lexer:
         elif eq_str == "mayor_o_igual_que":
             tok_type = TT_GTE
 
-        if tok_type == TT_EQ:
+        if tok_type == TT_EQ and eq_str != "":
             next_str = eq_str
 
         return [Token(tok_type, pos_start=pos_start, pos_end=self.pos)], None, next_str
@@ -644,7 +646,7 @@ class Number:
             if other.value == 0:
                 return None, RTError(
                     other.pos_start, other.pos_end,
-                    "Macho dividís por cero vos?",
+                    detailsMessages["zeroDiv"],
                     self.context
                 )
             else:
@@ -721,7 +723,7 @@ class Interpreter:
         if not value:
             return res.failure(RTError(
                 node.pos_start, node.pos_end,
-                f"No me dijiste que es '{var_name}'",
+                detailsMessages["unknownVariable"] + var_name + "'",
                 context
             ))
 
