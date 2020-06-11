@@ -1,5 +1,6 @@
 from stringsWithArrows import * # eto pone flechitas en los errore
 import string
+import random
 ###################################################
 # CONSTANTS - me dijeron que significa constantes -
 ###################################################
@@ -150,6 +151,7 @@ TT_EQ = "EQ"
 TT_LPAREN = "LPAREN"
 TT_RPAREN = "RPAREN"
 TT_EE = "EE"
+TT_MM = "MM"
 TT_NE = "NE"
 TT_LT = "LT"
 TT_GT = "GT"
@@ -337,6 +339,8 @@ class Lexer:
             tok_type = TT_GT
         elif eq_str == "mayorOIgual":
             tok_type = TT_GTE
+        elif eq_str == "maomeno":
+            tok_type = TT_MM
 
         if tok_type == TT_EQ and eq_str != "":
             next_str = eq_str
@@ -554,7 +558,7 @@ class Parser:
             if res.error: return res
             return res.success(UnaryOpNode(op_tok, node))
 
-        node = res.register(self.bin_op(self.arith_expr, (TT_EE,TT_NE,TT_LT,TT_GT,TT_LTE,TT_GTE)))
+        node = res.register(self.bin_op(self.arith_expr, (TT_EE,TT_NE,TT_LT,TT_GT,TT_LTE,TT_GTE,TT_MM)))
 
         if res.error:
             return res.failure(InvalidSyntaxError(
@@ -716,6 +720,16 @@ class Number:
     def get_comparison_gte(self,other):
         if isinstance(other,Number):
             return Number(int(self.value >= other.value)).set_context(self.context), None
+    
+    def get_comparison_mm(self,other):
+        if isinstance(other,Number):
+            if self.value != other.value:
+                if random.random() > .5 :
+                    return Number(1).set_context(self.context), None
+                else:
+                    return Number(0).set_context(self.context), None
+            else:
+                return Number(0).set_context(self.context), None
 
     def anded_by(self, other):
         if isinstance(other, Number):
@@ -840,6 +854,8 @@ class Interpreter:
             result, error = left.get_comparison_lte(right)
         elif node.op_tok.type == TT_GTE:
             result, error = left.get_comparison_gte(right)
+        elif node.op_tok.type == TT_MM:
+            result, error = left.get_comparison_mm(right)
         elif node.op_tok.matches(TT_KEYWORD, "y"):
             result, error = left.anded_by(right)
         elif node.op_tok.matches(TT_KEYWORD, "o"):
