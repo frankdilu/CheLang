@@ -343,6 +343,8 @@ class Lexer:
             tok_type = TT_GTE
         elif eq_str == "maomeno":
             tok_type = TT_MM
+        elif eq_str == "nakever":
+            tok_type = TT_NE
 
         if tok_type == TT_EQ and eq_str != "":
             next_str = eq_str

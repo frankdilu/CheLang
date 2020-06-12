@@ -16,6 +16,10 @@ scheme:
         update es maomeno to return true with 20% margin (thx u/giuliano2505)
         added equal keyword: seigual (es still working) (thx u/mdqseba)
     )
+    (
+        added not equal keyword: nakever (es still working) (thx @soypat (GitHub))
+        updated readMe
+    )
 11/06
     keyword inviable = null (thx u/EtnicPurge6million)
     RT error message updated (thx u/fpmirabile) 
