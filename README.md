@@ -44,7 +44,7 @@ Declare multiple variables:
 Conditions:
   (1 => true 0 => false)
 
-      ==   => es andaPor
+      ==   => andaPor
       !=   => no es
 
       <   => es unCachitoMeno
@@ -57,9 +57,9 @@ Conditions:
 (if diferents, sometimes return 1 and sometimes 0. Y maomeno vite)
 
 ie:
-      1 es andaPor 1 => 1
-      a es andaPor 1 => 0
-      a es andaPor 32 => 1
+      1 andaPor 1 => 1
+      a andaPor 1 => 0
+      a andaPor 32 => 1
       a no es b => 0
       a no es 2 => 1
 
@@ -73,12 +73,12 @@ Conditions Combination:
       and => y
       or => o
 
-      1 es andaPor 1 y 2 es andaPor 2 => 1
-      1 es andaPor 1 y 2 es andaPor 1 => 0
+      1 andaPor 1 y 2 andaPor 2 => 1
+      1 andaPor 1 y 2 andaPor 1 => 0
 
-      1 es andaPor 1 o 2 es andaPor 2 => 1
-      1 es andaPor 1 o 2 es andaPor 1 => 1
-      1 es andaPor 2 o 2 es andaPor 1 => 0
+      1 andaPor 1 o 2 andaPor 2 => 1
+      1 andaPor 1 o 2 andaPor 1 => 1
+      1 andaPor 2 o 2 andaPor 1 => 0
 ```
 
 ## Progress

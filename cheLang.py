@@ -287,6 +287,8 @@ class Lexer:
             return [Token(TT_LPAREN, pos_start=pos_start, pos_end=self.pos)] , None
         elif op_str == ")":
             return [Token(TT_RPAREN, pos_start=pos_start, pos_end=self.pos)] , None
+        elif op_str == "andaPor":
+            return [Token(TT_EE, pos_start=pos_start, pos_end=self.pos)] , None
         elif op_str == "no":
             tok, error = self.make_not_equals()
             if error: return [], error
@@ -329,9 +331,7 @@ class Lexer:
             eq_str += self.current_char
             self.advance()
 
-        if eq_str == "andaPor":
-            tok_type = TT_EE
-        elif eq_str == "unCachitoMeno":
+        if eq_str == "unCachitoMeno":
             tok_type = TT_LT
         elif eq_str == "menorOIgual":
             tok_type = TT_LTE
