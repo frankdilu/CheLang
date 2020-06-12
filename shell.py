@@ -14,4 +14,4 @@ while True:
     result, error = cheLang.run("<stdin>",inputText)
 
     if error: print(error.as_string())
-    else: print(result)
+    elif result: print(result)

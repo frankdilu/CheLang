@@ -35,10 +35,13 @@ ie:
 Declare variables:
 
     che (variable_name) es (value. just numbers for now)
+    che (variable_name) seigual (value. just numbers for now)
 
     che messi es 10
+    che sueldo seigual 0
 
     messi => 10
+    sueldo => 0
 
 Declare multiple variables:
 
@@ -89,6 +92,16 @@ Conditions Combination:
       1 andaPor 1 o 2 andaPor 2 => 1
       1 andaPor 1 o 2 andaPor 1 => 1
       1 andaPor 2 o 2 andaPor 1 => 0
+
+If statement:
+      poneleQue => if
+      tonce => then
+      aLoSumo => else
+      oSi => elif (bugged)
+
+      poneleQue messi no es 10 tonce 0 aLoSumo 1 => 1
+      poneleQue messi no es 9 tonce 0 aLoSumo 1 => 0
+      poneleQue 1 no es 2 tonce 0 oSi 1 andaPor 2 tonce 1 Bug here**
 ```
 
 ## Progress
