@@ -289,6 +289,8 @@ class Lexer:
             return [Token(TT_RPAREN, pos_start=pos_start, pos_end=self.pos)] , None
         elif op_str == "andaPor":
             return [Token(TT_EE, pos_start=pos_start, pos_end=self.pos)] , None
+        elif op_str == "seigual":
+            return [Token(TT_EQ, pos_start=pos_start, pos_end=self.pos)] , None
         elif op_str == "no":
             tok, error = self.make_not_equals()
             if error: return [], error
@@ -723,11 +725,10 @@ class Number:
     
     def get_comparison_mm(self,other):
         if isinstance(other,Number):
-            if self.value != other.value:
-                if random.random() > .5 :
-                    return Number(1).set_context(self.context), None
-                else:
-                    return Number(0).set_context(self.context), None
+            if self.value >= other.value - other.value * .20 and self.value <= other.value + other.value * .20:
+                return Number(1).set_context(self.context), None
+            elif other.value >= self.value - self.value * .20 and other.value <= self.value + self.value * .20:
+                return Number(1).set_context(self.context), None
             else:
                 return Number(0).set_context(self.context), None
 
@@ -892,8 +893,8 @@ class Interpreter:
 
 global_symbol_table = SymbolTable()
 global_symbol_table.set("inviable",Number(0))
-global_symbol_table.set("verda",Number(1))
-global_symbol_table.set("falso",Number(0))
+global_symbol_table.set("posta",Number(1))
+global_symbol_table.set("chamuyo",Number(0))
 global_symbol_table.set("milanesa","carne")
 
 def run(fn, text):

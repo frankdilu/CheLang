@@ -1,7 +1,21 @@
+scheme:
+    date
+        (changes
+        changes) commit
+        (changes
+        changes) commit
 12/06
-    update es andaPor to just andaPor
-    update shell: ctrl + c to friendly argento bye
-    .gitignore updates
+    (
+        update es andaPor to just andaPor
+        update shell: ctrl + c to friendly argento bye
+        .gitignore updates
+    )
+    (
+        update verda(true) to posta (thx u/maeriens)
+        update falso to chamuyo (thx u/maeriens)
+        update es maomeno to return true with 20% margin (thx u/giuliano2505)
+        added equal keyword: seigual (es still working) (thx u/mdqseba)
+    )
 11/06
     keyword inviable = null (thx u/EtnicPurge6million)
     RT error message updated (thx u/fpmirabile) 
