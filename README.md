@@ -15,19 +15,19 @@ python shell.py
 ```
 Scheme:
       CheLang expression => return / regular expression
-
+      NO CaSe SenSiTiVe keywords. Readme uses camelCase for clarity
 Operations:
       ma => +
       meno => -
       por => +
       dividido => /
-      ala => **
+      aLa => **
       () => ()
 
 ie:
        2 ma 2 => 4
        2 por 5 => 20
-       2 ala 2 => 4
+       2 aLa 2 => 4
        1 ma 2 por 3 => 9
        1 ma (2 por 3) => 7
 
@@ -40,7 +40,7 @@ Declare variables:
     che messi es 10
     che sueldo seigual 0
 
-    messi => 10
+    messi  => 10
     sueldo => 0
 
 Declare multiple variables:
@@ -52,22 +52,22 @@ Declare multiple variables:
 Conditions:
   (1 => true 0 => false)
 
-      andaPor   => ==
-      no es   => !=
+      andaPor      => ==
+      no es        => !=
       es nakever   => !=
 
-      es unCachitoMeno   => <
-      es menorOIgual   => <=
+      es unCachitoMeno =>   <
+      es menorOIgual   =>   <=
             
-      es unCachitoMa   => >
-      es mayorOIgual   => >=
+      es unCachitoMa   =>   >
+      es mayorOIgual   =>   >=
 
       es maomeno => +- (its equal, but return true with 20% error margin)
 
 ie:
-      1 andaPor 1 => 1
-      a andaPor 1 => 0
-      a andaPor 32 => 1
+      1 anda por 1 => 1
+      a anda por 1 => 0
+      a anda por 32 => 1
       a no es b => 0
       a no es 2 => 1
       a es nakever 2 => 1
@@ -85,23 +85,26 @@ Conditions Combination:
       y => and / &&
       o => or / ||
 
-      1 andaPor 1 y 2 andaPor 2 => 1
-      1 andaPor 1 y 2 andaPor 1 => 0
-      1 andaPor 2 y 2 andaPor 1 => 0
+      1 anda por 1 y 2 anda por 2 => 1
+      1 anda por 1 y 2 anda por 1 => 0
+      1 anda por 2 y 2 anda por 1 => 0
 
-      1 andaPor 1 o 2 andaPor 2 => 1
-      1 andaPor 1 o 2 andaPor 1 => 1
-      1 andaPor 2 o 2 andaPor 1 => 0
+      1 anda por 1 o 2 anda por 2 => 1
+      1 anda por 1 o 2 anda por 1 => 1
+      1 anda por 2 o 2 anda por 1 => 0
 
 If statement:
-      poneleQue => if
-      tonce => then
-      aLoSumo => else
-      oSi => elif (bugged)
+      ponele que => if
+      tonce      => then
+      oSi        => elif
+      aLoSumo    => else
 
-      poneleQue messi no es 10 tonce 0 aLoSumo 1 => 1
-      poneleQue messi no es 9 tonce 0 aLoSumo 1 => 0
-      poneleQue 1 no es 2 tonce 0 oSi 1 andaPor 2 tonce 1 Bug here**
+      ponele que messi no es 10 tonce 0 aLoSumo 1 => 1
+      ponele que messi no es 9 tonce 0 aLoSumo 1  => 0
+
+      ponele que a no es messi tonce 0 oSi a anda por a tonce 1 aLoSumo 6 => 0
+
+      ponele que a no es a tonce 0 oSi messi anda por messi tonce 1 aLoSumo 6 => 1
 ```
 
 ## Progress

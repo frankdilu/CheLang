@@ -31,7 +31,8 @@ detailsMessages = {
     "equalExpected": "\nTenes que poner 'es' pa poner algo crack",
     "equalAfterNotExpected": "\nChe no sabes español? Tenes que poner 'No es'",
     "zeroDiv": "\ndividís por cero vos? Usted se tiene que arrepentir de lo que dijo",
-    "unknownVariable": "\nCapo no me dijiste que es '"
+    "unknownVariable": "\nCapo no me dijiste que es '",
+    "languajeSyntaxError": "\nGenio leete la doc antes de escribir dale? Te faltó algo"
 }
 
 ###############################
@@ -164,10 +165,10 @@ KEYWORDS = [
     "y",
     "o",
     "no",
-    "poneleQue",
+    "ponele",
     "tonce",
-    "oSi",
-    "aLoSumo"
+    "osi",
+    "alosumo"
 ]
 
 ###############################
@@ -187,7 +188,7 @@ class Token:
             self.pos_end = pos_end.copy()
 
     def matches(self, type_, value):
-        return self.type == type_ and self.value == value
+        return self.type == type_ and self.value.lower() == value
 
     def __repr__(self):
         if self.value: return f"{self.type}:{self.value}"
@@ -277,29 +278,34 @@ class Lexer:
                 self.advance()
         else: op_str = next_str
 
-        if op_str == "ma":
+        if op_str.lower() == "ma":
             return [Token(TT_PLUS, pos_start=pos_start, pos_end=self.pos)] , None
-        elif op_str == "meno":
+        elif op_str.lower() == "meno":
             return [Token(TT_MINUS, pos_start=pos_start, pos_end=self.pos)] , None
-        elif op_str == "por":
+        elif op_str.lower() == "por":
             return [Token(TT_MUL, pos_start=pos_start, pos_end=self.pos)] , None
-        elif op_str == "dividido":
+        elif op_str.lower() == "dividido":
             return [Token(TT_DIV, pos_start=pos_start, pos_end=self.pos)] , None
-        elif op_str == "ala":
+        elif op_str.lower() == "ala":
             return [Token(TT_POW, pos_start=pos_start, pos_end=self.pos)] , None
-        elif op_str == "(":
+        elif op_str.lower() == "(":
             return [Token(TT_LPAREN, pos_start=pos_start, pos_end=self.pos)] , None
-        elif op_str == ")":
+        elif op_str.lower() == ")":
             return [Token(TT_RPAREN, pos_start=pos_start, pos_end=self.pos)] , None
-        elif op_str == "andaPor":
-            return [Token(TT_EE, pos_start=pos_start, pos_end=self.pos)] , None
-        elif op_str == "seigual":
+        elif op_str.lower() == "anda":
+            if self.take_str().lower() == "por":
+                return [Token(TT_EE, pos_start=pos_start, pos_end=self.pos)] , None
+            else: return [], InvalidSyntaxError(
+                pos_start, self.pos,
+                detailsMessages["languajeSyntaxError"]
+            )
+        elif op_str.lower() == "seigual":
             return [Token(TT_EQ, pos_start=pos_start, pos_end=self.pos)] , None
-        elif op_str == "no":
+        elif op_str.lower() == "no":
             tok, error = self.make_not_equals()
             if error: return [], error
             return tok, None
-        elif op_str == "es":
+        elif op_str.lower() == "es":
             tok, error, next_str = self.make_equals()
             if error: return [], error
             if next_str != None: 
@@ -309,45 +315,50 @@ class Lexer:
                     tok.append(secTok)
             return tok, None
         else:
-            tok_type = TT_KEYWORD if op_str in KEYWORDS else TT_IDENTIFIER
+            tok_type = TT_KEYWORD if op_str.lower() in KEYWORDS else TT_IDENTIFIER
+            if op_str.lower() == "ponele":
+                if self.take_str().lower() != "que": return [], InvalidSyntaxError(
+                    pos_start, self.pos,
+                    detailsMessages["languajeSyntaxError"]
+                    )
             return [Token(tok_type, op_str, pos_start, self.pos)], None
 
     def make_not_equals(self):
         pos_start = self.pos.copy()
-        self.advance()
-        ne_str = ""
-
-        while self.current_char != None and self.current_char in "es":
-            ne_str += self.current_char
-            self.advance()
+        ne_str = self.take_str()
         
-        if ne_str == "es":
+        if ne_str.lower() == "es":
             return [Token(TT_NE, pos_start=pos_start, pos_end=self.pos)], None
         
         return None, ExpectedCharError(pos_start,self.pos,detailsMessages["equalAfterNotExpected"])
 
-    def make_equals(self):
-        eq_str = ""
-        tok_type = TT_EQ
-        pos_start = self.pos.copy()
-        next_str = None
+    def take_str(self):
+        new_str = ""
         self.advance()
 
         while self.current_char != None and self.current_char in LETTERS + "()":
-            eq_str += self.current_char
+            new_str += self.current_char
             self.advance()
 
-        if eq_str == "unCachitoMeno":
+        return new_str
+
+    def make_equals(self):
+        eq_str = self.take_str()
+        tok_type = TT_EQ
+        pos_start = self.pos.copy()
+        next_str = None
+
+        if eq_str.lower() == "uncachitomeno":
             tok_type = TT_LT
-        elif eq_str == "menorOIgual":
+        elif eq_str.lower() == "menoroigual":
             tok_type = TT_LTE
-        elif eq_str == "unCachitoMa":
+        elif eq_str.lower() == "uncachitoma":
             tok_type = TT_GT
-        elif eq_str == "mayorOIgual":
+        elif eq_str.lower() == "mayoroigual":
             tok_type = TT_GTE
-        elif eq_str == "maomeno":
+        elif eq_str.lower() == "maomeno":
             tok_type = TT_MM
-        elif eq_str == "nakever":
+        elif eq_str.lower() == "nakever":
             tok_type = TT_NE
 
         if tok_type == TT_EQ and eq_str != "":
@@ -524,7 +535,7 @@ class Parser:
                     detailsMessages["closeParentesisExpected"]
                 ))
         
-        elif tok.matches(TT_KEYWORD, "poneleQue"):
+        elif tok.matches(TT_KEYWORD, "ponele"):
             if_expr = res.register(self.if_expr())
             if res.error: return res
             return res.success(if_expr)
@@ -568,7 +579,7 @@ class Parser:
         cases = []
         else_case = None
 
-        if not self.current_tok.matches(TT_KEYWORD, "poneleQue"):
+        if not self.current_tok.matches(TT_KEYWORD, "ponele"):
             return res.failure(InvalidSyntaxError(
                 self.current_tok.pos_start, self.current_tok.pos_end,
                 "if expected"
@@ -593,9 +604,9 @@ class Parser:
         if res.error: return res
         cases.append((condition, expr))
 
-        while self.current_tok.matches(TT_KEYWORD, "oSi"):
+        while self.current_tok.matches(TT_KEYWORD, "osi"):
             res.register_advancement()
-            self.advance
+            self.advance()
 
             condition = res.register(self.expr())
             if res.error: return res
@@ -606,11 +617,12 @@ class Parser:
                     "then expected"
                 ))
 
+            self.advance()
             expr = res.register(self.expr())
             if res.error: return res
             cases.append((condition,expr))
 
-        if self.current_tok.matches(TT_KEYWORD, "aLoSumo"):
+        if self.current_tok.matches(TT_KEYWORD, "alosumo"):
             res.register_advancement()
             self.advance()
 

@@ -4,6 +4,14 @@ scheme:
         changes) commit
         (changes
         changes) commit
+13/06
+    (
+        update "andaPor" => "anda por"
+        update "poneleQue" => "ponele que"
+        bugfix "oSi" dont work
+        no cAsE sEnSitIve keywords
+        updated readme with new things
+    )
 12/06
     (
         update es andaPor to just andaPor
