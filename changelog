@@ -1,9 +1,13 @@
 scheme:
     date
-        (changes
-        changes) commit
-        (changes
-        changes) commit
+        (
+            changes
+            changes
+        ) commit
+        (
+            changes
+            changes
+        ) commit
 13/06
     (
         update "andaPor" => "anda por"
@@ -11,6 +15,11 @@ scheme:
         bugfix "oSi" dont work
         no cAsE sEnSitIve keywords
         updated readme with new things
+    )
+    (
+        comments
+        for and while added. keywords will be changed.
+        update "while" => "mientras"
     )
 12/06
     (

@@ -105,6 +105,24 @@ If statement:
       ponele que a no es messi tonce 0 oSi a anda por a tonce 1 aLoSumo 6 => 0
 
       ponele que a no es a tonce 0 oSi messi anda por messi tonce 1 aLoSumo 6 => 1
+
+For / While statement:
+      for => for
+      to => to
+      step => step
+      tonce => then
+      mientras => while
+
+      che mirtha es 0
+      for i es 0 to 10 tonce che mirtha es mirtha ma 30 => mirtha = 300
+
+      che mirtha es 0
+      for i es 0 to 10 step 2 tonce che mirtha es mirtha ma 30 => mirtha = 150
+
+      while 1 es 1 tonce che mirtha es mirtha ma 1 => infinite loop => mirtha forever
+      
+      che i es 0
+      mientras i es unCachitoMa meno 10 tonce che i es i meno 1 => i = -10
 ```
 
 ## Progress
