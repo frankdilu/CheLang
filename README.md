@@ -20,34 +20,44 @@ Operations:
       ma => +
       meno => -
       por => +
-      dividido => /
+      dividido => / (return float)
       aLa => **
       () => ()
 
+      "" => "" (strings)
+
 ie:
-       2 ma 2 => 4
-       2 por 5 => 20
-       2 aLa 2 => 4
-       1 ma 2 por 3 => 9
-       1 ma (2 por 3) => 7
+      2.3 ma 2 => 4.3
+      .8 ma 2 => 2.8
+      .8 meno 2 => -1.2
+      2 por 5 => 20
+      2 aLa 2 => 4
+      1 ma 2 por 3 => 9
+      1 ma (2 por 3) => 7
+      10 dividido 2 => 5.0
+
+      a por 10 => aaaaaaaaaa
+
+      "marado " ma "marado" => "marado marado"
 
 
 Declare variables:
 
-    che (variable_name) es (value. just numbers for now)
-    che (variable_name) seigual (value. just numbers for now)
+      che (variable_name) es (value)
+      che (variable_name) seigual (value)
 
-    che messi es 10
-    che sueldo seigual 0
+      che messi es 10
+      che messi es "grosso"
+      che sueldo seigual 0
 
-    messi  => 10
-    sueldo => 0
+      messi  => 10
+      sueldo => 0
 
 Declare multiple variables:
 
-     che (variable_name) es che (variable_2_name) es ... es (value. just numbers for now)
-            
-     che a es che b es che c es 32
+      che (variable_name) es che (variable_2_name) es ... es (value)
+
+      che a es che b es che c es 32
 
 Conditions:
   (1 => true 0 => false)
@@ -58,7 +68,7 @@ Conditions:
 
       es unCachitoMeno =>   <
       es menorOIgual   =>   <=
-            
+
       es unCachitoMa   =>   >
       es mayorOIgual   =>   >=
 
@@ -81,6 +91,9 @@ ie:
       10 es maomeno 8 => 1
       10 es maomeno 10 => 1
 
+      "abc" anda por 1 => 1
+      "" anda por 1 => 0  (if string length >= 1 is true)
+
 Conditions Combination:
       y => and / &&
       o => or / ||
@@ -92,6 +105,7 @@ Conditions Combination:
       1 anda por 1 o 2 anda por 2 => 1
       1 anda por 1 o 2 anda por 1 => 1
       1 anda por 2 o 2 anda por 1 => 0
+
 
 If statement:
       ponele que => if
@@ -123,11 +137,19 @@ For / While statement:
       
       che i es 0
       mientras i es unCachitoMa meno 10 tonce che i es i meno 1 => i = -10
+
+Functions:
+      fun => def / function
+      (a, b, c) => (a, b, c)
+      => => {} / =>
+
+      fun fibonacci(n)=> ponele que n anda por 0 tonce 0 oSi n anda por 1 tonce 1 aLoSumo (fibonacci(n meno 1) ma fibonacci(n meno 2))
+
 ```
 
 ## Progress
 
-The language IS NOT FINISHED. Any help is helpful. This is the beta of the beta of the beta. Or, doing maths, .5Alpha.
+The language IS NOT FINISHED. Any help is helpful. This is the beta.
 
 
 ## Contributing
