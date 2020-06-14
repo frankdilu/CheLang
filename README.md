@@ -25,6 +25,8 @@ Operations:
       () => ()
 
       "" => "" (strings)
+      [a,b,c] => [a,b,c]
+
 
 ie:
       2.3 ma 2 => 4.3
@@ -36,9 +38,14 @@ ie:
       1 ma (2 por 3) => 7
       10 dividido 2 => 5.0
 
-      a por 10 => aaaaaaaaaa
+      a por 10 => "aaaaaaaaaa"
 
       "marado " ma "marado" => "marado marado"
+
+      [a,b,c] + d => [a,b,c,d]
+      [a,b,c] + [d,e] => [a,b,c,d,e]
+      [a,b] * 3 => [a,b,a,b,a,b]
+      [a,b] dividido 0 => a (change soon. will be [a,b][0] => a)
 
 
 Declare variables:
@@ -144,6 +151,29 @@ Functions:
       => => {} / =>
 
       fun fibonacci(n)=> ponele que n anda por 0 tonce 0 oSi n anda por 1 tonce 1 aLoSumo (fibonacci(n meno 1) ma fibonacci(n meno 2))
+
+Built-in:
+      Const:
+            "Milanesa" = "Carne"
+            "Inviable" =  Number.null
+            "Chamuyo" =  Number.false
+            "Posta" =  Number.true
+            "Pi" =  Number.math_PI
+
+      Functions:
+            Cuchame() => print()
+            CuchameRet() => return print
+            Traeme() => input()
+            TraemeNumerito() => input() (int)
+            Limpiame() => clear console
+            clear() => clear console
+            EsNumerito() => isNumber(int)
+            EsTexto() => isString(str)
+            EsLista() => isList([])
+            EsFuncion() => isFunc(fun)
+            Agregale() => append(list, element)
+            Rajale() => pop(list, index)
+            Metele() => extend(listA,listB)
 
 ```
 

@@ -16,6 +16,10 @@ scheme:
         added strings
         added .x float syntaxis
     )
+    (
+        added lists 
+        added built-in functions (bases)
+    )
 13/06
     (
         update "andaPor" => "anda por"
