@@ -197,6 +197,12 @@ class Parser:
             if res.error: return res
             return res.success(func_def)
 
+        elif tok.type == TT_NEWLINE:
+            self.advance()
+            statement = res.register(self.statement())
+            if res.error: return res
+            return res.success(statement)
+
         # Si llega acá hiciste macanas bro
         return res.failure(InvalidSyntaxError(
             tok.pos_start, tok.pos_end,
@@ -318,10 +324,10 @@ class Parser:
                         self.current_tok.pos_start, self.current_tok.pos_end,
                         "Expected 'END'"
                         ))
-        else:
-            expr = res.register(self.statement())
-            if res.error: return res
-            else_case = (expr, False)
+            else:
+                expr = res.register(self.statement())
+                if res.error: return res
+                else_case = (expr, False)
 
         return res.success(else_case)
 
@@ -564,7 +570,7 @@ class Parser:
     def statement(self):
         res = ParseResult()
         pos_start = self.current_tok.pos_start.copy()
-        
+
         if self.current_tok.matches(TT_KEYWORD, 'return'):
             res.register_advancement()
             self.advance()
@@ -583,9 +589,6 @@ class Parser:
             self.advance()
             return res.success(BreakNode(pos_start, self.current_tok.pos_start.copy()))
 
-        while self.current_tok.type == TT_NEWLINE:
-            res.register_advancement()
-            self.advance()
 
         expr = res.register(self.expr())
         if res.error:

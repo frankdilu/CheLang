@@ -75,10 +75,13 @@ class Lexer:
                 for opTok in op:
                     tokens.append(opTok)
             else:
-                pos_start = self.pos.copy()
-                char = self.current_char
-                self.advance()
-                return [], IllegalCharError(pos_start, self.pos, char) #pa los que no saben escribir
+                char = self.current_char 
+                if char != " ":
+                    pos_start = self.pos.copy()
+                    self.advance()
+                    return [], IllegalCharError(pos_start, self.pos, char) #pa los que no saben escribir
+                else:
+                    self.advance()
 
         tokens.append(Token(TT_EOF, pos_start=self.pos))
         return tokens, None
@@ -248,8 +251,5 @@ class Lexer:
         return [Token(tok_type, pos_start=pos_start, pos_end=self.pos)], None, next_str
 
     def skip_comment(self):
-        self.advance()
-
-        while self.current_char != "\n":
+        while self.current_char != "\n" and self.current_char != None:
             self.advance()
-        self.advance()

@@ -1,0 +1,11 @@
+fun fibonacci(n)=>
+    ponele que n anda por 0 tonce
+        return 0 
+    oSi n anda por 1 tonce 
+        return 1 
+    aLoSumo 
+        return (fibonacci(n meno 1) ma fibonacci(n meno 2))
+    hastaaca
+
+
+Cuchame(fibonacci(10))

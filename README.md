@@ -7,11 +7,24 @@ CheLang is an argento (Argentinian) programming language with their locals says.
 For now, just clone the repo. Working in it.
 
 
+## Requeriments
+
+Python3
+
 ## Usage
+Double click to CheLang.py (CheLang Shell)
 
-Console:
-python shell.py
+or
 
+python CheLang.py example.che (To run CheLang file)
+
+or
+
+run("example.che") (To run CheLang file from CheLang shell)
+
+Soon installer with PATH shell
+
+## Syntax
 ```
 Scheme:
       CheLang expression => return / regular expression
@@ -177,7 +190,9 @@ Built-in:
             len() => len(list)
             run() => run(file.che)
 
+(Read example.che to more)
 ```
+
 
 ## Progress
 

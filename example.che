@@ -1,3 +1,216 @@
-Cuchame("Queee onnddda peeerrriiii")
+# Comments
+# Scheme:
+#      CheLang expression => return / regular expression
+#      NO CaSe SenSiTiVe keywords. Readme uses camelCase for clarity
+# Operations:
+#      ma => +
+#      meno => -
+#      por => +
+#      dividido => / (return float)
+#      aLa => **
+#      () => ()
 
-run("example2.che")
+#      "" => "" (strings)
+#      [a,b,c] => [a,b,c]
+
+
+#ie:
+ che x es   2.3 ma 2             # => 4.3
+ che x es   .8 ma 2              # => 2.8
+ che x es   .8 meno 2            # => -1.2
+ che x es   2 por 5              # => 20
+ che x es   2 aLa 2              # => 4
+ che x es   1 ma 2 por 3         # => 9
+ che x es   1 ma (2 por 3)       # => 7
+ che x es   10 dividido 2        # => 5.0
+
+ che x es   "a" por 10             # => "aaaaaaaaaa"
+
+ che x es   "marado " ma "marado"       # => "marado marado"
+
+ che x es     ["a","b","c"] ma "d"           # => ["a","b","c","d"]
+ che x es     ["a","b","c"] ma ["d","e"]       # => ["a","b","c","d","e"]
+ che x es     ["a","b"] por 3             # => ["a","b","a","b",a,"b"]
+ che x es     ["a","b"] dividido 0      # => a (change soon. will be ["a","b"][0] => a)
+
+
+#Declare variables:
+
+#      che (variable_name) es (value)
+#      che (variable_name) seigual (value)
+
+ che messi es 10
+ che macri es "gato"
+ che sueldo seigual 0
+
+ macri               # => gato
+ messi               # => 10
+ sueldo              # => 0
+
+#Declare multiple variables:
+
+#      che (variable_name) es che (variable_2_name) es ... es (value)
+
+ che a es che b es che c es 32       # => 32 all these variables
+
+#Conditions:
+#  (1 => true 0 => false)
+
+#      andaPor      => ==
+#      no es        => !=
+#      es nakever   => !=
+
+#      es unCachitoMeno =>   <
+#      es menorOIgual   =>   <=
+
+#      es unCachitoMa   =>   >
+#      es mayorOIgual   =>   >=
+
+#      es maomeno => +- (its equal, but return true with 20% error margin)
+
+#ie:
+      1 anda por 1         # => 1
+      a anda por 1         # => 0
+      a anda por 32        # => 1
+      a no es b            # => 0
+      a no es 2            # => 1
+      a es nakever 2       # => 1
+      a es nakever b       # => 0
+
+      5 es unCachitoMeno 6      # => 1
+      5 es unCachitoMeno 4      # => 0
+
+      10 es maomeno 13          # => 0
+      10 es maomeno 12          # => 1
+      10 es maomeno 8           # => 1
+      10 es maomeno 10          # => 1
+
+      "abc" anda por "abc"          # => 1
+      "" anda por ""             # => 0  (if string length >= 1 is true)
+
+#Conditions Combination:
+#      y => and / &&
+#      o => or / ||
+
+      1 anda por 1 y 2 anda por 2    # => 1
+      1 anda por 1 y 2 anda por 1    # => 0
+      1 anda por 2 y 2 anda por 1    # => 0
+
+      1 anda por 1 o 2 anda por 2    # => 1
+      1 anda por 1 o 2 anda por 1    # => 1
+      1 anda por 2 o 2 anda por 1    # => 0
+
+
+# If statement:
+#      ponele que => if
+#      tonce      => then
+#      oSi        => elif
+#      aLoSumo    => else
+
+# InLine:
+      ponele que messi no es 10 tonce 0 aLoSumo 1  # => 1
+      ponele que messi no es 9 tonce 0 aLoSumo 1   # => 0
+
+      ponele que a no es messi tonce 0 oSi a anda por a tonce 1 aLoSumo 6      # => 0
+
+      ponele que a no es a tonce 0 oSi messi anda por messi tonce 1 aLoSumo 6  # => 1
+
+#Multiline:
+
+    ponele que messi no es 10 tonce 
+        che a es 0
+    aLoSumo 
+        che a es 1
+    hastaaca            # a => 1
+
+
+    ponele que messi no es 9 tonce 
+    che a es 0
+    aLoSumo
+    che a es 1
+    hastaaca           # a => 0
+
+
+    ponele que 1 no es 1 tonce 
+        che b es 0
+    oSi 3 anda por 3 tonce
+        che b es 1
+    aLoSumo
+        che b es 6
+    hastaaca      # => 1
+
+
+    ponele que a no es a tonce 
+        che c es 0
+    oSi messi anda por meno 10 tonce 
+        che c es 1 
+    aLoSumo 
+        che c es 6
+    hastaaca   # c => 6
+
+# For / While statement:
+#      for => for
+#      to => to
+#      step => step
+#      tonce => then
+#      mientras => while
+
+        che mirtha es 0
+        for i seigual 0 to 10 tonce 
+            che mirtha es mirtha ma 30  
+        hastaaca           # => mirtha = 300
+
+        che mirtha es 0
+        for i es 0 to 10 step 2 tonce 
+           che mirtha es mirtha ma 30
+        hastaaca           # => mirtha = 150
+
+#      mientras 1 es 1 tonce 
+#        che mirtha es mirtha ma 1  # => infinite loop => mirtha forever
+      
+      che i es 0
+      mientras i es unCachitoMa meno 10 tonce
+        che i es i meno 1
+      hastaaca    # => i = -10
+
+# Functions:
+#      fun => def / function
+#      (a, b, c) => (a, b, c)
+#      => => {} / =>
+
+    fun fibonacci(n)=>
+        ponele que n anda por 0 tonce
+            return 0 
+        oSi n anda por 1 tonce 
+            return 1 
+        aLoSumo 
+            return (fibonacci(n meno 1) ma fibonacci(n meno 2))
+        hastaaca
+
+
+    Cuchame(fibonacci(10)) # => 55 (10° fibonacci number)
+
+#Built-in:
+#      Const:
+            Milanesa  # = "Carne"
+            Inviable  # =  Number.null
+            Chamuyo   # =  Number.false
+            Posta     # =  Number.true
+            Pi        # =  Number.math_PI
+
+#     Functions:
+#            Cuchame() => print()
+#            CuchameRet() => return print
+#            Traeme() => input()
+#            TraemeNumerito() => input() (int)
+#            Limpiame() => clear console
+#            clear() => clear console
+#            EsNumerito() => isNumber(int)
+#            EsTexto() => isString(str)
+#            EsLista() => isList([])
+#            EsFuncion() => isFunc(fun)
+#            Agregale() => append(list, element)
+#            Rajale() => pop(list, index)
+#            Metele() => extend(listA,listB)
+#            len() => len(list)
+#            run() => run(file.che) / import file.che

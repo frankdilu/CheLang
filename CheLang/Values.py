@@ -235,6 +235,12 @@ class String(Value):
     def is_true(self):
         return len(self.value)>0
 
+    def get_comparison_ee(self, other):
+        if isinstance(other, String):
+            return Number(int(self.value == other.value)).set_context(self.context), None
+        else:
+            return None, Value.illegal_operation(self, other)
+
     def copy(self):
         copy = String(self.value)
         copy.set_pos(self.pos_start, self.pos_end)
@@ -568,7 +574,7 @@ class BuiltInFunction(BaseFunction):
                 f"Failed to load script \"{fn}\"\n" + str(e),
                 exec_ctx
                 ))
-        from cheLang import run
+        from cheLangCompiler import run
         _, error = run(fn, script)
         
         if error:
