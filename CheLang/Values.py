@@ -588,6 +588,23 @@ class BuiltInFunction(BaseFunction):
         return RTResult().success(Number.null)
     execute_run.arg_names = ["fn"]
 
+    def execute_hola(self, exec_ctx):
+        print("Que onda perro? Todo piola?")
+        return RTResult().success(Number.null)
+    execute_hola.arg_names = []
+
+    def execute_argentina(self, exec_ctx):
+        import ctypes
+        import os
+        from playsound import playsound
+        print("\n¡VIVA LA PATRIA!\n\n¡VIVA!\n")
+        imageUri = os.path.abspath(os.getcwd()) + "\\CheLang\\assets\\Argentina.jpg"
+        soundUri = os.path.abspath(os.getcwd()) + "\\CheLang\\assets\\Malvinas.mp3"
+        ctypes.windll.user32.SystemParametersInfoW(20, 0, imageUri , 0)
+        os.startfile(imageUri)
+        playsound(soundUri)
+        return RTResult().success(Number.null)
+    execute_argentina.arg_names = []
 
 BuiltInFunction.print       = BuiltInFunction("print")
 BuiltInFunction.print_ret   = BuiltInFunction("print_ret")
@@ -602,4 +619,6 @@ BuiltInFunction.append      = BuiltInFunction("append")
 BuiltInFunction.pop         = BuiltInFunction("pop")
 BuiltInFunction.extend      = BuiltInFunction("extend")
 BuiltInFunction.len         = BuiltInFunction("len")
-BuiltInFunction.run      = BuiltInFunction("run")
+BuiltInFunction.run         = BuiltInFunction("run")
+BuiltInFunction.hola         = BuiltInFunction("hola")
+BuiltInFunction.argentina         = BuiltInFunction("argentina")

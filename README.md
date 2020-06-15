@@ -192,6 +192,7 @@ Built-in:
             Metele() => extend(listA,listB)
             len() => len(list)
             run() => run(file.che)
+            Argentina() => Just try it. You must. Really. Posta.
 
 (Read example.che to more)
 ```

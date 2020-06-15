@@ -30,6 +30,8 @@ global_symbol_table.set("Rajale", BuiltInFunction.pop)
 global_symbol_table.set("Metele", BuiltInFunction.extend)
 global_symbol_table.set("len", BuiltInFunction.len)
 global_symbol_table.set("run", BuiltInFunction.run)
+global_symbol_table.set("Hola", BuiltInFunction.hola)
+global_symbol_table.set("Argentina", BuiltInFunction.argentina)
 
 def run(fn, text):
     #Generate tokens
