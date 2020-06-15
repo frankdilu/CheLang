@@ -174,6 +174,8 @@ Built-in:
             Agregale() => append(list, element)
             Rajale() => pop(list, index)
             Metele() => extend(listA,listB)
+            len() => len(list)
+            run() => run(file.che)
 
 ```
 

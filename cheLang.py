@@ -32,6 +32,8 @@ global_symbol_table.set("EsFuncion", BuiltInFunction.is_function)
 global_symbol_table.set("Agregale", BuiltInFunction.append)
 global_symbol_table.set("Rajale", BuiltInFunction.pop)
 global_symbol_table.set("Metele", BuiltInFunction.extend)
+global_symbol_table.set("len", BuiltInFunction.len)
+global_symbol_table.set("run", BuiltInFunction.run)
 
 def run(fn, text):
     #Generate tokens
@@ -46,7 +48,7 @@ def run(fn, text):
 
     # Run program
     interpreter = Interpreter()
-    context = Context("<program>")
+    context = Context("main")
     context.symbol_table = global_symbol_table
     result = interpreter.visit(ast.node, context)
 

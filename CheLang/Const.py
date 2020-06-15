@@ -83,5 +83,8 @@ KEYWORDS = [
     "step",
     "mientras",
     "fun",
-    "hastaaca"
+    "hastaaca",
+    "return",
+    "continue",
+    "break"
 ]

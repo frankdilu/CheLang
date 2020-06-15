@@ -17,6 +17,12 @@ scheme:
         added multiline
         added keywords ";" and "\n" for new line and "hastaAca" to break multiline 
     )
+    (
+        added keywords "continue", "break", and "return"
+        added built-in functions "run" and "len"
+        added comments
+        soon argentinization EVERYTHING
+    )
 14/06
     (
         updated error messages

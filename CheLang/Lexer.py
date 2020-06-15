@@ -32,6 +32,8 @@ class Lexer:
         while self.current_char != None:
             if self.current_char in " \t":
                 self.advance()
+            if self.current_char == "#":
+                self.skip_comment()
             elif self.current_char in DIGITS + ".":
                 tok, err = self.make_number()
                 if err: return [], err
@@ -43,7 +45,7 @@ class Lexer:
                 tokens.append(Token(TT_RPAREN, pos_start=self.pos, pos_end=self.pos))
                 self.advance()
             elif self.current_char in ";\n":
-                tokens.append(Token(TT_NEWLINE, pos_start=self.pos, pos_end=self.pos))
+                tokens.append(Token(TT_NEWLINE, pos_start=self.pos))
                 self.advance()
             elif self.current_char == "[":
                 tokens.append(Token(TT_LSQUARE, pos_start=self.pos, pos_end=self.pos))
@@ -244,3 +246,10 @@ class Lexer:
             next_str = eq_str
 
         return [Token(tok_type, pos_start=pos_start, pos_end=self.pos)], None, next_str
+
+    def skip_comment(self):
+        self.advance()
+
+        while self.current_char != "\n":
+            self.advance()
+        self.advance()

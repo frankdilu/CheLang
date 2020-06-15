@@ -17,7 +17,7 @@ class Token:
             self.pos_end = pos_end.copy()
 
     def matches(self, type_, value):
-        return self.type == type_ and self.value.lower() == value
+        return self.type == type_ and self.value.lower() == value.lower()
 
     def __repr__(self):
         if self.value: return f"{self.type}:{self.value}"
