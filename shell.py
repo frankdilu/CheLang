@@ -10,8 +10,12 @@ signal.signal(signal.SIGINT, signal_handler)
 
 while True:
     inputText = input("CheLang > ")
-
+    if inputText.strip() == "": continue
     result, error = cheLang.run("<stdin>",inputText)
 
     if error: print(error.as_string())
-    elif result: print(repr(result))
+    elif result: 
+        if len(result.elements) == 1:
+            print(repr(result.elements[0]))
+        else:
+            print(repr(result))

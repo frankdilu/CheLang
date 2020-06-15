@@ -8,6 +8,15 @@ scheme:
             changes
             changes
         ) commit
+15/06
+    (
+        separate main classes to differents files
+        added folder CheLang
+    )
+    (
+        added multiline
+        added keywords ";" and "\n" for new line and "hastaAca" to break multiline 
+    )
 14/06
     (
         updated error messages
@@ -19,10 +28,6 @@ scheme:
     (
         added lists 
         added built-in functions (bases)
-    )
-    (
-        separate main classes to differents files
-        added folder CheLang
     )
 13/06
     (

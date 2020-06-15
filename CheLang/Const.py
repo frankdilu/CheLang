@@ -63,6 +63,7 @@ TT_LTE = "LTE"
 TT_GTE = "GTE"
 TT_COMMA = "COMMA"
 TT_ARROW = "ARROW"
+TT_NEWLINE = "NEWLINE"
 TT_EOF = "EOF"
 
 ###############################
@@ -82,4 +83,5 @@ KEYWORDS = [
     "step",
     "mientras",
     "fun",
+    "hastaaca"
 ]

@@ -1,5 +1,5 @@
 from Position import Position
-from Const import detailsMessages, LETTERS, DIGITS, TT_LPAREN, TT_RPAREN, TT_LSQUARE, TT_RSQUARE, TT_COMMA, TT_ARROW, TT_EOF, TT_INT, TT_FLOAT, TT_PLUS, TT_MINUS, TT_MUL, TT_DIV, TT_POW, TT_EE, TT_EQ, TT_KEYWORD, KEYWORDS, TT_IDENTIFIER, TT_STRING, TT_NE, TT_LT, TT_LTE, TT_GT, TT_GTE, TT_MM
+from Const import detailsMessages, LETTERS, DIGITS, TT_LPAREN, TT_RPAREN, TT_LSQUARE, TT_RSQUARE, TT_COMMA, TT_ARROW, TT_EOF, TT_INT, TT_FLOAT, TT_PLUS, TT_MINUS, TT_MUL, TT_DIV, TT_POW, TT_EE, TT_EQ, TT_KEYWORD, KEYWORDS, TT_IDENTIFIER, TT_STRING, TT_NE, TT_LT, TT_LTE, TT_GT, TT_GTE, TT_MM, TT_NEWLINE
 from Tokens import Token
 from Errors import InvalidSyntaxError, IllegalCharError, ExpectedCharError
 ###################################################
@@ -41,6 +41,9 @@ class Lexer:
                 self.advance()
             elif self.current_char == ")":
                 tokens.append(Token(TT_RPAREN, pos_start=self.pos, pos_end=self.pos))
+                self.advance()
+            elif self.current_char in ";\n":
+                tokens.append(Token(TT_NEWLINE, pos_start=self.pos, pos_end=self.pos))
                 self.advance()
             elif self.current_char == "[":
                 tokens.append(Token(TT_LSQUARE, pos_start=self.pos, pos_end=self.pos))

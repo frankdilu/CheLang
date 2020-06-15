@@ -1,4 +1,4 @@
-from Const import TT_EOF,TT_POW, TT_LPAREN, TT_RPAREN, TT_COMMA, TT_INT, TT_FLOAT, TT_STRING, TT_IDENTIFIER, TT_LSQUARE, TT_KEYWORD, TT_PLUS, TT_MINUS, TT_MUL, TT_DIV, TT_RSQUARE, TT_EQ, TT_EE, TT_NE, TT_LT, TT_GT, TT_LTE, TT_GTE, TT_MM, TT_ARROW
+from Const import TT_EOF,TT_POW, TT_LPAREN, TT_RPAREN, TT_COMMA, TT_INT, TT_FLOAT, TT_STRING, TT_IDENTIFIER, TT_LSQUARE, TT_KEYWORD, TT_PLUS, TT_MINUS, TT_MUL, TT_DIV, TT_RSQUARE, TT_EQ, TT_EE, TT_NE, TT_LT, TT_GT, TT_LTE, TT_GTE, TT_MM, TT_ARROW, TT_NEWLINE
 from Errors import InvalidSyntaxError, detailsMessages
 from ParserResult import ParseResult
 from Nodes import CallNode, NumberNode, StringNode, VarAccessNode, UnaryOpNode, ListNode, IfNode, ForNode, WhileNode, VarAssignNode, FuncDefNode, BinOpNode
@@ -16,21 +16,72 @@ class Parser:
     ###############################
     def advance(self):
         self.tok_inx += 1
-        if self.tok_inx < len(self.tokens):
-            self.current_tok = self.tokens[self.tok_inx]
+        self.update_current_tok()
         return self.current_tok
+
+    ###############################
+    # REVERSE METHOD    - pa atra -
+    ###############################
+    def reverse(self, amount=1):
+        self.tok_inx -= amount
+        self.update_current_tok()
+        return self.current_tok
+
+    def update_current_tok(self):
+        if self.tok_inx >= 0 and self.tok_inx < len(self.tokens):
+            self.current_tok = self.tokens[self.tok_inx]
+
 
     ###############################
     # PARSE METHOD
     ###############################
     def parse(self):
-        res = self.expr()
+        res = self.statements()
         if not res.error and self.current_tok.type != TT_EOF:
             return res.failure(InvalidSyntaxError(
                 self.current_tok.pos_start, self.current_tok.pos_end,
-                detailsMessages["operationExpected"]
+                "Expected '+', '-', '*', '/', '^', '==', '!=', '<', '>', <=', '>=', 'AND' or 'OR'"
             ))
         return res
+
+
+    def statements(self):
+        res = ParseResult()
+        statements = []
+        pos_start = self.current_tok.pos_start.copy()
+
+        while self.current_tok.type == TT_NEWLINE:
+            res.register_advancement()
+            self.advance()
+
+        statement = res.register(self.expr())
+        if res.error: return res
+        statements.append(statement)
+
+        more_statements = True
+
+        while True:
+            newline_count = 0
+            while self.current_tok.type == TT_NEWLINE:
+                res.register_advancement()
+                self.advance()
+                newline_count += 1
+            if newline_count == 0:
+                more_statements = False
+            
+            if not more_statements: break
+            statement = res.try_register(self.expr())
+            if not statement:
+                self.reverse(res.to_reverse_count)
+                more_statements = False
+                continue
+            statements.append(statement)
+
+        return res.success(ListNode(
+            statements,
+            pos_start,
+            self.current_tok.pos_end.copy()
+            ))
 
     ###############################
     # POWER METHOD - qué potente. -
@@ -235,60 +286,113 @@ class Parser:
     ###############################
     def if_expr(self):
         res = ParseResult()
+        all_cases = res.register(self.if_expr_cases('ponele'))
+        if res.error: return res
+        cases, else_case = all_cases
+        return res.success(IfNode(cases, else_case))
+
+    def if_expr_b(self):
+        return self.if_expr_cases('oSi')
+    
+    def if_expr_c(self):
+        res = ParseResult()
+        else_case = None
+
+        if self.current_tok.matches(TT_KEYWORD, 'aLoSumo'):
+            res.register_advancement()
+            self.advance()
+
+            if self.current_tok.type == TT_NEWLINE:
+                res.register_advancement()
+                self.advance()
+
+                statements = res.register(self.statements())
+                if res.error: return res
+                else_case = (statements, True)
+
+                if self.current_tok.matches(TT_KEYWORD, 'hastaaca'):
+                    res.register_advancement()
+                    self.advance()
+                else:
+                    return res.failure(InvalidSyntaxError(
+                        self.current_tok.pos_start, self.current_tok.pos_end,
+                        "Expected 'END'"
+                        ))
+        else:
+            expr = res.register(self.expr())
+            if res.error: return res
+            else_case = (expr, False)
+
+        return res.success(else_case)
+
+    def if_expr_b_or_c(self):
+        res = ParseResult()
+        cases, else_case = [], None
+
+        if self.current_tok.matches(TT_KEYWORD, 'oSi'):
+            all_cases = res.register(self.if_expr_b())
+            if res.error: return res
+            cases, else_case = all_cases
+        else:
+            else_case = res.register(self.if_expr_c())
+            if res.error: return res
+        
+        return res.success((cases, else_case))
+
+    def if_expr_cases(self, case_keyword):
+        res = ParseResult()
         cases = []
         else_case = None
 
-        if not self.current_tok.matches(TT_KEYWORD, "ponele"):
+        if not self.current_tok.matches(TT_KEYWORD, case_keyword):
             return res.failure(InvalidSyntaxError(
                 self.current_tok.pos_start, self.current_tok.pos_end,
-                detailsMessages["languajeSyntaxError"] + "ponele'"
-            ))
-        
+                f"Expected '{case_keyword}'"
+                ))
+
         res.register_advancement()
         self.advance()
 
         condition = res.register(self.expr())
-        if res.error:return res
+        if res.error: return res
 
-        if not self.current_tok.matches(TT_KEYWORD, "tonce"):
+        if not self.current_tok.matches(TT_KEYWORD, 'tonce'):
             return res.failure(InvalidSyntaxError(
                 self.current_tok.pos_start, self.current_tok.pos_end,
-                detailsMessages["languajeSyntaxError"] + "tonce'"
-            ))
+                f"Expected 'tonce'"
+                ))
 
         res.register_advancement()
         self.advance()
 
-        expr = res.register(self.expr())
-        if res.error: return res
-        cases.append((condition, expr))
-
-        while self.current_tok.matches(TT_KEYWORD, "osi"):
+        if self.current_tok.type == TT_NEWLINE:
             res.register_advancement()
             self.advance()
 
-            condition = res.register(self.expr())
+            statements = res.register(self.statements())
             if res.error: return res
+            cases.append((condition, statements, True))
 
-            if not self.current_tok.matches(TT_KEYWORD, "tonce"):
-                return res.failure(InvalidSyntaxError(
-                    self.current_tok.pos_start, self.current_tok.pos_end,
-                    detailsMessages["languajeSyntaxError"] + "tonce'"
-                ))
-
-            self.advance()
+            if self.current_tok.matches(TT_KEYWORD, 'hastaaca'):
+                res.register_advancement()
+                self.advance()
+            else:
+                all_cases = res.register(self.if_expr_b_or_c())
+                if res.error: return res
+                new_cases, else_case = all_cases
+                cases.extend(new_cases)
+        else:
             expr = res.register(self.expr())
             if res.error: return res
-            cases.append((condition,expr))
+            cases.append((condition, expr, False))
 
-        if self.current_tok.matches(TT_KEYWORD, "alosumo"):
-            res.register_advancement()
-            self.advance()
-
-            else_case = res.register(self.expr())
+            all_cases = res.register(self.if_expr_b_or_c())
             if res.error: return res
-        
-        return res.success(IfNode(cases, else_case))
+            new_cases, else_case = all_cases
+            cases.extend(new_cases)
+
+        return res.success((cases, else_case))
+
 
     ###############################
     # FOR METHOD
@@ -357,10 +461,29 @@ class Parser:
         res.register_advancement()
         self.advance()
 
+        if self.current_tok.type == TT_NEWLINE:
+            res.register_advancement()
+            self.advance()
+            
+            body = res.register(self.statements())
+            if res.error: return res
+
+            if not self.current_tok.matches(TT_KEYWORD, "hastaaca"):
+                return res.failure(InvalidSyntaxError(
+                    self.current_tok.pos_start, self.current_tok.pos_end,
+                    "hastaaca expected"
+                ))
+
+            res.register_advancement()
+            self.advance()
+
+            return res.success(ForNode(var_name, start_value, end_value, step_value, body, True))
+            
+
         body = res.register(self.expr())
         if res.error: return res
 
-        return res.success(ForNode(var_name, start_value, end_value, step_value, body))
+        return res.success(ForNode(var_name, start_value, end_value, step_value, body, False))
 
     ###############################
     # WHILE METHOD
@@ -389,10 +512,29 @@ class Parser:
         res.register_advancement()
         self.advance()
 
+        
+        if self.current_tok.type == TT_NEWLINE:
+            res.register_advancement()
+            self.advance()
+            
+            body = res.register(self.statements())
+            if res.error: return res
+
+            if not self.current_tok.matches(TT_KEYWORD, "hastaaca"):
+                return res.failure(InvalidSyntaxError(
+                    self.current_tok.pos_start, self.current_tok.pos_end,
+                    "hastaaca expected"
+                ))
+
+            res.register_advancement()
+            self.advance()
+            return res.success(WhileNode(condition, body, True))
+
+
         body = res.register(self.expr())
         if res.error: return res
         
-        return res.success(WhileNode(condition, body))
+        return res.success(WhileNode(condition, body, False))
 
     ###############################
     # COMPARATOR METHOD
@@ -528,21 +670,44 @@ class Parser:
         res.register_advancement()
         self.advance()
 
-        if self.current_tok.type != TT_ARROW:
+        if self.current_tok.type == TT_ARROW:
+            res.register_advancement()
+            self.advance()
+            body = res.register(self.expr())
+            if res.error: return res
+
+            return res.success(FuncDefNode(
+                var_name_tok,
+                arg_name_toks,
+                body,
+                False
+            ))
+
+        if self.current_tok.type != TT_NEWLINE:
             return res.failure(InvalidSyntaxError(
                 self.current_tok.pos_start, self.current_tok.pos_end,
-                f"Expected '->'"
+                "=> or newline expected"
             ))
 
         res.register_advancement()
         self.advance()
-        node_to_return = res.register(self.expr())
+
+        body = res.register(self.statements())
         if res.error: return res
+
+        if not self.current_tok.matches(TT_KEYWORD, "hastaaca"):
+            return res.failure(InvalidSyntaxError(
+                self.current_tok.pos_start, self.current_tok.pos_end,
+                "hastaaca expected"
+            ))
+        res.register_advancement()
+        self.advance()
 
         return res.success(FuncDefNode(
             var_name_tok,
             arg_name_toks,
-            node_to_return
+            body,
+            True
         ))
 
 

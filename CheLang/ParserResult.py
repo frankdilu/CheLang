@@ -7,20 +7,29 @@ class ParseResult:
         self.error = None
         self.node = None
         self.advance_count = 0
+        self.to_reverse_count = 0
 
     ###############################
     # REGISTER ADVANCEMENT  -count-
     ###############################
     def register_advancement(self):
+        self.last_registered_advance_count = 1
         self.advance_count += 1
 
     ###############################
     # REGISTER METHOD - toma nota -
     ###############################
     def register(self, res):
+        self.last_registered_advance_count = res.advance_count
         self.advance_count += res.advance_count
         if res.error: self.error = res.error
         return res.node
+
+    def try_register(self, res):
+        if res.error:
+            self.to_reverse_count = res.advance_count
+            return None
+        return self.register(res)
 
     ###############################
     # SUCCESS METHOD   - ganadorr -
@@ -33,6 +42,6 @@ class ParseResult:
     # FAILURE METHOD  - fracasado -
     ###############################
     def failure(self, error):
-        if not self.error or self.advance_count == 0:
+        if not self.error or self.last_registered_advance_count  == 0:
             self.error = error
         return self
