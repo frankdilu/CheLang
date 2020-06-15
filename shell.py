@@ -9,7 +9,7 @@ def signal_handler(sig, frame):
 signal.signal(signal.SIGINT, signal_handler)
 
 while True:
-    inputText = input("CheLang >")
+    inputText = input("CheLang > ")
 
     result, error = cheLang.run("<stdin>",inputText)
 

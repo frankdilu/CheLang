@@ -20,6 +20,10 @@ scheme:
         added lists 
         added built-in functions (bases)
     )
+    (
+        separate main classes to differents files
+        added folder CheLang
+    )
 13/06
     (
         update "andaPor" => "anda por"
