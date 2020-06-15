@@ -28,6 +28,9 @@ scheme:
         readMe
         examples
     )
+    (
+        set console title
+    )
 14/06
     (
         updated error messages

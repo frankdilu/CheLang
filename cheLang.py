@@ -1,9 +1,14 @@
 import signal
 import sys
 import os
+import ctypes
+ctypes.windll.kernel32.SetConsoleTitleW("CheLang Shell")
+
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), './CheLang/')))
 # pylint: disable=import-error
 import cheLangCompiler
+
+
 
 if len(sys.argv) == 1:
     def signal_handler(sig, frame):

@@ -15,6 +15,9 @@ Python3
 Double click to CheLang.py (CheLang Shell)
 
 or
+python CheLang.py (CheLang Shell from console)
+
+or
 
 python CheLang.py example.che (To run CheLang file)
 
