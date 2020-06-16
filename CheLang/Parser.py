@@ -1,7 +1,7 @@
-from Const import TT_EOF,TT_POW, TT_LPAREN, TT_RPAREN, TT_COMMA, TT_INT, TT_FLOAT, TT_STRING, TT_IDENTIFIER, TT_LSQUARE, TT_KEYWORD, TT_PLUS, TT_MINUS, TT_MUL, TT_DIV, TT_RSQUARE, TT_EQ, TT_EE, TT_NE, TT_LT, TT_GT, TT_LTE, TT_GTE, TT_MM, TT_ARROW, TT_NEWLINE
-from Errors import InvalidSyntaxError, detailsMessages
-from ParserResult import ParseResult
-from Nodes import CallNode, NumberNode, StringNode, VarAccessNode, UnaryOpNode, ListNode, IfNode, ForNode, WhileNode, VarAssignNode, FuncDefNode, BinOpNode, ReturnNode, ContinueNode, BreakNode
+from CheLang.Const import TT_EOF,TT_POW, TT_LPAREN, TT_RPAREN, TT_COMMA, TT_INT, TT_FLOAT, TT_STRING, TT_IDENTIFIER, TT_LSQUARE, TT_KEYWORD, TT_PLUS, TT_MINUS, TT_MUL, TT_DIV, TT_RSQUARE, TT_EQ, TT_EE, TT_NE, TT_LT, TT_GT, TT_LTE, TT_GTE, TT_MM, TT_ARROW, TT_NEWLINE
+from CheLang.Errors import InvalidSyntaxError, detailsMessages
+from CheLang.ParserResult import ParseResult
+from CheLang.Nodes import CallNode, NumberNode, StringNode, VarAccessNode, UnaryOpNode, ListNode, IfNode, ForNode, WhileNode, VarAssignNode, FuncDefNode, BinOpNode, ReturnNode, ContinueNode, BreakNode
 
 ###################################################
 # PARSER     - este es el que diferencia las cosa -

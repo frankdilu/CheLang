@@ -1,7 +1,7 @@
-from Values import Value,List, String, Number, Function
-from Const import detailsMessages, TT_PLUS, TT_MINUS, TT_MUL, TT_DIV, TT_POW, TT_EE,TT_NE, TT_LT,TT_GT,TT_LTE,TT_GTE,TT_MM,TT_KEYWORD
-from RTResult import RTResult
-from Errors import RTError
+from CheLang.Values import Value,List, String, Number, Function
+from CheLang.Const import detailsMessages, TT_PLUS, TT_MINUS, TT_MUL, TT_DIV, TT_POW, TT_EE,TT_NE, TT_LT,TT_GT,TT_LTE,TT_GTE,TT_MM,TT_KEYWORD
+from CheLang.RTResult import RTResult
+from CheLang.Errors import RTError
 ###################################################
 # INTERPRETER
 ###################################################

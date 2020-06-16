@@ -1,8 +1,8 @@
-from RTResult import RTResult
-from Errors import RTError
+from CheLang.RTResult import RTResult
+from CheLang.Errors import RTError
 import math
-from Context import Context
-from SymbolTable import SymbolTable
+from CheLang.Context import Context
+from CheLang.SymbolTable import SymbolTable
 import os
 ###################################################
 # VALUES
@@ -362,7 +362,7 @@ class Function(BaseFunction):
         self.should_auto_return = should_auto_return
 
     def execute(self, args):
-        from Interpreter import Interpreter
+        from CheLang.Interpreter import Interpreter
         res = RTResult()
         interpreter = Interpreter()
         exec_ctx = self.generate_new_context()
@@ -574,7 +574,7 @@ class BuiltInFunction(BaseFunction):
                 f"Failed to load script \"{fn}\"\n" + str(e),
                 exec_ctx
                 ))
-        from cheLangCompiler import run
+        from CheLang.cheLangCompiler import run
         _, error = run(fn, script)
         
         if error:
@@ -620,5 +620,5 @@ BuiltInFunction.pop         = BuiltInFunction("pop")
 BuiltInFunction.extend      = BuiltInFunction("extend")
 BuiltInFunction.len         = BuiltInFunction("len")
 BuiltInFunction.run         = BuiltInFunction("run")
-BuiltInFunction.hola         = BuiltInFunction("hola")
-BuiltInFunction.argentina         = BuiltInFunction("argentina")
+BuiltInFunction.hola        = BuiltInFunction("hola")
+BuiltInFunction.argentina   = BuiltInFunction("argentina")

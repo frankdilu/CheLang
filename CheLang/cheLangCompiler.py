@@ -1,9 +1,9 @@
-from Values import String, Number, BuiltInFunction 
-from SymbolTable import SymbolTable
-from Lexer import Lexer
-from Parser import Parser
-from Interpreter import Interpreter
-from Context import Context
+from CheLang.Values import String, Number, BuiltInFunction 
+from CheLang.SymbolTable import SymbolTable
+from CheLang.Lexer import Lexer
+from CheLang.Parser import Parser
+from CheLang.Interpreter import Interpreter
+from CheLang.Context import Context
 
 ###################################################
 # RUN                      - usain bolt un poroto -

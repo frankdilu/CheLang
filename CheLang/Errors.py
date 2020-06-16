@@ -1,5 +1,5 @@
-from stringsWithArrows import *
-from Const import errorMessages, detailsMessages
+from CheLang.stringsWithArrows import *
+from CheLang.Const import errorMessages, detailsMessages
 ###############################
 # ERROR SCHEME
 ###############################
