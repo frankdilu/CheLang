@@ -598,19 +598,19 @@ class BuiltInFunction(BaseFunction):
         import os
         from playsound import playsound
         print("\n¡VIVA LA PATRIA!\n\n¡VIVA!\n")
-        imageUri = os.path.abspath(os.environ["CheLangPath"]) + "\\assets\\Argentina.jpg"
-        soundUri = os.path.abspath(os.environ["CheLangPath"]) + "\\assets\\Malvinas.mp3"
         notDone = True
         try:
+            imageUri = os.path.abspath(os.environ["CheLangPath"]) + "\\assets\\Argentina.jpg"
+            soundUri = os.path.abspath(os.environ["CheLangPath"]) + "\\assets\\Malvinas.mp3"
             os.startfile(imageUri)
             notDone = False
             ctypes.windll.user32.SystemParametersInfoW(20, 0, imageUri , 0)
             playsound(soundUri)
         except:
             if notDone:
-                imageUri = os.path.abspath(os.getcwd()) + "\\assets\\Argentina.jpg"
-                soundUri = os.path.abspath(os.getcwd()) + "\\assets\\Malvinas.mp3"
                 try:
+                    imageUri = os.path.abspath(os.getcwd()) + "\\assets\\Argentina.jpg"
+                    soundUri = os.path.abspath(os.getcwd()) + "\\assets\\Malvinas.mp3"
                     os.startfile(imageUri)
                     ctypes.windll.user32.SystemParametersInfoW(20, 0, imageUri , 0)
                     playsound(soundUri)

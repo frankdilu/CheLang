@@ -4,28 +4,31 @@ CheLang is an argento (Argentinian) programming language with their locals says.
 
 ## Installation
 
-For now, just clone the repo. Working in it.
+See Releases folder.
 
+Downloads:
 
-## Requeriments
+MSI Installer (with PATH. House recommendation.)
 
-Python3
+ZIP Builded
+
+ZIP Source (requires python)
 
 ## Usage
-Double click to CheLang.py (CheLang Shell)
 
-or
-python CheLang.py (CheLang Shell from console)
+Double click on CheLang exe
 
-or
+Msi installer:
 
-python CheLang.py example.che (To run CheLang file)
+open .che file
 
-or
+or (with PATH)
 
-run("example.che") (To run CheLang file from CheLang shell)
+`chelang` in console
 
-Soon installer with PATH shell
+
+On source:
+`python cli.py` in console (requires python)
 
 ## Syntax
 ```
@@ -200,7 +203,7 @@ Built-in:
 
 ## Progress
 
-The language IS NOT FINISHED. Any help is helpful. This is the beta.
+The language IS NOT FINISHED. This is the first release. Soon upgrades.
 
 
 ## Contributing
