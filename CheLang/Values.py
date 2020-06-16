@@ -598,12 +598,23 @@ class BuiltInFunction(BaseFunction):
         import os
         from playsound import playsound
         print("\n¡VIVA LA PATRIA!\n\n¡VIVA!\n")
-        imageUri = os.path.abspath(os.getcwd()) + "\\CheLang\\assets\\Argentina.jpg"
-        soundUri = os.path.abspath(os.getcwd()) + "\\CheLang\\assets\\Malvinas.mp3"
-        ctypes.windll.user32.SystemParametersInfoW(20, 0, imageUri , 0)
-        os.startfile(imageUri)
-        playsound(soundUri)
-        return RTResult().success(Number.null)
+        imageUri = os.path.abspath(os.environ["CheLangPath"]) + "\\assets\\Argentina.jpg"
+        soundUri = os.path.abspath(os.environ["CheLangPath"]) + "\\assets\\Malvinas.mp3"
+        try:
+            os.startfile(imageUri)
+            ctypes.windll.user32.SystemParametersInfoW(20, 0, imageUri , 0)
+            playsound(soundUri)
+        except:
+            imageUri = os.path.abspath(os.getcwd()) + "\\assets\\Argentina.jpg"
+            soundUri = os.path.abspath(os.getcwd()) + "\\assets\\Malvinas.mp3"
+            try:
+                os.startfile(imageUri)
+                ctypes.windll.user32.SystemParametersInfoW(20, 0, imageUri , 0)
+                playsound(soundUri)
+            except FileNotFoundError:
+                print("Pasó algo, no pude cargar las cosas")
+        finally:
+            return RTResult().success(Number.null)
     execute_argentina.arg_names = []
 
 BuiltInFunction.print       = BuiltInFunction("print")
