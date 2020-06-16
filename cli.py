@@ -34,4 +34,4 @@ else:
             print(repr(result.elements[0]))
         else:
             print(repr(result))
-    input("CheLang > Apreta cualquier cosa pa cerrar eto")
+    input("CheLang > Apreta enter pa cerrar eto")
