@@ -11,6 +11,7 @@ from CheLang.Context import Context
 
 global_symbol_table = SymbolTable()
 global_symbol_table.set("Milanesa",String("Carne"))
+global_symbol_table.set("Macri",String("Gato"))
 global_symbol_table.set("Vacio", Empty())
 global_symbol_table.set("Inviable", Number.null)
 global_symbol_table.set("Chamuyo", Number.false)

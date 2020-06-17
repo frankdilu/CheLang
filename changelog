@@ -8,7 +8,7 @@ scheme:
             changes
             changes
         ) commit
-17/06 v1.0
+17/06 v1.0.1
     (
         "Chorro()" built-in function added.
         Empty class added
@@ -22,7 +22,11 @@ scheme:
         input function now can recibe input text (optional)
         fixbug with keyword "es" (Before it take "()" from the next word)
     )
-16/06
+    (
+        Const "Macri" => "Gato"
+        v1.0.1
+    )
+16/06 v1.0
     (
         Release v1.0 with installer, zip build and zip source
     )

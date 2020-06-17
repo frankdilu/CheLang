@@ -1,6 +1,6 @@
 # CheLang
 
-CheLang is an argento (Argentinian) programming language with their locals says.
+CheLang is an argento (Argentinian) programming language with their locals slang.
 
 ## Installation
 
@@ -193,6 +193,7 @@ Functions:
 Built-in:
       Const:
             "Milanesa" = "Carne"
+            "Macri" = "Gato"
             "Vacio" =  Empty (careful. A lot of illegal operations.)
             "Inviable" =  Number.null
             "Chamuyo" =  Number.false
