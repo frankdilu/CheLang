@@ -167,13 +167,33 @@ For / While statement:
 Functions:
       fun => def / function
       (a, b, c) => (a, b, c)
-      => => {} / =>
+      => =>  () => expr (just one expr. no "hastaaca" final.)
+      hastaaca => } (accept one or several expr)
 
       fun fibonacci(n)=> ponele que n anda por 0 tonce 0 oSi n anda por 1 tonce 1 aLoSumo (fibonacci(n meno 1) ma fibonacci(n meno 2))
+
+      fun fibonacci(n) => 
+            ponele que n anda por 0 tonce
+                  return 0 
+            oSi n anda por 1 tonce 
+                  return 1 
+            aLoSumo 
+                  return (fibonacci(n meno 1) ma fibonacci(n meno 2))
+            hastaaca
+      
+      Cuchame( fibonacci(10) ) (just one expr (the if))
+
+      fun welcome()
+            che name es Traeme("Decime tu nombre, dale :")
+            Cuchame("Que onda " ma name ma ". Todo bien?")
+      hastaaca
+
+      welcome()   (several expr (declare variable and Cuchame function))
 
 Built-in:
       Const:
             "Milanesa" = "Carne"
+            "Vacio" =  Empty (careful. A lot of illegal operations.)
             "Inviable" =  Number.null
             "Chamuyo" =  Number.false
             "Posta" =  Number.true
@@ -182,8 +202,8 @@ Built-in:
       Functions:
             Cuchame() => print()
             CuchameRet() => return print
-            Traeme() => input()
-            TraemeNumerito() => input() (int)
+            Traeme() => input("input str"?)
+            TraemeNumerito() => input("input str"?) (int)
             Limpiame() => clear console
             clear() => clear console
             EsNumerito() => isNumber(int)
@@ -193,8 +213,9 @@ Built-in:
             Agregale() => append(list, element)
             Rajale() => pop(list, index)
             Metele() => extend(listA,listB)
-            len() => len(list)
-            run() => run(file.che)
+            len() => len(list or string)
+            run() => run("path/file.che")
+            Chorro() => Just try it. You must. Really. Posta.
             Argentina() => Just try it. You must. Really. Posta.
 
 (Read example.che to more)

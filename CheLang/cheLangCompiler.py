@@ -1,4 +1,4 @@
-from CheLang.Values import String, Number, BuiltInFunction 
+from CheLang.Values import String, Number, BuiltInFunction , Empty
 from CheLang.SymbolTable import SymbolTable
 from CheLang.Lexer import Lexer
 from CheLang.Parser import Parser
@@ -11,6 +11,7 @@ from CheLang.Context import Context
 
 global_symbol_table = SymbolTable()
 global_symbol_table.set("Milanesa",String("Carne"))
+global_symbol_table.set("Vacio", Empty())
 global_symbol_table.set("Inviable", Number.null)
 global_symbol_table.set("Chamuyo", Number.false)
 global_symbol_table.set("Posta", Number.true)
@@ -32,6 +33,7 @@ global_symbol_table.set("len", BuiltInFunction.len)
 global_symbol_table.set("run", BuiltInFunction.run)
 global_symbol_table.set("Hola", BuiltInFunction.hola)
 global_symbol_table.set("Argentina", BuiltInFunction.argentina)
+global_symbol_table.set("Chorro", BuiltInFunction.thief)
 
 def run(fn, text):
     #Generate tokens

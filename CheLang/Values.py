@@ -1,5 +1,6 @@
 from CheLang.RTResult import RTResult
 from CheLang.Errors import RTError
+from CheLang.Const import detailsMessages
 import math
 from CheLang.Context import Context
 from CheLang.SymbolTable import SymbolTable
@@ -73,7 +74,7 @@ class Value:
         return RTResult().failure(self.illegal_operation())
 
     def copy(self):
-        raise Exception('No copy method defined')
+        raise Exception('No hay copy() acá master')
 
     def is_true(self):
         return False
@@ -82,7 +83,7 @@ class Value:
         if not other: other = self
         return RTError(
             self.pos_start, other.pos_end,
-            'Illegal operation',
+            'Wait... that´s illegal',
             self.context
         )
 
@@ -117,7 +118,7 @@ class Number(Value):
             if other.value == 0:
                 return None, RTError(
                     other.pos_start, other.pos_end,
-                    'Division by zero',
+                    detailsMessages["zeroDiv"],
                     self.context
                 )
 
@@ -215,6 +216,13 @@ Number.false = Number(0)
 Number.true = Number(1)
 Number.math_PI = Number(math.pi)
 
+class Empty(Value):
+    def __init__(self):
+        super().__init__()
+
+    def copy(self):
+        return Empty()
+
 class String(Value):
     def __init__(self, value):
         super().__init__()
@@ -275,7 +283,7 @@ class List(Value):
             except:
                 return None, RTError(
                     other.pos_start, other.pos_end,
-                    "Index is outbounded ahjre",
+                    "Te pasaste de rosca con el index",
                     self.context
                 )
         else:
@@ -293,7 +301,7 @@ class List(Value):
             except:
                 return None, RTError(
                     other.pos_start, other.pos_end,
-                    "Index is outbounded ahjre",
+                    "Te pasaste de rosca con el index",
                     self.context
                 )
         else:
@@ -323,18 +331,23 @@ class BaseFunction(Value):
 
     def check_args(self, arg_names, args):
         res = RTResult()
+        final_arg_names = []
+
+        for arg_name in arg_names:
+            if not arg_name[-1] == "?":
+                final_arg_names.append(arg_name)
 
         if len(args) > len(arg_names):
             return res.failure(RTError(
                 self.pos_start, self.pos_end,
-                f"{len(args) - len(arg_names)} too many args passed into {self}",
+                f"Che me pasaste como {len(args) - len(arg_names)} argumentos, son menos en {self} viste",
                 self.context
             ))
         
-        if len(args) < len(arg_names):
+        if len(args) < len(final_arg_names):
             return res.failure(RTError(
                 self.pos_start, self.pos_end,
-                f"{len(arg_names) - len(args)} too few args passed into {self}",
+                f"Che me pasaste como {len(final_arg_names) - len(args)} argumentos, son más en {self} viste",
                 self.context
             ))
 
@@ -373,7 +386,7 @@ class Function(BaseFunction):
         value = res.register(interpreter.visit(self.body_node, exec_ctx))
         if res.should_return() and res.func_return_value == None: return res
         
-        ret_value = (value if self.should_auto_return else None) or res.func_return_value or Number.null
+        ret_value = (value if self.should_auto_return else None) or res.func_return_value or Empty()
         return res.success(ret_value)
 
     def copy(self):
@@ -404,7 +417,7 @@ class BuiltInFunction(BaseFunction):
         return res.success(return_value)
         
     def no_visit_method(self, node, context):
-        raise Exception(f'No execute_{self.name} method defined')
+        raise Exception(f'No existe execute_{self.name}')
 
     def copy(self):
         copy = BuiltInFunction(self.name)
@@ -419,7 +432,7 @@ class BuiltInFunction(BaseFunction):
 
     def execute_print(self, exec_ctx):
         print(str(exec_ctx.symbol_table.get('value')))
-        return RTResult().success(Number.null)
+        return RTResult().success(Empty())
     execute_print.arg_names = ['value']
         
     def execute_print_ret(self, exec_ctx):
@@ -427,24 +440,24 @@ class BuiltInFunction(BaseFunction):
     execute_print_ret.arg_names = ['value']
         
     def execute_input(self, exec_ctx):
-        text = input("Que me queré decir bro? ")
+        text = input(exec_ctx.symbol_table.get('inputValue?') or "Que me queré decir bro? >")
         return RTResult().success(String(text))
-    execute_input.arg_names = []
+    execute_input.arg_names = ["inputValue?"]
 
     def execute_input_int(self, exec_ctx):
         while True:
-            text = input("Tirame un numero: ")
+            text = input(exec_ctx.symbol_table.get('inputValue?') or "Tirame un numero: ")
             try:
                 number = int(text)
                 break
             except ValueError:
                 print(f"'{text}' tiene que ser un numero tarao, mandale denuevo")
         return RTResult().success(Number(number))
-    execute_input_int.arg_names = []
+    execute_input_int.arg_names = ["inputValue?"]
 
     def execute_clear(self, exec_ctx):
         os.system('cls' if os.name == 'nt' else 'cls') 
-        return RTResult().success(Number.null)
+        return RTResult().success(Empty())
     execute_clear.arg_names = []
 
     def execute_is_number(self, exec_ctx):
@@ -474,12 +487,12 @@ class BuiltInFunction(BaseFunction):
         if not isinstance(list_, List):
             return RTResult().failure(RTError(
                 self.pos_start, self.pos_end,
-                "First argument must be list",
+                "Motri me tenes que dar una lista pa poner un elemento",
                 exec_ctx
             ))
 
         list_.elements.append(value)
-        return RTResult().success(Number.null)
+        return RTResult().success(list_)
     execute_append.arg_names = ["list", "value"]
 
     def execute_pop(self, exec_ctx):
@@ -489,14 +502,14 @@ class BuiltInFunction(BaseFunction):
         if not isinstance(list_, List):
             return RTResult().failure(RTError(
                 self.pos_start, self.pos_end,
-                "First argument must be list",
+                "Motri me tenes que dar una lista pa rajar un elemento",
                 exec_ctx
             ))
 
         if not isinstance(index, Number):
             return RTResult().failure(RTError(
                 self.pos_start, self.pos_end,
-                "Second argument must be number",
+                "CAPO dame el index en el segundo argumento",
                 exec_ctx
             ))
 
@@ -505,7 +518,7 @@ class BuiltInFunction(BaseFunction):
         except:
             return RTResult().failure(RTError(
                 self.pos_start, self.pos_end,
-                'Element at this index could not be removed from list because index is out of bounds',
+                'Che mostro te pasaste de rosca con el index de la lista',
                 exec_ctx
             ))
         return RTResult().success(element)
@@ -518,33 +531,36 @@ class BuiltInFunction(BaseFunction):
         if not isinstance(listA, List):
             return RTResult().failure(RTError(
                 self.pos_start, self.pos_end,
-                "First argument must be list",
+                "Tiene que ser una lista el primer argumento crack",
                 exec_ctx
             ))
 
         if not isinstance(listB, List):
             return RTResult().failure(RTError(
                 self.pos_start, self.pos_end,
-                "Second argument must be list",
+                "También tiene que ser una lista el segundo crack",
                 exec_ctx
             ))
 
         listA.elements.extend(listB.elements)
-        return RTResult().success(Number.null)
+        return RTResult().success(listA)
     execute_extend.arg_names = ["listA", "listB"]
 
     def execute_len(self, exec_ctx):
-        list_ = exec_ctx.symbol_table.get("list")
+        value = exec_ctx.symbol_table.get("value")
 
-        if not isinstance(list_, List):
-            return RTResult().failure(RTError(
-                self.pos_start, self.pos_end,
-                "Argument must be list",
-                exec_ctx
-                ))
+        if isinstance(value, List):
+            return RTResult().success(Number(len(value.elements)))
+        if isinstance(value, String):
+            return RTResult().success(Number(len(value.value)))
 
-        return RTResult().success(Number(len(list_.elements)))
-    execute_len.arg_names = ["list"]
+        return RTResult().failure(RTError(
+            self.pos_start, self.pos_end,
+            "Che el len tiene que tener una lista o un string",
+            exec_ctx
+            ))
+
+    execute_len.arg_names = ["value"]
 
     def execute_run(self, exec_ctx):
         fn = exec_ctx.symbol_table.get("fn")
@@ -552,14 +568,14 @@ class BuiltInFunction(BaseFunction):
         if not isinstance(fn, String):
             return RTResult().failure(RTError(
                 self.pos_start, self.pos_end,
-                "Second argument must be string",
+                "Dame un string papá",
                 exec_ctx
                 ))
         
         if fn.value[-4:] != ".che":
             return RTResult().failure(RTError(
                 self.pos_start, self.pos_end,
-                "Must be .che file",
+                "CAPO tiene que ser un archivo .che , que te pensas?",
                 exec_ctx
                 ))
 
@@ -571,7 +587,7 @@ class BuiltInFunction(BaseFunction):
         except Exception as e:
             return RTResult().failure(RTError(
                 self.pos_start, self.pos_end,
-                f"Failed to load script \"{fn}\"\n" + str(e),
+                f"Que pasó perro? No arrancó? Algo va mal en \"{fn}\"\n" + str(e),
                 exec_ctx
                 ))
         from CheLang.cheLangCompiler import run
@@ -580,17 +596,17 @@ class BuiltInFunction(BaseFunction):
         if error:
             return RTResult().failure(RTError(
                 self.pos_start, self.pos_end,
-                f"Failed to finish executing script \"{fn}\"\n" +
+                f"Che \"{fn}\" no funcó, fijate que onda.\n" +
                 error.as_string(),
                 exec_ctx
                 ))
 
-        return RTResult().success(Number.null)
+        return RTResult().success(Empty())
     execute_run.arg_names = ["fn"]
 
     def execute_hola(self, exec_ctx):
         print("Que onda perro? Todo piola?")
-        return RTResult().success(Number.null)
+        return RTResult().success(Empty())
     execute_hola.arg_names = []
 
     def execute_argentina(self, exec_ctx):
@@ -617,8 +633,43 @@ class BuiltInFunction(BaseFunction):
                 except FileNotFoundError:
                     print("Pasó algo, no pude cargar las cosas")
         finally:
-            return RTResult().success(Number.null)
+            return RTResult().success(Empty())
     execute_argentina.arg_names = []
+
+    def execute_thief(self, exec_ctx):
+        from time import sleep
+        print("\nSi entra el chorro no lo podes amasijar en el patio porque despues dicen que se cayo de la medianera.", end="\n\n")
+        sleep(4)
+        print("Vos lo tenes que llevar al lugar mas recóndito de tu casa.", end="\n\n")
+        sleep(2)
+        print("Al ultimo dormitorio.", end="\n\n")
+        sleep(1.5)
+        print("Y si es posible al sótano.", end="\n\n")
+        sleep(1.5)
+        print("Bien escondido.", end="\n\n")
+        sleep(2)
+        print("Y ahí lo reventas a balazos. Le tiras todos los tiros.", end="\n\n")
+        sleep(3)
+        print("No uno, porque vas a ser habil tirador y te comes un garron de la gran flauta.", end="\n\n")
+        sleep(3)
+        print("Vos estabas en un estado de emocion violenta y de locura.", end="\n\n")
+        sleep(2)
+        print("Lo rreventaste a tiros, le vaciaste todo el cargador.", end="\n\n")
+        sleep(2)
+        print("Le zapateas arriba. Lo meas. Para demostrar tu estado de locura y de inconsciencia temporal.", end="\n\n")
+        sleep(3.3)
+        print("¿Me explico?", end="\n\n")
+        sleep(1.5)
+        print("Ademas tenes que tener una botella de chiv va a mano, te tomas media botella,", end="\n\n")
+        sleep(3)
+        print("y si tenes un sobre de cocaina, papoteate y vas al juzgado así. *Movimientos epilepticos*", end="\n\n")
+        sleep(3)
+        print("Sos inimputable hermano.", end="\n\n")
+        sleep(2.3)
+        print("En diez dias salis.", end="\n\n")
+        sleep(1)
+        return RTResult().success(Empty())
+    execute_thief.arg_names = []
 
 BuiltInFunction.print       = BuiltInFunction("print")
 BuiltInFunction.print_ret   = BuiltInFunction("print_ret")
@@ -636,3 +687,4 @@ BuiltInFunction.len         = BuiltInFunction("len")
 BuiltInFunction.run         = BuiltInFunction("run")
 BuiltInFunction.hola        = BuiltInFunction("hola")
 BuiltInFunction.argentina   = BuiltInFunction("argentina")
+BuiltInFunction.thief       = BuiltInFunction("thief")

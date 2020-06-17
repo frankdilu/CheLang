@@ -268,17 +268,14 @@ class Interpreter:
         args = []
 
         value_to_call = res.register(self.visit(node.node_to_call, context))
-        # if res.error: return res
         if res.should_return(): return res
         value_to_call = value_to_call.copy().set_pos(node.pos_start, node.pos_end)
 
         for arg_node in node.arg_nodes:
             args.append(res.register(self.visit(arg_node, context)))
-            # if res.error: return res
             if res.should_return(): return res
 
         return_value = res.register(value_to_call.execute(args))
-        # if res.error: return res
         if res.should_return(): return res
         return_value = return_value.copy().set_context(context).set_pos(node.pos_start,node.pos_end)
         return res.success(return_value)

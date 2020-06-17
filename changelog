@@ -8,6 +8,24 @@ scheme:
             changes
             changes
         ) commit
+17/06 v1.0
+    (
+        "Chorro()" built-in function added.
+        Empty class added
+        Remove Empty class prints
+        Changed return functions from Number.null to Empty
+        Added keyword "Vacio" to Empty class
+        Extend and Append Lists functions now return lists
+        Better error messages
+        Optionals arguments for built-in functions
+        len function now recibe lists and strings
+        input function now can recibe input text (optional)
+        fixbug with keyword "es" (Before it take "()" from the next word)
+    )
+16/06
+    (
+        Release v1.0 with installer, zip build and zip source
+    )
 15/06
     (
         separate main classes to differents files

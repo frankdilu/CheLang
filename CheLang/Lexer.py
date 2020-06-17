@@ -154,7 +154,7 @@ class Lexer:
         elif op_str.lower() == "es":
             tok, error, next_str = self.make_equals()
             if error: return [], error
-            if next_str != None: 
+            if next_str != None:
                 secToks, secErr = self.make_operator(next_str)
                 if secErr: return [], secErr
                 for secTok in secToks:
@@ -217,7 +217,7 @@ class Lexer:
         new_str = ""
         self.advance()
 
-        while self.current_char != None and self.current_char in LETTERS + "()":
+        while self.current_char != None and self.current_char in LETTERS:
             new_str += self.current_char
             self.advance()
 

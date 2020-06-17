@@ -1,4 +1,4 @@
-fun fibonacci(n)=>
+fun fibonacci(n)
     ponele que n anda por 0 tonce
         return 0 
     oSi n anda por 1 tonce 
@@ -6,6 +6,7 @@ fun fibonacci(n)=>
     aLoSumo 
         return (fibonacci(n meno 1) ma fibonacci(n meno 2))
     hastaaca
+hastaaca
 
 
-Cuchame(fibonacci(10))
+#Cuchame(fibonacci(10))
