@@ -38,7 +38,7 @@ Scheme:
 Operations:
       ma => +
       meno => -
-      por => +
+      por => *
       dividido => / (return float)
       aLa => **
       () => ()
