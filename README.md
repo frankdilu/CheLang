@@ -4,7 +4,7 @@ CheLang is an argento (Argentinian) programming language with their locals slang
 
 ## Installation
 
-See Releases folder.
+See Releases or tags.
 
 Downloads:
 
