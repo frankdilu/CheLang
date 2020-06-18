@@ -1,8 +1,8 @@
 from CheLang.stringsWithArrows import *
 from CheLang.Const import errorMessages, detailsMessages
-###############################
+###################################################
 # ERROR SCHEME
-###############################
+###################################################
 class Error:
     def __init__(self, pos_start, pos_end, error_name, details):
         self.pos_start = pos_start
@@ -10,6 +10,9 @@ class Error:
         self.error_name = error_name
         self.details = details
 
+    ###############################
+    # AS STRING METHOD - eto sale -
+    ###############################
     def as_string(self):
         result = f"{self.error_name}: {self.details} \n"
         result += f"En {self.pos_start.fn}, linea {self.pos_start.ln + 1} o por ahí\n" #era re croto viste
@@ -56,16 +59,17 @@ class RTError(Error):
         return result
 
     ###############################
-    # TRACEBACK  - pa saber donde - 
+    # TRACEBACK  - pa saber donde -
     ###############################
     def generate_traceback(self):
         result = ""
         pos = self.pos_start
         ctx = self.context
-
+        notLooped = True
         while ctx:
-            if pos.fn == "CheLang.py" and ctx.display_name == "main":
+            if notLooped:
                 result = "Traceback (most recent call last):\n" + f" File {pos.fn}, line {str(pos.ln + 1)}, in {ctx.display_name}\n" + result
+                notLooped = False
             else:
                 result = f" File {pos.fn}, line {str(pos.ln + 1)}, in {ctx.display_name}\n" + result
             pos = ctx.parent_entry_pos

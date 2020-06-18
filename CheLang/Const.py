@@ -18,7 +18,7 @@ errorMessages = {
     "IllegalCharError" : "Che pibe pusiste algo nada que ver, le mandaste",
     "InvalidSyntaxError" : "Flaco tu sintaxis no la entiende ni tu abuelita (saludos)",
     "RuntimeError" : "TE VAMOS A LINCHAR SI NO LO ARREGLAS BIGOTE",
-    "ExpectedCharError" : "Te faltó poner algo: "
+    "ExpectedCharError" : "Usted se tiene que arrepentir de lo que dijo. Le faltó poner algo: "
 }
 ###############################
 # ERROR DETAILS     - sfw :D -
@@ -30,10 +30,11 @@ detailsMessages = {
     "closeParentesisExpected": "\nFlaco porque no cerras los partentesis?",
     "identifierExpected": "\nDecime un nombre pa la variable viste",
     "equalExpected": "\nTenes que poner 'es' o 'seigual' pa poner algo crack",
-    "equalAfterNotExpected": "\nChe no sabes español? Tenes que poner 'No es'",
-    "zeroDiv": "\ndividís por cero vos? Usted se tiene que arrepentir de lo que dijo",
+    "equalAfterNotExpected": "\nChe no sabes español? Tenes que poner 'No es' duh",
+    "zeroDiv": "\nIntenté dividir por 0, pero no pude por culpa del kernel imperialista",
     "unknownVariable": "\nCapo no me dijiste que es '",
-    "languajeSyntaxError": "\nGenio leete la doc antes de escribir dale? Te faltó un '"
+    "languajeSyntaxError": "\nGenio leete la doc antes de escribir dale? Te faltó un '",
+    "outOfIndex": "\nTe pasaste de rosca con el index capo"
 }
 
 ###############################
@@ -78,13 +79,13 @@ KEYWORDS = [
     "tonce",
     "osi",
     "alosumo",
-    "for",
-    "to",
-    "step",
+    "agarra",
+    "hasta",
+    "de",
     "mientras",
-    "fun",
+    "definime",
     "hastaaca",
-    "return",
-    "continue",
-    "break"
+    "tirame",
+    "segui",
+    "piquete"
 ]

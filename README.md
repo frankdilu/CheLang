@@ -147,43 +147,47 @@ If statement:
       ponele que a no es a tonce 0 oSi messi anda por messi tonce 1 aLoSumo 6 => 1
 
 For / While statement:
-      for => for
-      to => to
-      step => step
+      agarra por => for
+      hasta => to
+      de a  => step
       tonce => then
       mientras => while
+      piquete => break
+      segui de largo => continue
+
 
       che mirtha es 0
-      for i es 0 to 10 tonce che mirtha es mirtha ma 30 => mirtha = 300
+      agarra por i es 0 hasta 10 tonce che mirtha es mirtha ma 30 => mirtha = 300
 
       che mirtha es 0
-      for i es 0 to 10 step 2 tonce che mirtha es mirtha ma 30 => mirtha = 150
+      agarra por i es 0 hasta 10 de a 2 tonce che mirtha es mirtha ma 30 => mirtha = 150
 
-      while 1 es 1 tonce che mirtha es mirtha ma 1 => infinite loop => mirtha forever
+      mientras 1 es 1 tonce che mirtha es mirtha ma 1 => infinite loop => mirtha forever
       
       che i es 0
       mientras i es unCachitoMa meno 10 tonce che i es i meno 1 => i = -10
 
 Functions:
-      fun => def / function
+      definime => def / function
       (a, b, c) => (a, b, c)
       => =>  () => expr (just one expr. no "hastaaca" final.)
       hastaaca => } (accept one or several expr)
+      tirame => return
 
-      fun fibonacci(n)=> ponele que n anda por 0 tonce 0 oSi n anda por 1 tonce 1 aLoSumo (fibonacci(n meno 1) ma fibonacci(n meno 2))
+      definime fibonacci(n)=> ponele que n anda por 0 tonce 0 oSi n anda por 1 tonce 1 aLoSumo (fibonacci(n meno 1) ma fibonacci(n meno 2))
 
-      fun fibonacci(n) => 
+      definime fibonacci(n) => 
             ponele que n anda por 0 tonce
-                  return 0 
+                  tirame 0 
             oSi n anda por 1 tonce 
-                  return 1 
+                  tirame 1 
             aLoSumo 
-                  return (fibonacci(n meno 1) ma fibonacci(n meno 2))
+                  tirame (fibonacci(n meno 1) ma fibonacci(n meno 2))
             hastaaca
       
       Cuchame( fibonacci(10) ) (just one expr (the if))
 
-      fun welcome()
+      definime welcome()
             che name es Traeme("Decime tu nombre, dale :")
             Cuchame("Que onda " ma name ma ". Todo bien?")
       hastaaca
@@ -218,6 +222,7 @@ Built-in:
             run() => run("path/file.che")
             Chorro() => Just try it. You must. Really. Posta.
             Argentina() => Just try it. You must. Really. Posta.
+            Boludear(n) => sleep(seconds)
 
 (Read example.che to more)
 ```

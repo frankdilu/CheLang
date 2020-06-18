@@ -28,7 +28,7 @@ class Lexer:
 
     def make_tokens(self):
         tokens = []
-
+        # aca se fija que onda con lo que tiene
         while self.current_char != None:
             if self.current_char in " \t":
                 self.advance()
@@ -82,7 +82,7 @@ class Lexer:
                     return [], IllegalCharError(pos_start, self.pos, char) #pa los que no saben escribir
                 else:
                     self.advance()
-
+        # end of file, lo que va al final vite
         tokens.append(Token(TT_EOF, pos_start=self.pos))
         return tokens, None
 
@@ -162,10 +162,30 @@ class Lexer:
             return tok, None
         else:
             tok_type = TT_KEYWORD if op_str.lower() in KEYWORDS else TT_IDENTIFIER
+            # esto se fija las keywords que tienen dos palabras que no sean las de equal
             if op_str.lower() == "ponele":
                 if self.take_str().lower() != "que": return [], InvalidSyntaxError(
                     pos_start, self.pos,
                     detailsMessages["languajeSyntaxError"] + "que'"
+                    )
+            elif op_str.lower() == "agarra":
+                if self.take_str().lower() != "por": return [], InvalidSyntaxError(
+                    pos_start, self.pos,
+                    detailsMessages["languajeSyntaxError"] + "por'"
+                    )
+            elif op_str.lower() == "de":
+                if self.take_str().lower() != "a": return [], InvalidSyntaxError(
+                    pos_start, self.pos,
+                    detailsMessages["languajeSyntaxError"] + "a'"
+                    )
+            elif op_str.lower() == "segui":
+                if self.take_str().lower() != "de": return [], InvalidSyntaxError(
+                    pos_start, self.pos,
+                    detailsMessages["languajeSyntaxError"] + "segui de largo'"
+                    )
+                if self.take_str().lower() != "largo": return [], InvalidSyntaxError(
+                    pos_start, self.pos,
+                    detailsMessages["languajeSyntaxError"] + "segui de largo'"
                     )
             return [Token(tok_type, op_str, pos_start, self.pos)], None
 
@@ -216,7 +236,7 @@ class Lexer:
     def take_str(self):
         new_str = ""
         self.advance()
-
+        # la cosa es agarrar la proxima palabra
         while self.current_char != None and self.current_char in LETTERS:
             new_str += self.current_char
             self.advance()
@@ -249,7 +269,9 @@ class Lexer:
             next_str = eq_str
 
         return [Token(tok_type, pos_start=pos_start, pos_end=self.pos)], None, next_str
-
+    ###############################
+    # COMMENT - haha recursiv goes brr - 
+    ###############################
     def skip_comment(self):
         while self.current_char != "\n" and self.current_char != None:
             self.advance()

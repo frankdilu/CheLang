@@ -223,6 +223,12 @@ class Empty(Value):
     def copy(self):
         return Empty()
 
+    def __repr__(self):
+        return "Vacio a la parrilla"
+
+    def __str__(self):
+        return "Vacio a la parrilla"
+
 class String(Value):
     def __init__(self, value):
         super().__init__()
@@ -283,7 +289,7 @@ class List(Value):
             except:
                 return None, RTError(
                     other.pos_start, other.pos_end,
-                    "Te pasaste de rosca con el index",
+                    detailsMessages["outOfIndex"],
                     self.context
                 )
         else:
@@ -301,7 +307,7 @@ class List(Value):
             except:
                 return None, RTError(
                     other.pos_start, other.pos_end,
-                    "Te pasaste de rosca con el index",
+                    detailsMessages["outOfIndex"],
                     self.context
                 )
         else:
@@ -518,7 +524,7 @@ class BuiltInFunction(BaseFunction):
         except:
             return RTResult().failure(RTError(
                 self.pos_start, self.pos_end,
-                'Che mostro te pasaste de rosca con el index de la lista',
+                detailsMessages["outOfIndex"],
                 exec_ctx
             ))
         return RTResult().success(element)
@@ -631,7 +637,7 @@ class BuiltInFunction(BaseFunction):
                     ctypes.windll.user32.SystemParametersInfoW(20, 0, imageUri , 0)
                     playsound(soundUri)
                 except FileNotFoundError:
-                    print("Pasó algo, no pude cargar las cosas")
+                    print("Pasó algo, no pude cargar las cosas... Para mi es culpa del kernel imperialista...")
         finally:
             return RTResult().success(Empty())
     execute_argentina.arg_names = []
@@ -671,6 +677,28 @@ class BuiltInFunction(BaseFunction):
         return RTResult().success(Empty())
     execute_thief.arg_names = []
 
+    def execute_exit(self, exec_ctx):
+        import sys
+        print('Nos vemos wachin! Aguante Argentina!')
+        sys.exit(0)
+        return RTResult().success(Empty())
+    execute_exit.arg_names = []
+    
+    
+    def execute_sleep(self, exec_ctx):
+        from time import sleep
+        n = exec_ctx.symbol_table.get("value")
+        if isinstance(n, Number):
+            sleep(n.value)
+        else:
+            return RTResult().failure(RTError(
+                self.pos_start, self.pos_end,
+                "Flaco dame una cantidad de segundos, no cualquier cosa",
+                exec_ctx
+            ))
+        return RTResult().success(Empty())
+    execute_sleep.arg_names = ["value"]
+
 BuiltInFunction.print       = BuiltInFunction("print")
 BuiltInFunction.print_ret   = BuiltInFunction("print_ret")
 BuiltInFunction.input       = BuiltInFunction("input")
@@ -688,3 +716,5 @@ BuiltInFunction.run         = BuiltInFunction("run")
 BuiltInFunction.hola        = BuiltInFunction("hola")
 BuiltInFunction.argentina   = BuiltInFunction("argentina")
 BuiltInFunction.thief       = BuiltInFunction("thief")
+BuiltInFunction.exit        = BuiltInFunction("exit")
+BuiltInFunction.sleep        = BuiltInFunction("sleep")

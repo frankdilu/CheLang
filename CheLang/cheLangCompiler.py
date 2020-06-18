@@ -8,7 +8,9 @@ from CheLang.Context import Context
 ###################################################
 # RUN                      - usain bolt un poroto -
 ###################################################
-
+###############################
+# BUILT-IN CONST 
+###############################
 global_symbol_table = SymbolTable()
 global_symbol_table.set("Milanesa",String("Carne"))
 global_symbol_table.set("Macri",String("Gato"))
@@ -35,7 +37,11 @@ global_symbol_table.set("run", BuiltInFunction.run)
 global_symbol_table.set("Hola", BuiltInFunction.hola)
 global_symbol_table.set("Argentina", BuiltInFunction.argentina)
 global_symbol_table.set("Chorro", BuiltInFunction.thief)
-
+global_symbol_table.set("Ninos", BuiltInFunction.exit)
+global_symbol_table.set("Boludear", BuiltInFunction.sleep)
+###############################
+# RUN FUNCTION 
+###############################
 def run(fn, text):
     #Generate tokens
     lexer = Lexer(fn, text)

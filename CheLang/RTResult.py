@@ -31,16 +31,25 @@ class RTResult:
         self.value = value
         return self
 
+    ###############################
+    # SUCCESS RETURN METHOD
+    ###############################
     def success_return(self, value):
         self.reset()
         self.func_return_value = value
         return self
 
+    ###############################
+    # SUCCESS CONTINUE METHOD
+    ###############################
     def success_continue(self):
         self.reset()
         self.loop_should_continue = True
         return self
 
+    ###############################
+    # SUCCESS BREAK METHOD
+    ###############################
     def success_break(self):
         self.reset()
         self.loop_should_break = True
@@ -54,6 +63,9 @@ class RTResult:
         self.error = error
         return self
 
+    ###############################
+    # SHOULD RETURN METHOD
+    ###############################
     def should_return(self):
         return(
             self.error or

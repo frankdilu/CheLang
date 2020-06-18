@@ -1,6 +1,6 @@
 
 ###################################################
-# POSITION
+# POSITION                       - este es el gps -
 ###################################################
 class Position:
     def __init__(self, inx, ln, col, fn, ftxt):

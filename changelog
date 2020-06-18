@@ -8,6 +8,17 @@ scheme:
             changes
             changes
         ) commit
+18/06
+    (
+        "Ninos()" built-in function added as exit()
+        changed keywords "for" => "agarra por", "to" => "hasta", "step" => "de a "
+        better error messages
+        comments
+        "Boludear()" built-in function added as sleep()
+        changed keywords "break" => "piquete", "continue" => "segui de largo",
+        "return" => "tirame", "fun" => "definime"
+        100% español
+    )
 17/06 v1.0.1
     (
         "Chorro()" built-in function added.

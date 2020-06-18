@@ -1,4 +1,4 @@
-from CheLang.Values import Value,List, String, Number, Function
+from CheLang.Values import Value,List, String, Number, Function, Empty
 from CheLang.Const import detailsMessages, TT_PLUS, TT_MINUS, TT_MUL, TT_DIV, TT_POW, TT_EE,TT_NE, TT_LT,TT_GT,TT_LTE,TT_GTE,TT_MM,TT_KEYWORD
 from CheLang.RTResult import RTResult
 from CheLang.Errors import RTError
@@ -7,6 +7,9 @@ from CheLang.Errors import RTError
 ###################################################
 
 class Interpreter:
+    ###############################
+    # VISIT METHOD
+    ###############################
     def visit(self, node, context):
         method_name = f"visit_{type(node).__name__}"
         method = getattr(self,method_name, self.no_visit_method)
@@ -25,12 +28,16 @@ class Interpreter:
         return RTResult().success(
             Number(node.tok.value).set_context(context).set_pos(node.pos_start,node.pos_end)
         )
-
+    ###############################
+    # STRING VISIT METHOD 
+    ###############################
     def visit_StringNode(self, node, context):
         return RTResult().success(
             String(node.tok.value).set_context(context).set_pos(node.pos_start, node.pos_end)
         )
-
+    ###############################
+    # LIST VISIT METHOD 
+    ###############################
     def visit_ListNode(self, node, context):
         res = RTResult()
         elements = []
@@ -159,16 +166,16 @@ class Interpreter:
                 expr_value = res.register(self.visit(expr, context))
                 # if res.error: return res
                 if res.should_return(): return res
-                return res.success(Number.null if should_return_null else expr_value)
+                return res.success(Empty if should_return_null else expr_value)
 
         if node.else_case:
             expr, should_return_null = node.else_case
             else_value = res.register(self.visit(expr, context))
             # if res.error: return res
             if res.should_return(): return res
-            return res.success(Number.null if should_return_null else else_value)
+            return res.success(Empty if should_return_null else else_value)
 
-        return res.success(Number.null)
+        return res.success(Empty)
 
     ###############################
     # FOR NODE VISIT METHOD 
@@ -198,7 +205,7 @@ class Interpreter:
             condition = lambda: i < end_value.value
         else:
             condition = lambda: i > end_value.value
-
+        # aca ta el loop
         while condition():
             context.symbol_table.set(node.var_name_tok.value, Number(i))
             i += step_value.value
@@ -212,11 +219,11 @@ class Interpreter:
 
             if res.loop_should_break:
                 break
-
-            elements.append(value)
+            if type(value) != Empty:
+                elements.append(value)
 
         return res.success(
-            Number.null if node.should_return_null else
+            Empty if node.should_return_null else
             List(elements).set_context(context).set_pos(node.pos_start, node.pos_end)
             )
 
@@ -226,7 +233,7 @@ class Interpreter:
     def visit_WhileNode(self, node, context):
         res = RTResult()
         elements = []
-
+        # aca ta el loop
         while True:
             condition = res.register(self.visit(node.condition_node, context))
             # if res.error: return res
@@ -246,10 +253,12 @@ class Interpreter:
             elements.append(value)
         
         return res.success(
-            Number.null if node.should_return_null else
+            Empty if node.should_return_null else
             List(elements).set_context(context).set_pos(node.pos_start, node.pos_end)
             )
-
+    ###############################
+    # FUNC DEF VISIT METHOD 
+    ###############################
     def visit_FuncDefNode(self, node, context):
         res = RTResult()
 
@@ -262,7 +271,9 @@ class Interpreter:
             context.symbol_table.set(func_name, func_value)
 
         return res.success(func_value)
-
+    ###############################
+    # FUN CALL VISIT METHOD 
+    ###############################
     def visit_CallNode(self, node, context):
         res = RTResult()
         args = []
@@ -279,7 +290,9 @@ class Interpreter:
         if res.should_return(): return res
         return_value = return_value.copy().set_context(context).set_pos(node.pos_start,node.pos_end)
         return res.success(return_value)
-
+    ###############################
+    # RETURN VISIT METHOD 
+    ###############################
     def visit_ReturnNode(self, node, context):
         res = RTResult()
 
@@ -290,9 +303,13 @@ class Interpreter:
             value = Number.null
 
         return res.success_return(value)
-
+    ###############################
+    # CONTINUE VISIT METHOD 
+    ###############################
     def visit_ContinueNode(self, node, context):
         return RTResult().success_continue()
-
+    ###############################
+    # BREAK VISIT METHOD 
+    ###############################
     def visit_BreakNode(self, node, context):
         return RTResult().success_break()
