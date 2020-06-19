@@ -205,24 +205,29 @@ Built-in:
             "Pi" =  Number.math_PI
 
       Functions:
-            Cuchame() => print()
-            CuchameRet() => return print
-            Traeme() => input("input str"?)
-            TraemeNumerito() => input("input str"?) (int)
-            Limpiame() => clear console
-            clear() => clear console
-            EsNumerito() => isNumber(int)
-            EsTexto() => isString(str)
-            EsLista() => isList([])
-            EsFuncion() => isFunc(fun)
-            Agregale() => append(list, element)
-            Rajale() => pop(list, index)
-            Metele() => extend(listA,listB)
-            len() => len(list or string)
-            run() => run("path/file.che")
-            Chorro() => Just try it. You must. Really. Posta.
-            Argentina() => Just try it. You must. Really. Posta.
-            Boludear(n) => sleep(seconds)
+            Cuchame()         => print()
+            CuchameRet()      => return print
+            Traeme()          => input("input str"?)
+            TraemeNumerito()  => input("input str"?) (int)
+            Limpiame()        => clear console
+            clear()           => clear console
+            EsNumerito()      => isNumber(int)
+            EsTexto()         => isString(str)
+            EsLista()         => isList([])
+            EsFuncion()       => isFunc(fun)
+            Agregale()        => append(list, element)
+            Rajale()          => pop(list, index)
+            Metele()          => extend(listA,listB)
+            TaLargo()         => len(list or string)
+            Correme()         => run("path/file.che")
+            Chorro()          => Just try it. You must. Really. Posta.
+            Argentina()       => Just try it. You must. Really. Posta.
+            Boludear(n)       => sleep(seconds)
+            Viborita(str)     => eval(str) => use python inside CheLang. Return python return in string
+            ANumerito(n-str)  => int(n-str)
+            AFlotantito(n-str)=> float(n-str)
+            ATextito(*)       => str(*)
+            FloatYPico(n-str) => float(n-str) +- .5
 
 (Read example.che to more)
 ```

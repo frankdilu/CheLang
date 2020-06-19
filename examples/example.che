@@ -226,8 +226,8 @@
 #            Agregale() => append(list, element)
 #            Rajale() => pop(list, index)
 #            Metele() => extend(listA,listB)
-#            len() => len(list or string)
-#            run() => run(file.che) / import file.che
+#            TaLargo() => len(list or string)
+#            Correme() => run(file.che) / import file.che
 #            Chorro() # => Just try it. You must. Really. Posta.
 #            Argentina() # => Just try it. You must. Really. Posta.
 #            Boludear(n) # => Sleep(seconds)

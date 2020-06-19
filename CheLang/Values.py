@@ -436,21 +436,21 @@ class BuiltInFunction(BaseFunction):
 
     #####################################
 
-    def execute_print(self, exec_ctx):
+    def execute_Cuchame(self, exec_ctx):
         print(str(exec_ctx.symbol_table.get('value')))
         return RTResult().success(Empty())
-    execute_print.arg_names = ['value']
+    execute_Cuchame.arg_names = ['value']
         
-    def execute_print_ret(self, exec_ctx):
+    def execute_CuchameRet(self, exec_ctx):
         return RTResult().success(String(str(exec_ctx.symbol_table.get('value'))))
-    execute_print_ret.arg_names = ['value']
+    execute_CuchameRet.arg_names = ['value']
         
-    def execute_input(self, exec_ctx):
+    def execute_Traeme(self, exec_ctx):
         text = input(exec_ctx.symbol_table.get('inputValue?') or "Que me queré decir bro? >")
         return RTResult().success(String(text))
-    execute_input.arg_names = ["inputValue?"]
+    execute_Traeme.arg_names = ["inputValue?"]
 
-    def execute_input_int(self, exec_ctx):
+    def execute_TraemeNumerito(self, exec_ctx):
         while True:
             text = input(exec_ctx.symbol_table.get('inputValue?') or "Tirame un numero: ")
             try:
@@ -459,34 +459,34 @@ class BuiltInFunction(BaseFunction):
             except ValueError:
                 print(f"'{text}' tiene que ser un numero tarao, mandale denuevo")
         return RTResult().success(Number(number))
-    execute_input_int.arg_names = ["inputValue?"]
+    execute_TraemeNumerito.arg_names = ["inputValue?"]
 
-    def execute_clear(self, exec_ctx):
+    def execute_Limpiame(self, exec_ctx):
         os.system('cls' if os.name == 'nt' else 'cls') 
         return RTResult().success(Empty())
-    execute_clear.arg_names = []
+    execute_Limpiame.arg_names = []
 
-    def execute_is_number(self, exec_ctx):
+    def execute_EsNumerito(self, exec_ctx):
         is_number = isinstance(exec_ctx.symbol_table.get("value"), Number)
         return RTResult().success(Number.true if is_number else Number.false)
-    execute_is_number.arg_names = ["value"]
+    execute_EsNumerito.arg_names = ["value"]
 
-    def execute_is_string(self, exec_ctx):
+    def execute_EsTexto(self, exec_ctx):
         is_number = isinstance(exec_ctx.symbol_table.get("value"), String)
         return RTResult().success(Number.true if is_number else Number.false)
-    execute_is_string.arg_names = ["value"]
+    execute_EsTexto.arg_names = ["value"]
 
-    def execute_is_list(self, exec_ctx):
+    def execute_EsLista(self, exec_ctx):
         is_number = isinstance(exec_ctx.symbol_table.get("value"), List)
         return RTResult().success(Number.true if is_number else Number.false)
-    execute_is_list.arg_names = ["value"]
+    execute_EsLista.arg_names = ["value"]
 
-    def execute_is_function(self, exec_ctx):
+    def execute_EsFuncion(self, exec_ctx):
         is_number = isinstance(exec_ctx.symbol_table.get("value"), BaseFunction)
         return RTResult().success(Number.true if is_number else Number.false)
-    execute_is_function.arg_names = ["value"]
+    execute_EsFuncion.arg_names = ["value"]
 
-    def execute_append(self, exec_ctx):
+    def execute_Agregale(self, exec_ctx):
         list_ = exec_ctx.symbol_table.get("list")
         value = exec_ctx.symbol_table.get("value")
 
@@ -499,9 +499,9 @@ class BuiltInFunction(BaseFunction):
 
         list_.elements.append(value)
         return RTResult().success(list_)
-    execute_append.arg_names = ["list", "value"]
+    execute_Agregale.arg_names = ["list", "value"]
 
-    def execute_pop(self, exec_ctx):
+    def execute_Rajale(self, exec_ctx):
         list_ = exec_ctx.symbol_table.get("list")
         index = exec_ctx.symbol_table.get("index")
 
@@ -528,9 +528,9 @@ class BuiltInFunction(BaseFunction):
                 exec_ctx
             ))
         return RTResult().success(element)
-    execute_pop.arg_names = ["list", "index"]
+    execute_Rajale.arg_names = ["list", "index"]
 
-    def execute_extend(self, exec_ctx):
+    def execute_Metele(self, exec_ctx):
         listA = exec_ctx.symbol_table.get("listA")
         listB = exec_ctx.symbol_table.get("listB")
 
@@ -550,9 +550,9 @@ class BuiltInFunction(BaseFunction):
 
         listA.elements.extend(listB.elements)
         return RTResult().success(listA)
-    execute_extend.arg_names = ["listA", "listB"]
+    execute_Metele.arg_names = ["listA", "listB"]
 
-    def execute_len(self, exec_ctx):
+    def execute_TaLargo(self, exec_ctx):
         value = exec_ctx.symbol_table.get("value")
 
         if isinstance(value, List):
@@ -562,13 +562,13 @@ class BuiltInFunction(BaseFunction):
 
         return RTResult().failure(RTError(
             self.pos_start, self.pos_end,
-            "Che el len tiene que tener una lista o un string",
+            "Che el TaLargo tiene que tener una lista o un string",
             exec_ctx
             ))
 
-    execute_len.arg_names = ["value"]
+    execute_TaLargo.arg_names = ["value"]
 
-    def execute_run(self, exec_ctx):
+    def execute_Correme(self, exec_ctx):
         fn = exec_ctx.symbol_table.get("fn")
 
         if not isinstance(fn, String):
@@ -608,14 +608,14 @@ class BuiltInFunction(BaseFunction):
                 ))
 
         return RTResult().success(Empty())
-    execute_run.arg_names = ["fn"]
+    execute_Correme.arg_names = ["fn"]
 
-    def execute_hola(self, exec_ctx):
+    def execute_Hola(self, exec_ctx):
         print("Que onda perro? Todo piola?")
         return RTResult().success(Empty())
-    execute_hola.arg_names = []
+    execute_Hola.arg_names = []
 
-    def execute_argentina(self, exec_ctx):
+    def execute_Argentina(self, exec_ctx):
         import ctypes
         import os
         from playsound import playsound
@@ -640,9 +640,9 @@ class BuiltInFunction(BaseFunction):
                     print("Pasó algo, no pude cargar las cosas... Para mi es culpa del kernel imperialista...")
         finally:
             return RTResult().success(Empty())
-    execute_argentina.arg_names = []
+    execute_Argentina.arg_names = []
 
-    def execute_thief(self, exec_ctx):
+    def execute_Chorro(self, exec_ctx):
         from time import sleep
         print("\nSi entra el chorro no lo podes amasijar en el patio porque despues dicen que se cayo de la medianera.", end="\n\n")
         sleep(4)
@@ -675,17 +675,16 @@ class BuiltInFunction(BaseFunction):
         print("En diez dias salis.", end="\n\n")
         sleep(1)
         return RTResult().success(Empty())
-    execute_thief.arg_names = []
+    execute_Chorro.arg_names = []
 
-    def execute_exit(self, exec_ctx):
+    def execute_Ninos(self, exec_ctx):
         import sys
         print('Nos vemos wachin! Aguante Argentina!')
         sys.exit(0)
         return RTResult().success(Empty())
-    execute_exit.arg_names = []
+    execute_Ninos.arg_names = []
     
-    
-    def execute_sleep(self, exec_ctx):
+    def execute_Boludear(self, exec_ctx):
         from time import sleep
         n = exec_ctx.symbol_table.get("value")
         if isinstance(n, Number):
@@ -697,24 +696,113 @@ class BuiltInFunction(BaseFunction):
                 exec_ctx
             ))
         return RTResult().success(Empty())
-    execute_sleep.arg_names = ["value"]
+    execute_Boludear.arg_names = ["value"]
 
-BuiltInFunction.print       = BuiltInFunction("print")
-BuiltInFunction.print_ret   = BuiltInFunction("print_ret")
-BuiltInFunction.input       = BuiltInFunction("input")
-BuiltInFunction.input_int   = BuiltInFunction("input_int")
-BuiltInFunction.clear       = BuiltInFunction("clear")
-BuiltInFunction.is_number   = BuiltInFunction("is_number")
-BuiltInFunction.is_string   = BuiltInFunction("is_string")
-BuiltInFunction.is_list     = BuiltInFunction("is_list")
-BuiltInFunction.is_function = BuiltInFunction("is_function")
-BuiltInFunction.append      = BuiltInFunction("append")
-BuiltInFunction.pop         = BuiltInFunction("pop")
-BuiltInFunction.extend      = BuiltInFunction("extend")
-BuiltInFunction.len         = BuiltInFunction("len")
-BuiltInFunction.run         = BuiltInFunction("run")
-BuiltInFunction.hola        = BuiltInFunction("hola")
-BuiltInFunction.argentina   = BuiltInFunction("argentina")
-BuiltInFunction.thief       = BuiltInFunction("thief")
-BuiltInFunction.exit        = BuiltInFunction("exit")
-BuiltInFunction.sleep        = BuiltInFunction("sleep")
+    def execute_Viborita(self, exec_ctx):
+        ev = exec_ctx.symbol_table.get("value")
+        if isinstance(ev, String):
+            return RTResult().success(String(str(eval(ev.value))))
+        else:
+            return RTResult().failure(RTError(
+                self.pos_start, self.pos_end,
+                "Capo dame un string pa evaluar, dale?",
+                exec_ctx
+            ))
+    execute_Viborita.arg_names = ["value"]
+
+    def execute_ANumerito(self, exec_ctx):
+        n = exec_ctx.symbol_table.get("value")
+        if isinstance(n, String):
+            try:
+                tmp = float(n.value)
+                ret = int(tmp)
+                return RTResult().success(Number(ret))
+            except:
+                return RTResult().failure(RTError(
+                    self.pos_start, self.pos_end,
+                    "Flaco no se que me pasaste pero no se puede hacer numerito",
+                    exec_ctx
+                ))
+        elif isinstance(n, Number):
+            return RTResult().success(Number(int(n.value)))
+        else:
+            return RTResult().failure(RTError(
+                self.pos_start, self.pos_end,
+                "Capo pasame un numerito o un string, dale?",
+                exec_ctx
+            ))
+    execute_ANumerito.arg_names = ["value"]
+
+    def execute_AFlotantito(self, exec_ctx):
+        n = exec_ctx.symbol_table.get("value")
+        if isinstance(n, String):
+            try:
+                ret = float(n.value)
+                return RTResult().success(Number(ret))
+            except:
+                return RTResult().failure(RTError(
+                    self.pos_start, self.pos_end,
+                    "Flaco no se que me pasaste pero no se puede hacer numerito",
+                    exec_ctx
+                ))
+        elif isinstance(n, Number):
+            return RTResult().success(Number(float(n.value)))
+        else:
+            return RTResult().failure(RTError(
+                self.pos_start, self.pos_end,
+                "Capo pasame un numerito o un string, dale?",
+                exec_ctx
+            ))
+    execute_AFlotantito.arg_names = ["value"]
+
+    def execute_ATextito(self, exec_ctx):
+        return RTResult().success(String(exec_ctx.symbol_table.get("value")))
+    execute_ATextito.arg_names = ["value"]
+
+    def execute_FloatYPico(self, exec_ctx):
+        import random
+        n = exec_ctx.symbol_table.get("value")
+        if isinstance(n, String):
+            try:
+                ret = float(n.value) + random.random() - .5
+                return RTResult().success(Number(ret))
+            except:
+                return RTResult().failure(RTError(
+                    self.pos_start, self.pos_end,
+                    "Flaco no se que me pasaste pero no se puede hacer numerito",
+                    exec_ctx
+                ))
+        elif isinstance(n, Number):
+            return RTResult().success(Number(float(n.value) + random.random() - .5))
+        else:
+            return RTResult().failure(RTError(
+                self.pos_start, self.pos_end,
+                "Capo pasame un numerito o un string, dale?",
+                exec_ctx
+            ))
+    execute_FloatYPico.arg_names = ["value"]
+
+BuiltInFunction.print       = BuiltInFunction("Cuchame")
+BuiltInFunction.print_ret   = BuiltInFunction("CuchameRet")
+BuiltInFunction.input       = BuiltInFunction("Traeme")
+BuiltInFunction.input_int   = BuiltInFunction("TraemeNumerito")
+BuiltInFunction.clear       = BuiltInFunction("Limpiame")
+BuiltInFunction.is_number   = BuiltInFunction("EsNumerito")
+BuiltInFunction.is_string   = BuiltInFunction("EsTexto")
+BuiltInFunction.is_list     = BuiltInFunction("EsLista")
+BuiltInFunction.is_function = BuiltInFunction("EsFuncion")
+BuiltInFunction.append      = BuiltInFunction("Agregale")
+BuiltInFunction.pop         = BuiltInFunction("Rajale")
+BuiltInFunction.extend      = BuiltInFunction("Metele")
+BuiltInFunction.len         = BuiltInFunction("TaLargo")
+BuiltInFunction.run         = BuiltInFunction("Correme")
+BuiltInFunction.hola        = BuiltInFunction("Hola")
+BuiltInFunction.argentina   = BuiltInFunction("Argentina")
+BuiltInFunction.thief       = BuiltInFunction("Chorro")
+BuiltInFunction.exit        = BuiltInFunction("Ninos")
+BuiltInFunction.sleep       = BuiltInFunction("Boludear")
+BuiltInFunction.python      = BuiltInFunction("Viborita")
+BuiltInFunction.toInt       = BuiltInFunction("ANumerito")
+BuiltInFunction.toFloat     = BuiltInFunction("AFlotantito")
+BuiltInFunction.toStr       = BuiltInFunction("ATextito")
+BuiltInFunction.FloatYPico  = BuiltInFunction("FloatYPico")

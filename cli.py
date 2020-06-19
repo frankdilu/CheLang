@@ -20,7 +20,8 @@ signal.signal(signal.SIGINT, signal_handler)
 # if 1 argument open console
 if len(sys.argv) == 1:
     while True:
-        inputText = input("CheLang > ")
+        folder = os.path.basename(os.getcwd())
+        inputText = input("/"+ folder + " < CheLang > ")
         if inputText.strip() == "": continue
         result, error = run(__file__,inputText)
 
@@ -32,14 +33,12 @@ if len(sys.argv) == 1:
                 if type(r) == Empty:
                     result.elements.pop(i)
 
-            if len(result.elements) == 1:
-                print(repr(result.elements[0]))
-            elif len(result.elements) > 1:
-                print(repr(result))
+            for programReturn in result.elements:
+                print(repr(programReturn))
 # if 2 argument open file
 else:
     uri = sys.argv[1].replace("\\","\\\\")
-    result, error = run(__file__, f'run("{uri}")')
+    result, error = run(__file__, f'Correme("{uri}")')
 
     if error: print(error.as_string())
 
@@ -54,5 +53,6 @@ else:
             print(repr(result.elements[0]))
         elif len(result.elements) > 1:
             print(repr(result))
-    input("CheLang > Apreta enter pa cerrar eto")
+    folder = os.path.basename(os.getcwd())
+    input("/"+ folder + " CheLang > Apreta enter pa cerrar eto")
     sys.exit(0)

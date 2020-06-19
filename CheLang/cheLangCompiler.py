@@ -1,47 +1,12 @@
-from CheLang.Values import String, Number, BuiltInFunction , Empty
-from CheLang.SymbolTable import SymbolTable
 from CheLang.Lexer import Lexer
 from CheLang.Parser import Parser
 from CheLang.Interpreter import Interpreter
 from CheLang.Context import Context
+from CheLang.BuiltInConst import global_symbol_table
 
 ###################################################
 # RUN                      - usain bolt un poroto -
 ###################################################
-###############################
-# BUILT-IN CONST 
-###############################
-global_symbol_table = SymbolTable()
-global_symbol_table.set("Milanesa",String("Carne"))
-global_symbol_table.set("Macri",String("Gato"))
-global_symbol_table.set("Vacio", Empty())
-global_symbol_table.set("Inviable", Number.null)
-global_symbol_table.set("Chamuyo", Number.false)
-global_symbol_table.set("Posta", Number.true)
-global_symbol_table.set("Pi", Number.math_PI)
-global_symbol_table.set("Cuchame", BuiltInFunction.print)
-global_symbol_table.set("CuchameRet", BuiltInFunction.print_ret)
-global_symbol_table.set("Traeme", BuiltInFunction.input)
-global_symbol_table.set("TraemeNumerito", BuiltInFunction.input_int)
-global_symbol_table.set("Limpiame", BuiltInFunction.clear)
-global_symbol_table.set("clear", BuiltInFunction.clear)
-global_symbol_table.set("EsNumerito", BuiltInFunction.is_number)
-global_symbol_table.set("EsTexto", BuiltInFunction.is_string)
-global_symbol_table.set("EsLista", BuiltInFunction.is_list)
-global_symbol_table.set("EsFuncion", BuiltInFunction.is_function)
-global_symbol_table.set("Agregale", BuiltInFunction.append)
-global_symbol_table.set("Rajale", BuiltInFunction.pop)
-global_symbol_table.set("Metele", BuiltInFunction.extend)
-global_symbol_table.set("len", BuiltInFunction.len)
-global_symbol_table.set("run", BuiltInFunction.run)
-global_symbol_table.set("Hola", BuiltInFunction.hola)
-global_symbol_table.set("Argentina", BuiltInFunction.argentina)
-global_symbol_table.set("Chorro", BuiltInFunction.thief)
-global_symbol_table.set("Ninos", BuiltInFunction.exit)
-global_symbol_table.set("Boludear", BuiltInFunction.sleep)
-###############################
-# RUN FUNCTION 
-###############################
 def run(fn, text):
     #Generate tokens
     lexer = Lexer(fn, text)

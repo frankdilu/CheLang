@@ -8,6 +8,19 @@ scheme:
             changes
             changes
         ) commit
+19/06
+    (
+        changed keywords "run" => "Correme", "len" => "TaLargo"
+        added actual folder in console
+        print a line for return in cli.py
+        "Viborita(str)" built-in function added as eval() => python code
+        "ANumerito(n-str)" built-in function added as int()
+        "ANumerito(n-str)" built-in function added as float()
+        "ATextito()" built-in function added as str()
+        "FloatYPico()" built-in function as float() +- .5
+        updated context name of built-in function
+        built-in functions declaration in self file
+    )
 18/06
     (
         "Ninos()" built-in function added as exit()
