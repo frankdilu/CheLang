@@ -228,6 +228,11 @@
 #            Metele() => extend(listA,listB)
 #            TaLargo() => len(list or string)
 #            Correme() => run(file.che) / import file.che
-#            Chorro() # => Just try it. You must. Really. Posta.
-#            Argentina() # => Just try it. You must. Really. Posta.
-#            Boludear(n) # => Sleep(seconds)
+#            Chorro() => Just try it. You must. Really. Posta.
+#            Argentina() => Just try it. You must. Really. Posta.
+#            Boludear(n) => Sleep(seconds)
+#            Viborita(str) => eval(str) => use python inside CheLang. Return python return in string
+#            ANumerito(n-str) => int(n-str)
+#            AFlotantito(n-str)=> float(n-str)
+#            ATextito(*) => str(*)
+#            FloatYPico(n-str) => float(n-str) +- .5
