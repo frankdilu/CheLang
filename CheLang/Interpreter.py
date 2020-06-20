@@ -166,16 +166,16 @@ class Interpreter:
                 expr_value = res.register(self.visit(expr, context))
                 # if res.error: return res
                 if res.should_return(): return res
-                return res.success(Empty if should_return_null else expr_value)
+                return res.success(Empty() if should_return_null else expr_value)
 
         if node.else_case:
             expr, should_return_null = node.else_case
             else_value = res.register(self.visit(expr, context))
             # if res.error: return res
             if res.should_return(): return res
-            return res.success(Empty if should_return_null else else_value)
+            return res.success(Empty() if should_return_null else else_value)
 
-        return res.success(Empty)
+        return res.success(Empty())
 
     ###############################
     # FOR NODE VISIT METHOD 
@@ -223,7 +223,7 @@ class Interpreter:
                 elements.append(value)
 
         return res.success(
-            Empty if node.should_return_null else
+            Empty() if node.should_return_null else
             List(elements).set_context(context).set_pos(node.pos_start, node.pos_end)
             )
 
@@ -253,7 +253,7 @@ class Interpreter:
             elements.append(value)
         
         return res.success(
-            Empty if node.should_return_null else
+            Empty() if node.should_return_null else
             List(elements).set_context(context).set_pos(node.pos_start, node.pos_end)
             )
     ###############################

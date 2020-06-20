@@ -8,7 +8,7 @@ scheme:
             changes
             changes
         ) commit
-19/06
+19/06 v1.1.1
     (
         changed keywords "run" => "Correme", "len" => "TaLargo"
         added actual folder in console
@@ -21,7 +21,10 @@ scheme:
         updated context name of built-in function
         built-in functions declaration in self file
     )
-18/06
+    (
+        bugfix with Empty class in Interpreter
+    )
+18/06 v1.1.0
     (
         "Ninos()" built-in function added as exit()
         changed keywords "for" => "agarra por", "to" => "hasta", "step" => "de a "
