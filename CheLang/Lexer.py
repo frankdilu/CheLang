@@ -147,6 +147,8 @@ class Lexer:
             )
         elif op_str.lower() == "seigual":
             return [Token(TT_EQ, pos_start=pos_start, pos_end=self.pos)] , None
+        elif op_str.lower() == "son":
+            return [Token(TT_EQ, pos_start=pos_start, pos_end=self.pos)] , None
         elif op_str.lower() == "no":
             tok, error = self.make_not_equals()
             if error: return [], error

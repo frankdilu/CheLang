@@ -2,8 +2,11 @@ import signal
 import sys
 import os
 import ctypes
-# name of console
-ctypes.windll.kernel32.SetConsoleTitleW("CheLang Shell")
+try:
+    # name of console
+    ctypes.windll.kernel32.SetConsoleTitleW("CheLang Shell")
+except:
+    pass
 
 from CheLang.cheLangCompiler import run  
 from CheLang.Values import Empty

@@ -8,6 +8,12 @@ scheme:
             changes
             changes
         ) commit
+25/06
+    (
+        bugfix with set console name in linux
+        Added keyword "son" to equal "="
+        "che a, b, c son 10" new syntaxis to declare multiple variables. Fix #2
+    )
 19/06 v1.1.1
     (
         changed keywords "run" => "Correme", "len" => "TaLargo"

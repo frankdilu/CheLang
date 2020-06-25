@@ -623,9 +623,21 @@ class Parser:
                     self.current_tok.pos_start, self.current_tok.pos_end,
                     detailsMessages["identifierExpected"]
                 ))
-            var_name = self.current_tok
+            var_name = [self.current_tok]
             res.register_advancement()
             self.advance()
+
+            while self.current_tok.type == TT_COMMA:
+                self.advance()
+
+                if self.current_tok.type != TT_IDENTIFIER:
+                    return res.failure(InvalidSyntaxError(
+                        self.current_tok.pos_start, self.current_tok.pos_end,
+                        detailsMessages["identifierExpected"]
+                    ))
+
+                var_name.append(self.current_tok)
+                self.advance()
 
             if self.current_tok.type != TT_EQ:
                 return res.failure(InvalidSyntaxError(

@@ -74,12 +74,12 @@ class Interpreter:
     ###############################
     def visit_VarAssignNode(self, node, context):
         res = RTResult()
-        var_name = node.var_name_tok.value
+        var_name = node.var_name_tok
         value = res.register(self.visit(node.value_node, context))
         # if res.error: return res
         if res.should_return(): return res
-
-        context.symbol_table.set(var_name,value)
+        for var in var_name:
+            context.symbol_table.set(var.value,value)
         return res.success(value)
 
     ###############################
