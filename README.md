@@ -71,10 +71,12 @@ Declare variables:
 
       che (variable_name) es (value)
       che (variable_name) seigual (value)
+      che (variable_name) son (value)
 
       che messi es 10
       che messi es "grosso"
       che sueldo seigual 0
+      che doYdo son 4
 
       messi  => 10
       sueldo => 0
@@ -84,6 +86,12 @@ Declare multiple variables:
       che (variable_name) es che (variable_2_name) es ... es (value)
 
       che a es che b es che c es 32
+
+      or
+
+      che (variable_name), (variable_name), (variable_name) es (value)
+
+      che messi, maradona son 10
 
 Conditions:
   (1 => true 0 => false)
