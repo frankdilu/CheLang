@@ -23,6 +23,9 @@ scheme:
         correct changelog
         readme minor fix
     )
+    (
+        readme minor fix
+    )
 25/06
     (
         bugfix with set console name in linux

@@ -47,7 +47,7 @@ Se puede revisar el precio del dolar con su funcion "Dolar()". Pero tenes que es
 
 Podes llamar a la "Campora()" cuando quieras y vas a notar su presencia tan particular. Tene en cuenta que, cada vez que se los llama, hay inflacion. Por lo que el "Dolar()" se ve afectado.
 
-Claramente somos inclusivos y aceptamos a los que hablan ingles, entonces pidiendo un "HalloEbribodi()" un expresidente les va a dar la bienvenida con su magnifico nivel de ingles.
+Claramente somos inclusivos y aceptamos a los que hablan ingles, entonces pidiendo un "HalloEbribodi()" un expresidente (defraudado por una reconocida cantante que no lo esperó) les va a dar la bienvenida con su magnifico nivel de ingles y queriendo tirar unos pasos.
 
 Como somos patrios ante todo, podemos hacerle honor a la Patria diciendo "Argentina()".
 
