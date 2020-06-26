@@ -26,6 +26,9 @@ scheme:
     (
         readme minor fix
     )
+    (
+        "Requisitos" added on readme
+    )
 25/06
     (
         bugfix with set console name in linux

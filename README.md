@@ -19,6 +19,12 @@ ZIP Builded
 
 ZIP Source (Requiere python)
 
+## Requisitos
+
+(Solo para el Source o clone)
+Python 3.8 (No se probó con otra version)
+Modulo de Python "playsound" ( `pip install playsound` )
+
 ## Uso
 
 Instalado con MSI:
@@ -311,3 +317,8 @@ El tuto de CodePulse esta basado en [esto](https://ruslanspivak.com/lsbasi-part1
 
 El codigo esta basado en el tuto de CodePulse con modificaciones re piolas.
 
+Creador:
+Franco Di Luciano
+
+Con ayuda de:
+La comunidad de reddit. Buenos sugestores.
