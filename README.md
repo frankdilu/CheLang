@@ -5,9 +5,13 @@ Con la agradable jerga argenta que nos identifica.
 
 ## Instalacion
 
+Clonear el repo (ultimisima version)
+o
 Vean las releases o los tags.
 
 Descargas:
+
+(ver la version, puede que no esten los ultimos commits.)
 
 Instalador MSI (Con PATH. Es la que va. La casa lo recomienda.)
 

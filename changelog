@@ -8,6 +8,21 @@ scheme:
             changes
             changes
         ) commit
+26/06
+    ...
+        "Campora" built-in function added 
+        "HalloEbribodi" built-in function added 
+        Weekend and feriados we dont work. if there are no milicos...
+        absolutize file names in "Correme" function
+        argentinization of readme and example. La vamo a hacer bien argento.
+        "Disclaimer" added on readme
+        "Cosas de Argento" added on readme
+        PR and issues now accept spanish default
+    )
+    (
+        correct changelog
+        readme minor fix
+    )
 25/06
     (
         bugfix with set console name in linux
@@ -18,15 +33,7 @@ scheme:
         You cant assign "dolar" like var name. That is controlled by Banco Central.
         "Dolar" built-in function added as dollar price query
         You can check the Dolar() price. But be sure it will change.
-        "Campora" built-in function added 
-        "HalloEbribodi" built-in function added 
-        Weekend and feriados we dont work. if there are no milicos...
-        absolutize file names in "Correme" function
-        argentinization of readme and example. La vamo a hacer bien argento.
-        "Disclaimer" added on readme
-        "Cosas de Argento" added on readme
-        PR and issues now accept spanish default
-    )
+    ...
 19/06 v1.1.1
     (
         changed keywords "run" => "Correme", "len" => "TaLargo"
