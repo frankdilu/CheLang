@@ -76,3 +76,10 @@ class RTError(Error):
             ctx = ctx.parent
 
         return result
+
+###############################
+# LANGUAGE ERROR
+###############################
+class LanguageThingError(Error):
+    def __init__(self, pos_start, pos_end, details=""):
+        super().__init__(pos_start, pos_end, errorMessages["languageThings"], details)

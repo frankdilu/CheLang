@@ -1,20 +1,21 @@
-# Comments
-# Scheme:
-#      CheLang expression => return / regular expression
-#      NO CaSe SenSiTiVe keywords. Readme uses camelCase for clarity
-# Operations:
+# COMENTARIOS
+# esquema del ejemplo:
+#      Expresion en CheLang => return / expresion regular
+#      NO HAY CaSe SenSiTiVe keywords. Readme usa camelCase para claridad
+#
+# Operaciones:
 #      ma => +
 #      meno => -
 #      por => *
-#      dividido => / (return float)
+#      dividido => / (retorna flotante)
 #      aLa => **
 #      () => ()
 
-#      "foo" => "foo" (strings)
-#      ["foo", "baz", 23] => ["foo", "baz", 23]
+#      "menem" => "menem" (strings)
+#      ["menem", "evita", 23] => ["menem", "evita", 23]
 
 
-#ie:
+#ej:
  che x es   2.3 ma 2             # => 4.3
  che x es   .8 ma 2              # => 2.8
  che x es   .8 meno 2            # => -1.2
@@ -24,21 +25,21 @@
  che x es   1 ma (2 por 3)       # => 7
  che x es   10 dividido 2        # => 5.0
 
- che x es   "a" por 10             # => "aaaaaaaaaa"
+ che x es   "a" por 10                    # => "aaaaaaaaaa"
 
- che x es   "marado " ma "marado"       # => "marado marado"
+ che x es   "marado " ma "marado"         # => "marado marado"
 
- che x es     ["a","b","c"] ma "d"           # => ["a","b","c","d"]
- che x es     ["a","b","c"] ma ["d","e"]       # => ["a","b","c","d","e"]
+ che x es     ["a","b","c"] ma "d"        # => ["a","b","c","d"]
+ che x es     ["a","b","c"] ma ["d","e"]  # => ["a","b","c","d","e"]
  che x es     ["a","b"] por 3             # => ["a","b","a","b",a,"b"]
- che x es     ["a","b"] dividido 0      # => a (change soon. will be ["a","b"][0] => a)
+ che x es     ["a","b"] dividido 0        # => a (Va a cambiar. Va a ser ["a","b"][0] => a)
 
 
-#Declare variables:
+#Declaracion de variables:
 
-#      che (variable_name) es (value)
-#      che (variable_name) seigual (value)
-#      che (variable_name) son (value)
+#      che (nombreDeVariable) es (valor)
+#      che (nombreDeVariable) seigual (valor)
+#      che (nombreDeVariable) son (valor)
 
  che messi es 10
  che mate es "la que va"
@@ -50,17 +51,17 @@
  sueldo              # => 0
  doYdo              # => 4
 
-#Declare multiple variables:
+#Declaracion de multiples variables:
 
-#      che (variable_name) es che (variable_2_name) es ... es (value)
+#      che (nombreDeVariable) es che (nombreDeVariable2) es ... es (valor)
 
- che a es che b es che c es 32       # => 32 all these variables
+ che a es che b es che c es 32       # => todas esas variables son 32
 
-#      che (variable_name), (variable_2_name) ... es (value)
+#      che (nombreDeVariable), (nombreDeVariable2) ... es (valor)
 
- che marado, messi, elQueLlevaPelota son 10     # marado, messi and elQueLlevaPelota are 10
+ che marado, messi, elQueLlevaPelota son 10     # marado, messi y elQueLlevaPelota son 10 (Unos master)
 
-#Conditions:
+#Condiciones:
 #  (1 => true 0 => false)
 
 #      andaPor      => ==
@@ -73,9 +74,9 @@
 #      es unCachitoMa   =>   >
 #      es mayorOIgual   =>   >=
 
-#      es maomeno => +- (its equal, but return true with 20% error margin)
+#      es maomeno => +- (Es como == pero con un 20% de pifie. Re piola. Fijate los ejemplos de abajo)
 
-#ie:
+#ej:
       1 anda por 1         # => 1
       a anda por 1         # => 0
       a anda por 32        # => 1
@@ -92,10 +93,10 @@
       10 es maomeno 8           # => 1
       10 es maomeno 10          # => 1
 
-      "abc" anda por "abc"          # => 1
-      "" anda por ""             # => 0  (if string length >= 1 is true)
+      "abc" anda por "abc"       # => 1
+      "" anda por ""             # => 0  (Si el string tiene uno o mas caracteres manda true)
 
-#Conditions Combination:
+#Combinacion de condiciones:
 #      y => and / &&
 #      o => or / ||
 
@@ -108,7 +109,7 @@
       1 anda por 2 o 2 anda por 1    # => 0
 
 
-# If statement:
+# Los ifes y esas cosas:
 #      ponele que => if
 #      tonce      => then
 #      oSi        => elif
@@ -144,7 +145,7 @@
         che b es 1
     aLoSumo
         che b es 6
-    hastaaca      # => 1
+    hastaaca           # => 1
 
 
     ponele que a no es a tonce 
@@ -153,15 +154,15 @@
         che c es 1 
     aLoSumo 
         che c es 6
-    hastaaca   # c => 6
+    hastaaca           # c => 6
 
-# For / While statement:
+# For / While:
 #      agarra por => for
-#      hasta => to
-#      de a => step
-#      tonce => then
-#      mientras => while
-#      piquete => break
+#      hasta      => to
+#      de a       => step
+#      tonce      => then
+#      mientras   => while
+#      piquete    => break
 #      segui de largo => continue
 
         che mirtha es 0
@@ -175,18 +176,18 @@
         hastaaca           # => mirtha = 150
 
 #      mientras 1 es 1 tonce 
-#        che mirtha es mirtha ma 1  # => infinite loop => mirtha forever
+#        che mirtha es mirtha ma 1  # => loop infinito => mirtha forever
       
       che i es 0
       mientras i es unCachitoMa meno 10 tonce
         che i es i meno 1
       hastaaca    # => i = -10
 
-#Functions:
+#funciones:
 #      definime       => def / function
 #      (a, b, c) => (a, b, c)
-#      =>        =>  () => expr (just one expr. no "hastaaca" final.)
-#      hastaaca  => } (accept one or several expr)
+#      =>        =>  () => expr (Solo acepta una expresion. No hay "hastaaca" final.)
+#      hastaaca  => } (Acepta una o mas expresiones)
 #      tirame  => return
 
       definime fibonacci(n)=> ponele que n anda por 0 tonce 0 oSi n anda por 1 tonce 1 aLoSumo (fibonacci(n meno 1) ma fibonacci(n meno 2))
@@ -202,44 +203,47 @@
       
       Cuchame( fibonacci(10) ) #(just one expr (the if))
 
-      definime welcome()
+      definime bienvenido()
             che name es Traeme("Decime tu nombre, dale: ")
             Cuchame("Que onda " ma name ma ". Todo bien?")
       hastaaca
 
-      welcome()   #(several expr (declare variable and Cuchame function))
+      bienvenido()   #(Acepta varias expresiones. El tema de la variable y el Cuchame)
 
-#Built-in:
-#      Const:
+#Cosas de fabrica:
+#      Constantes:
             Milanesa  # = "Carne"
             Macri     # = "Gato"
-            Vacio     # =  Empty (careful. A lot of illegal operations.)
+            Vacio     # =  Empty (Ojo que con esto no se puede operar. Es como un cirujano con parkinson)
             Inviable  # =  Number.null
             Chamuyo   # =  Number.false
             Posta     # =  Number.true
             Pi        # =  Number.math_PI
 
-#     Functions:
-#            Cuchame() => print()
-#            CuchameRet() => return print
-#            Traeme() => input("input str"?)
-#            TraemeNumerito() => input("input str"?) (int)
-#            Limpiame() => clear console
-#            clear() => clear console
-#            EsNumerito() => isNumber(int)
-#            EsTexto() => isString(str)
-#            EsLista() => isList([])
-#            EsFuncion() => isFunc(fun)
-#            Agregale() => append(list, element)
-#            Rajale() => pop(list, index)
-#            Metele() => extend(listA,listB)
-#            TaLargo() => len(list or string)
-#            Correme() => run(file.che) / import file.che
-#            Chorro() => Just try it. You must. Really. Posta.
-#            Argentina() => Just try it. You must. Really. Posta.
-#            Boludear(n) => Sleep(seconds)
-#            Viborita(str) => eval(str) => use python inside CheLang. Return python return in string
+#     Funciones:
+#            Cuchame()       => print()
+#            CuchameRet()    => return print
+#            Traeme()        => input("input str"?)
+#            TraemeNumerito()=> input("input str"?) (int)
+#            Limpiame()      => clear console
+#            clear()         => clear console
+#            EsNumerito()    => isNumber(int)
+#            EsTexto()       => isString(str)
+#            EsLista()       => isList([])
+#            EsFuncion()     => isFunc(fun)
+#            Agregale()      => append(list, element)
+#            Rajale()        => pop(list, index)
+#            Metele()        => extend(listA,listB)
+#            TaLargo()       => len(list or string)
+#            Correme()       => run(file.che) / import file.che
+#            Chorro()        => Just try it. You must. Really. Posta.
+#            Argentina()     => Just try it. You must. Really. Posta.
+#            Boludear(n)     => Sleep(seconds)
+#            Viborita(str)   => eval(str) => Usa python adentro de CheLang. Re pawerful. Retorna el return de python en string
 #            ANumerito(n-str) => int(n-str)
 #            AFlotantito(n-str)=> float(n-str)
-#            ATextito(*) => str(*)
+#            ATextito(*)       => str(*)
 #            FloatYPico(n-str) => float(n-str) +- .5
+#            Dolar()           => Tira el precio del dolar actual
+#            Campora()         => Probalo que esta re piola
+#            HalloEbribodi()   => Probalo que esta re piola

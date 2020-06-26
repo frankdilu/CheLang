@@ -1,7 +1,7 @@
 from CheLang.Values import Value,List, String, Number, Function, Empty
 from CheLang.Const import detailsMessages, TT_PLUS, TT_MINUS, TT_MUL, TT_DIV, TT_POW, TT_EE,TT_NE, TT_LT,TT_GT,TT_LTE,TT_GTE,TT_MM,TT_KEYWORD
 from CheLang.RTResult import RTResult
-from CheLang.Errors import RTError
+from CheLang.Errors import RTError, LanguageThingError
 ###################################################
 # INTERPRETER
 ###################################################
@@ -79,6 +79,11 @@ class Interpreter:
         # if res.error: return res
         if res.should_return(): return res
         for var in var_name:
+            if var.value.lower() == "dolar":
+                return res.failure(LanguageThingError(
+                        var.pos_start, var.pos_end,
+                        detailsMessages["dolarVarAssign"]
+                        ))
             context.symbol_table.set(var.value,value)
         return res.success(value)
 

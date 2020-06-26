@@ -164,7 +164,7 @@ class Lexer:
             return tok, None
         else:
             tok_type = TT_KEYWORD if op_str.lower() in KEYWORDS else TT_IDENTIFIER
-            # esto se fija las keywords que tienen dos palabras que no sean las de equal
+            # esto se fija las keywords que tienen mas de una palabra
             if op_str.lower() == "ponele":
                 if self.take_str().lower() != "que": return [], InvalidSyntaxError(
                     pos_start, self.pos,

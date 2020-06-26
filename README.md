@@ -1,45 +1,70 @@
 # CheLang
 
-CheLang is an argento (Argentinian) programming language with their locals slang.
+CheLang es un lenguaje de programacion esoterico argento. Ni mas, ni menos.
+Con la agradable jerga argenta que nos identifica.
 
-## Installation
+## Instalacion
 
-See Releases or tags.
+Vean las releases o los tags.
 
-Downloads:
+Descargas:
 
-MSI Installer (with PATH. House recommendation.)
+Instalador MSI (Con PATH. Es la que va. La casa lo recomienda.)
 
 ZIP Builded
 
-ZIP Source (requires python)
+ZIP Source (Requiere python)
 
-## Usage
+## Uso
 
-Double click on CheLang exe
+Instalado con MSI:
 
-Msi installer:
+      `chelang` (en consola (Con el PATH.))
 
-open .che file
+      doble click en cualquier archivo .che
 
-or (with PATH)
+Con la version buildeada o con MSI:
 
-`chelang` in console
+      Doble click en CheLang.exe (Es obvio flaco media pila)
 
+Con el source:
 
-On source:
-`python cli.py` in console (requires python)
+      python cli.py (en consola)
 
-## Syntax
+      python cli.py ./nombreDeArchivo.che
+
+## Cosas de Argento
+
+Claramente, como todo buen argento, el programa no compila ni fines de semana ni los feriados.
+Esto ultimo claramente si no esta el flag `--milicos`
+
+No se puede declarar una variable "dolar", eso claramente lo maneja el Banco Central.
+Se puede revisar el precio del dolar con su funcion "Dolar()". Pero tenes que estar seguro que no es un precio fijo. Habemus inflacion.
+
+Podes llamar a la "Campora()" cuando quieras y vas a notar su presencia tan particular. Tene en cuenta que, cada vez que se los llama, hay inflacion. Por lo que el "Dolar()" se ve afectado.
+
+Claramente somos inclusivos y aceptamos a los que hablan ingles, entonces pidiendo un "HalloEbribodi()" un expresidente les va a dar la bienvenida con su magnifico nivel de ingles.
+
+Como somos patrios ante todo, podemos hacerle honor a la Patria diciendo "Argentina()".
+
+Pero, siendo realistas, el pais es un poco inseguro. Por lo que incluimos un tutorial de qué hacer si entra un "Chorro()" en nuestro hogar.
+
+Si estamos cansados, podemos "Boludear(n)" un rato para aclarar la mente y seguir mandandole fruta.
+
+## Syntaxis
 ```
-Scheme:
-      CheLang expression => return / regular expression
-      NO CaSe SenSiTiVe keywords. Readme uses camelCase for clarity
-Operations:
+Esquema del ReadMe:
+      Expresion en CheLang => return / expresion regular
+
+      NO HAY CaSe SenSiTiVe keywords. El ReadMe usa CamelCase para mas claridad
+
+# COMENTARIOS CON EL # jashtag
+
+Operaciones:
       ma => +
       meno => -
       por => *
-      dividido => / (return float)
+      dividido => / (retorna flotante)
       aLa => **
       () => ()
 
@@ -47,7 +72,7 @@ Operations:
       [a,b,c] => [a,b,c]
 
 
-ie:
+ej:
       2.3 ma 2 => 4.3
       .8 ma 2 => 2.8
       .8 meno 2 => -1.2
@@ -64,14 +89,14 @@ ie:
       [a,b,c] + d => [a,b,c,d]
       [a,b,c] + [d,e] => [a,b,c,d,e]
       [a,b] * 3 => [a,b,a,b,a,b]
-      [a,b] dividido 0 => a (change soon. will be [a,b][0] => a)
+      [a,b] dividido 0 => a (Dentro de poco cambia. Va a ser [a,b][0] => a)
 
 
-Declare variables:
+Declaracion de variables:
 
-      che (variable_name) es (value)
-      che (variable_name) seigual (value)
-      che (variable_name) son (value)
+      che (nombreDeVariable) es (valor)
+      che (nombreDeVariable) seigual (valor)
+      che (nombreDeVariable) son (valor)
 
       che messi es 10
       che messi es "grosso"
@@ -81,19 +106,19 @@ Declare variables:
       messi  => 10
       sueldo => 0
 
-Declare multiple variables:
+Declaracion de multiples variables:
 
-      che (variable_name) es che (variable_2_name) es ... es (value)
+      che (nombreDeVariable) es che (variable_2_name) es ... es (valor)
 
       che a es che b es che c es 32
 
-      or
+      o
 
-      che (variable_name), (variable_name), (variable_name) es (value)
+      che (nombreDeVariable), (nombreDeVariable), (nombreDeVariable) es (valor)
 
       che messi, maradona son 10
 
-Conditions:
+Condiciones:
   (1 => true 0 => false)
 
       andaPor      => ==
@@ -106,9 +131,9 @@ Conditions:
       es unCachitoMa   =>   >
       es mayorOIgual   =>   >=
 
-      es maomeno => +- (its equal, but return true with 20% error margin)
+      es maomeno => +- (Es como el == pero le pifia un 20%. Ta re copado)
 
-ie:
+ej:
       1 anda por 1 => 1
       a anda por 1 => 0
       a anda por 32 => 1
@@ -126,9 +151,9 @@ ie:
       10 es maomeno 10 => 1
 
       "abc" anda por 1 => 1
-      "" anda por 1 => 0  (if string length >= 1 is true)
+      "" anda por 1 => 0  (si el string tiene uno o mas caracteres le manda true)
 
-Conditions Combination:
+Combinacion de variables:
       y => and / &&
       o => or / ||
 
@@ -141,7 +166,7 @@ Conditions Combination:
       1 anda por 2 o 2 anda por 1 => 0
 
 
-If statement:
+Los ife y esas cosas:
       ponele que => if
       tonce      => then
       oSi        => elif
@@ -154,7 +179,7 @@ If statement:
 
       ponele que a no es a tonce 0 oSi messi anda por messi tonce 1 aLoSumo 6 => 1
 
-For / While statement:
+For / While:
       agarra por => for
       hasta => to
       de a  => step
@@ -175,11 +200,11 @@ For / While statement:
       che i es 0
       mientras i es unCachitoMa meno 10 tonce che i es i meno 1 => i = -10
 
-Functions:
+Funciones:
       definime => def / function
       (a, b, c) => (a, b, c)
-      => =>  () => expr (just one expr. no "hastaaca" final.)
-      hastaaca => } (accept one or several expr)
+      => =>  () => expr (Solo una expresion. No tiene "hastaaca" final.)
+      hastaaca => } (Aceptando mas de una expresion)
       tirame => return
 
       definime fibonacci(n)=> ponele que n anda por 0 tonce 0 oSi n anda por 1 tonce 1 aLoSumo (fibonacci(n meno 1) ma fibonacci(n meno 2))
@@ -200,19 +225,19 @@ Functions:
             Cuchame("Que onda " ma name ma ". Todo bien?")
       hastaaca
 
-      welcome()   (several expr (declare variable and Cuchame function))
+      welcome()   (Tiene varias expresiones. Declara la variable y le manda al Cuchame)
 
-Built-in:
-      Const:
+Cosas de fabrica:
+      Constantes:
             "Milanesa" = "Carne"
             "Macri" = "Gato"
-            "Vacio" =  Empty (careful. A lot of illegal operations.)
+            "Vacio" =  Empty (Ojo que no se puede operar con esto. Es como un cirujano con parkinson)
             "Inviable" =  Number.null
             "Chamuyo" =  Number.false
             "Posta" =  Number.true
             "Pi" =  Number.math_PI
 
-      Functions:
+      Funciones:
             Cuchame()         => print()
             CuchameRet()      => return print
             Traeme()          => input("input str"?)
@@ -228,45 +253,57 @@ Built-in:
             Metele()          => extend(listA,listB)
             TaLargo()         => len(list or string)
             Correme()         => run("path/file.che")
-            Chorro()          => Just try it. You must. Really. Posta.
-            Argentina()       => Just try it. You must. Really. Posta.
+            Chorro()          => Probalo que esta re piola
+            Argentina()       => Probalo que esta re piola
             Boludear(n)       => sleep(seconds)
-            Viborita(str)     => eval(str) => use python inside CheLang. Return python return in string
+            Viborita(str)     => eval(str) => Usa python adentro de CheLang. Re pawerful. Retorna el return de python en string
             ANumerito(n-str)  => int(n-str)
             AFlotantito(n-str)=> float(n-str)
             ATextito(*)       => str(*)
             FloatYPico(n-str) => float(n-str) +- .5
+            Dolar()           => Tira el precio del dolar actual
+            Campora()         => Probalo que esta re piola
+            HalloEbribodi()   => Probalo que esta re piola
 
-(Read example.che to more)
+(En ejemplos/ejemplo.che esta todo practico, se puede correr y demas)
 ```
 
+## Progreso
 
-## Progress
+El lenguaje NO ESTA TERMINADO. Seguimo trabajando y tamo agregando cosas. 
+Cualquier sugerencia o idea es bienvenida.
 
-The language IS NOT FINISHED. This is the first release. Soon upgrades.
+Este programa se crea, modifica y usa con un mate en la mano. Si no estas con un mate, anda a hacerte uno. Ya.
 
+Se agradece la difusion de este humilde programa. Mas que nada para divertir a sus amigos. No sean ortivas.
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## Disclaimer
 
-Please make sure to update tests as appropriate.
+El lenguaje no tiene intencion minima de hacer politica o estar a favor o en contra de algun partido.
+Tampoco intenta ofender a nadie ni nada por el estilo. Basicamente es una gran joda. 
 
-Please use english for issues and PR (unless argento words duh). Spanish are welcome too for a minor suggestion, but it will be recived with argento violence.
+Si se lo toman de otra manera los invitamos a retirarse de este agradable lugar.
 
-## Conduct
+## Contribucion
+Los Pull Requests son bienvenidos. Para cambios mayores por favor abrir un issue y ahi lo discutimo.
 
-Please be respectful and dont take out the argento natura. Like they say: ```Si los argento nos organizamo, dominamo al mundo.``` 
+Antes pediamos que sea en ingles las cuestiones del PR y los issues, pero la posta es que esto es argento asi que lo vamo a seguir haciendo argento. Escriban como se les cante.
 
-## License
+## Conducta
+
+El que no sea respetuoso sera invitado a tomar mate con Menem mientras los lanzamos a ambos a la estratosfera.
+Y una buena frase pa fomentar la organizacion: ```Si los argento nos organizamo, dominamo al mundo.``` carajo.
+
+## Licencia
 [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html)
 
-# Credits:
+# Creditos:
 
- [CodePulse tutorial](https://www.youtube.com/playlist?list=PLZQftyCk7_SdoVexSmwy_tBgs7P0b97yD)
+[CodePulse tutorial](https://www.youtube.com/playlist?list=PLZQftyCk7_SdoVexSmwy_tBgs7P0b97yD)
 
-   [CodePulse tutorial repo](https://github.com/davidcallanan/py-myopl-code)
-    
-CodePulse tutorial is based on [this](https://ruslanspivak.com/lsbasi-part1/)
+[CodePulse tutorial repo](https://github.com/davidcallanan/py-myopl-code)
 
-The code its based on CodePulse Tutorial, with modifications.
+El tuto de CodePulse esta basado en [esto](https://ruslanspivak.com/lsbasi-part1/)
+
+El codigo esta basado en el tuto de CodePulse con modificaciones re piolas.
 

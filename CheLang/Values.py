@@ -5,6 +5,9 @@ import math
 from CheLang.Context import Context
 from CheLang.SymbolTable import SymbolTable
 import os
+import datetime
+START_TIME = datetime.datetime.now()
+inflacion = 1
 ###################################################
 # VALUES
 ###################################################
@@ -585,8 +588,7 @@ class BuiltInFunction(BaseFunction):
                 exec_ctx
                 ))
 
-        fn = fn.value
-
+        fn = os.path.abspath(fn.value)
         try:
             with open(fn, "r") as f:
                 script = f.read()
@@ -782,27 +784,83 @@ class BuiltInFunction(BaseFunction):
             ))
     execute_FloatYPico.arg_names = ["value"]
 
-BuiltInFunction.print       = BuiltInFunction("Cuchame")
-BuiltInFunction.print_ret   = BuiltInFunction("CuchameRet")
-BuiltInFunction.input       = BuiltInFunction("Traeme")
-BuiltInFunction.input_int   = BuiltInFunction("TraemeNumerito")
-BuiltInFunction.clear       = BuiltInFunction("Limpiame")
-BuiltInFunction.is_number   = BuiltInFunction("EsNumerito")
-BuiltInFunction.is_string   = BuiltInFunction("EsTexto")
-BuiltInFunction.is_list     = BuiltInFunction("EsLista")
-BuiltInFunction.is_function = BuiltInFunction("EsFuncion")
-BuiltInFunction.append      = BuiltInFunction("Agregale")
-BuiltInFunction.pop         = BuiltInFunction("Rajale")
-BuiltInFunction.extend      = BuiltInFunction("Metele")
-BuiltInFunction.len         = BuiltInFunction("TaLargo")
-BuiltInFunction.run         = BuiltInFunction("Correme")
-BuiltInFunction.hola        = BuiltInFunction("Hola")
-BuiltInFunction.argentina   = BuiltInFunction("Argentina")
-BuiltInFunction.thief       = BuiltInFunction("Chorro")
-BuiltInFunction.exit        = BuiltInFunction("Ninos")
-BuiltInFunction.sleep       = BuiltInFunction("Boludear")
-BuiltInFunction.python      = BuiltInFunction("Viborita")
-BuiltInFunction.toInt       = BuiltInFunction("ANumerito")
-BuiltInFunction.toFloat     = BuiltInFunction("AFlotantito")
-BuiltInFunction.toStr       = BuiltInFunction("ATextito")
-BuiltInFunction.FloatYPico  = BuiltInFunction("FloatYPico")
+    def execute_Dolar(self, exec_ctx):
+        d = datetime.datetime.now()
+        dolar = 193 + ((d - START_TIME).total_seconds() / 2) * inflacion
+        return RTResult().success(Number(float("{:.2f}".format(dolar))))
+    execute_Dolar.arg_names = []
+
+    def execute_Campora(self, exec_ctx):
+        import os
+        from playsound import playsound
+        print("\nAGUANTE CRISTIIINA PAPAAA!")
+        print("\nNESTOR KIRCHNER\n1950 - SIEEEMPRE\n")
+        print("\nLA PATRIA ES EL OOTRO\n✌ ✌ ✌ ✌ ✌ ✌ ✌ ✌ ✌ ✌ ✌ ✌\n")
+        notDone = True
+        global inflacion 
+        inflacion += .2
+        try:
+            soundUri = os.path.abspath(os.environ["CheLangPath"]) + "\\assets\\Peron.mp3"
+            playsound(soundUri)
+            notDone = False
+        except KeyboardInterrupt:
+            notDone = False
+        except:
+            if notDone:
+                try:
+                    soundUri = os.path.abspath(os.getcwd()) + "\\assets\\Peron.mp3"
+                    playsound(soundUri)
+                except FileNotFoundError:
+                    print("Pasó algo, no pude cargar las cosas... Para mi es culpa del kernel imperialista...")
+        finally:
+            return RTResult().success(Empty())
+    execute_Campora.arg_names = []
+
+    def execute_HalloEbribodi(self, exec_ctx):
+        import os
+        from playsound import playsound
+        notDone = True
+        try:
+            soundUri = os.path.abspath(os.environ["CheLangPath"]) + "\\assets\\HalloEbribodi.mp3"
+            playsound(soundUri)
+            notDone = False
+        except KeyboardInterrupt:
+            notDone = False
+        except:
+            if notDone:
+                try:
+                    soundUri = os.path.abspath(os.getcwd()) + "\\assets\\HalloEbribodi.mp3"
+                    playsound(soundUri)
+                except FileNotFoundError:
+                    print("Pasó algo, no pude cargar las cosas... Para mi es culpa del kernel imperialista...")
+        finally:
+            return RTResult().success(String("Seriusli"))
+    execute_HalloEbribodi.arg_names = []
+
+BuiltInFunction.print         = BuiltInFunction("Cuchame")
+BuiltInFunction.print_ret     = BuiltInFunction("CuchameRet")
+BuiltInFunction.input         = BuiltInFunction("Traeme")
+BuiltInFunction.input_int     = BuiltInFunction("TraemeNumerito")
+BuiltInFunction.clear         = BuiltInFunction("Limpiame")
+BuiltInFunction.is_number     = BuiltInFunction("EsNumerito")
+BuiltInFunction.is_string     = BuiltInFunction("EsTexto")
+BuiltInFunction.is_list       = BuiltInFunction("EsLista")
+BuiltInFunction.is_function   = BuiltInFunction("EsFuncion")
+BuiltInFunction.append        = BuiltInFunction("Agregale")
+BuiltInFunction.pop           = BuiltInFunction("Rajale")
+BuiltInFunction.extend        = BuiltInFunction("Metele")
+BuiltInFunction.len           = BuiltInFunction("TaLargo")
+BuiltInFunction.run           = BuiltInFunction("Correme")
+BuiltInFunction.hola          = BuiltInFunction("Hola")
+BuiltInFunction.argentina     = BuiltInFunction("Argentina")
+BuiltInFunction.thief         = BuiltInFunction("Chorro")
+BuiltInFunction.exit          = BuiltInFunction("Ninos")
+BuiltInFunction.sleep         = BuiltInFunction("Boludear")
+BuiltInFunction.python        = BuiltInFunction("Viborita")
+BuiltInFunction.toInt         = BuiltInFunction("ANumerito")
+BuiltInFunction.toFloat       = BuiltInFunction("AFlotantito")
+BuiltInFunction.toStr         = BuiltInFunction("ATextito")
+BuiltInFunction.FloatYPico    = BuiltInFunction("FloatYPico")
+BuiltInFunction.dolar         = BuiltInFunction("Dolar")
+BuiltInFunction.campora       = BuiltInFunction("Campora")
+BuiltInFunction.HalloEbribodi = BuiltInFunction("HalloEbribodi")

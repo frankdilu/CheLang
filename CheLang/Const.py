@@ -18,7 +18,8 @@ errorMessages = {
     "IllegalCharError" : "Che pibe pusiste algo nada que ver, le mandaste",
     "InvalidSyntaxError" : "Flaco tu sintaxis no la entiende ni tu abuelita (saludos)",
     "RuntimeError" : "TE VAMOS A LINCHAR SI NO LO ARREGLAS BIGOTE",
-    "ExpectedCharError" : "Usted se tiene que arrepentir de lo que dijo. Le faltó poner algo: "
+    "ExpectedCharError" : "Usted se tiene que arrepentir de lo que dijo. Le faltó poner algo: ",
+    "languageThings": "Te tiro un dato: estas en CheLang. Argentina. Te controla el gobierno"
 }
 ###############################
 # ERROR DETAILS     - sfw :D -
@@ -29,12 +30,13 @@ detailsMessages = {
     "operationExpected": "\nFlaco dame alguna operacion, lamentablemente no puedo hacer lo que me pinte",
     "closeParentesisExpected": "\nFlaco porque no cerras los partentesis?",
     "identifierExpected": "\nDecime un nombre pa la variable viste",
-    "equalExpected": "\nTenes que poner 'es' o 'seigual' pa poner algo crack",
+    "equalExpected": "\nTenes que poner 'es' o 'seigual' o 'son' pa poner algo crack",
     "equalAfterNotExpected": "\nChe no sabes español? Tenes que poner 'No es' duh",
     "zeroDiv": "\nIntenté dividir por 0, pero no pude por culpa del kernel imperialista",
     "unknownVariable": "\nCapo no me dijiste que es '",
     "languajeSyntaxError": "\nGenio leete la doc antes de escribir dale? Te faltó un '",
-    "outOfIndex": "\nTe pasaste de rosca con el index capo"
+    "outOfIndex": "\nTe pasaste de rosca con el index capo",
+    "dolarVarAssign": "\n\nJA! Quien te crees que sos para cambiarle el valor al dolar? Eso lo controla el Banco Central capo."
 }
 
 ###############################
