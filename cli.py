@@ -75,7 +75,9 @@ feriados = ["1.1","24.2","25.2","23.3","24.3","31.3","10.4","1.5","25.5","15.6",
 if now.weekday() < 5 and not (str(now.day) + "." + str(now.month)) in feriados:
     cli()
 elif "--milicos" in sys.argv:
+    print("\n*Videla happy noises*\n")
     cli()
 
 print("No hermano, fin de semana o feriado en Argentina no se trabaja.")
+input("\nApreta enter, dale.\n")
 sys.exit(0)
