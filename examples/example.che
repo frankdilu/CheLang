@@ -32,7 +32,7 @@
  che x es     ["a","b","c"] ma "d"        # => ["a","b","c","d"]
  che x es     ["a","b","c"] ma ["d","e"]  # => ["a","b","c","d","e"]
  che x es     ["a","b"] por 3             # => ["a","b","a","b",a,"b"]
- che x es     ["a","b"] dividido 0        # => a (Va a cambiar. Va a ser ["a","b"][0] => a)
+ che x es     ["a","b"][0]                # => "a"
 
 
 #Declaracion de variables:

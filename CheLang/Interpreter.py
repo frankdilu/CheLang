@@ -277,6 +277,24 @@ class Interpreter:
 
         return res.success(func_value)
     ###############################
+    # LIST CALL VISIT METHOD 
+    ###############################
+    def visit_CallListNode(self, node, context):
+        res = RTResult()
+
+        value_to_call = res.register(self.visit(node.list_to_call, context))
+        if res.should_return(): return res
+        value_to_call = value_to_call.copy().set_pos(node.pos_start, node.pos_end)
+
+        listIndex = res.register(self.visit(node.listIndex, context))
+        if res.should_return(): return res
+        listIndex = listIndex.copy().set_pos(node.pos_start, node.pos_end)
+
+        return_value = res.register(value_to_call.take_item(listIndex))
+        if res.should_return(): return res
+        return_value = return_value.copy().set_context(context).set_pos(node.pos_start,node.pos_end)
+        return res.success(return_value)
+    ###############################
     # FUN CALL VISIT METHOD 
     ###############################
     def visit_CallNode(self, node, context):

@@ -1,7 +1,7 @@
 from CheLang.Const import TT_EOF,TT_POW, TT_LPAREN, TT_RPAREN, TT_COMMA, TT_INT, TT_FLOAT, TT_STRING, TT_IDENTIFIER, TT_LSQUARE, TT_KEYWORD, TT_PLUS, TT_MINUS, TT_MUL, TT_DIV, TT_RSQUARE, TT_EQ, TT_EE, TT_NE, TT_LT, TT_GT, TT_LTE, TT_GTE, TT_MM, TT_ARROW, TT_NEWLINE
 from CheLang.Errors import InvalidSyntaxError, detailsMessages
 from CheLang.ParserResult import ParseResult
-from CheLang.Nodes import CallNode, NumberNode, StringNode, VarAccessNode, UnaryOpNode, ListNode, IfNode, ForNode, WhileNode, VarAssignNode, FuncDefNode, BinOpNode, ReturnNode, ContinueNode, BreakNode
+from CheLang.Nodes import CallNode, CallListNode, NumberNode, StringNode, VarAccessNode, UnaryOpNode, ListNode, IfNode, ForNode, WhileNode, VarAssignNode, FuncDefNode, BinOpNode, ReturnNode, ContinueNode, BreakNode
 
 ###################################################
 # PARSER     - este es el que diferencia las cosa -
@@ -102,6 +102,30 @@ class Parser:
         atom = res.register(self.atom())
         if res.error: return res
 
+        # Si es una lista le manda a una lista
+        if self.current_tok.type == TT_LSQUARE:
+            res.register_advancement()
+            self.advance()
+
+            listIndex = res.register(self.expr())
+
+            if res.error:
+                return res.failure(InvalidSyntaxError(
+                    self.current_tok.pos_start, self.current_tok.pos_end,
+                    detailsMessages["exprExpected"]
+                ))
+
+            if self.current_tok.type != TT_RSQUARE:
+                return res.failure(InvalidSyntaxError(
+                        self.current_tok.pos_start, self.current_tok.pos_end,
+                        detailsMessages["languajeSyntaxError"] + "]'"
+                    ))
+
+            res.register_advancement()
+            self.advance()
+            return res.success(CallListNode(atom, listIndex))
+
+        # Si es una funcion le manda a la funcion
         if self.current_tok.type == TT_LPAREN:
             res.register_advancement()
             self.advance()

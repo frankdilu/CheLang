@@ -303,18 +303,19 @@ class List(Value):
         new_list.elements.extend(new_list.elements * other.value)
         return new_list, None
 
-    def dived_by(self, other):
+    def take_item(self, other):
+        res = RTResult()
         if isinstance(other, Number):
             try:
-                return self.elements[other.value], None
+                return res.success(self.elements[other.value])
             except:
-                return None, RTError(
+                return res.failure(RTError(
                     other.pos_start, other.pos_end,
                     detailsMessages["outOfIndex"],
                     self.context
-                )
+                ))
         else:
-            return None, Value.illegal_operation(self, other)
+            return res.failure(Value.illegal_operation(self, other))
 
     def copy(self):
         copy = List(self.elements)
@@ -331,7 +332,7 @@ class List(Value):
 class BaseFunction(Value):
     def __init__(self, name):
         super().__init__()
-        self.name = name or "<anonymous>"
+        self.name = name or "<Funcion Anonimu>"
 
     def generate_new_context(self):
         new_context = Context(self.name, self.context, self.pos_start)
@@ -405,7 +406,7 @@ class Function(BaseFunction):
         return copy
 
     def __repr__(self):
-        return f"<function {self.name}>"
+        return f"<Funcion {self.name}>"
 
 class BuiltInFunction(BaseFunction):
     def __init__(self, name):
@@ -435,7 +436,7 @@ class BuiltInFunction(BaseFunction):
         return copy
 
     def __repr__(self):
-        return f"<built-in function {self.name}>"
+        return f"<Funcion de fabrica {self.name}>"
 
     #####################################
 

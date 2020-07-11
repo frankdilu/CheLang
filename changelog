@@ -8,7 +8,11 @@ scheme:
             changes
             changes
         ) commit
-27/06
+11/07
+    (
+        added list[x] syntaxis
+    )
+27/06 v1.1.3
     (
         input to exit weekends and feriados
     )

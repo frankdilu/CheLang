@@ -145,6 +145,16 @@ class FuncDefNode:
         self.pos_end = self.body_node.pos_end
 
 ###############################
+# CALL LIST FUNCITON NODE  
+###############################
+class CallListNode:
+    def __init__(self, list_to_call, listIndex):
+        self.list_to_call = list_to_call
+        self.listIndex = listIndex
+        self.pos_start = self.list_to_call.pos_start
+        self.pos_end = self.list_to_call.pos_end
+
+###############################
 # CALL FUNCITON NODE  
 ###############################
 class CallNode:

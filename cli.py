@@ -69,7 +69,13 @@ def cli():
 
 now = datetime.datetime.now()
 #Los feriado mas importantes vistes
-feriados = ["1.1","24.2","25.2","23.3","24.3","31.3","10.4","1.5","25.5","15.6","20.6","9.7","10.7","17.8","12.10","23.11","7.12","8.12","25.12"]
+feriados = [
+    "1.1","24.2","25.2","23.3",
+    "24.3","31.3","10.4","1.5",
+    "25.5","15.6","20.6","9.7",
+    "10.7","17.8","12.10","23.11",
+    "7.12","8.12","25.12"
+    ]
 
 #Si no es finde o estan los milicos se trabaja siempre
 if now.weekday() < 5 and not (str(now.day) + "." + str(now.month)) in feriados:

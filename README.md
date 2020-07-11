@@ -99,7 +99,7 @@ ej:
       [a,b,c] + d => [a,b,c,d]
       [a,b,c] + [d,e] => [a,b,c,d,e]
       [a,b] * 3 => [a,b,a,b,a,b]
-      [a,b] dividido 0 => a (Dentro de poco cambia. Va a ser [a,b][0] => a)
+      [a,b][0] => a 
 
 
 Declaracion de variables:
