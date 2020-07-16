@@ -19,6 +19,9 @@ scheme:
    (
        better readme
    )
+   (
+       fixbug when run a file directly: path error fix #9
+   )
 11/07
     (
         added list[x] syntaxis

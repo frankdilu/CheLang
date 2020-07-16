@@ -32,6 +32,7 @@ def cli():
         while True:
             folder = os.path.basename(os.getcwd())
             inputText = input("/"+ folder + " < CheLang > ")
+            inputText = inputText.replace("\\","\\\\")
             if inputText.strip() == "": continue
             result, error = run(__file__,inputText)
 
@@ -48,6 +49,7 @@ def cli():
     # if 2 argument open file
     else:
         uri = sys.argv[1]
+        uri = uri.replace("\\","\\\\")
         result, error = run(__file__, f'Correme("{uri}")')
 
         if error: print(error.as_string())
