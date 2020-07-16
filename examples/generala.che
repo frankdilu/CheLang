@@ -40,7 +40,7 @@ definime grupoDeN(dados, N)
     tirame 0
 hastaaca
 
-###### AHORA SI NO SABÉS JUGAR TOMATELÁÁÁ #####
+###### AHORA SI NO SABÉS JUGAR TOMATELAAA #####
 
 definime full(dados)
     tirame (grupoDeN(dados, 3) y grupoDeN(dados, 2))
