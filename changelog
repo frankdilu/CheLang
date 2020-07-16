@@ -8,6 +8,14 @@ scheme:
             changes
             changes
         ) commit
+16/07
+    (
+        added % operator
+        bugfix sounds functions fix #6
+        readme
+        "Sumate" built-in function added 
+        fix #7
+   )
 11/07
     (
         added list[x] syntaxis

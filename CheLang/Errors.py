@@ -68,10 +68,10 @@ class RTError(Error):
         notLooped = True
         while ctx:
             if notLooped:
-                result = "Traceback (most recent call last):\n" + f" File {pos.fn}, line {str(pos.ln + 1)}, in {ctx.display_name}\n" + result
+                result = "Traceback (las ultimas cuestiones que se llamaron):\n" + f" Archivo {pos.fn}, linea {str(pos.ln + 1)}, en {ctx.display_name} (o por ahí, que se yo)\n" + result
                 notLooped = False
             else:
-                result = f" File {pos.fn}, line {str(pos.ln + 1)}, in {ctx.display_name}\n" + result
+                result = f" Archivo {pos.fn}, linea {str(pos.ln + 1)}, en {ctx.display_name} (o por ahí, que se yo)\n" + result
             pos = ctx.parent_entry_pos
             ctx = ctx.parent
 

@@ -1,5 +1,5 @@
 from CheLang.Position import Position
-from CheLang.Const import detailsMessages, LETTERS, DIGITS, TT_LPAREN, TT_RPAREN, TT_LSQUARE, TT_RSQUARE, TT_COMMA, TT_ARROW, TT_EOF, TT_INT, TT_FLOAT, TT_PLUS, TT_MINUS, TT_MUL, TT_DIV, TT_POW, TT_EE, TT_EQ, TT_KEYWORD, KEYWORDS, TT_IDENTIFIER, TT_STRING, TT_NE, TT_LT, TT_LTE, TT_GT, TT_GTE, TT_MM, TT_NEWLINE
+from CheLang.Const import detailsMessages, LETTERS, DIGITS, TT_LPAREN, TT_RPAREN, TT_LSQUARE, TT_RSQUARE, TT_COMMA, TT_ARROW, TT_EOF, TT_INT, TT_FLOAT, TT_PLUS, TT_MINUS, TT_MOD, TT_MUL, TT_DIV, TT_POW, TT_EE, TT_EQ, TT_KEYWORD, KEYWORDS, TT_IDENTIFIER, TT_STRING, TT_NE, TT_LT, TT_LTE, TT_GT, TT_GTE, TT_MM, TT_NEWLINE
 from CheLang.Tokens import Token
 from CheLang.Errors import InvalidSyntaxError, IllegalCharError, ExpectedCharError
 ###################################################
@@ -52,6 +52,9 @@ class Lexer:
                 self.advance()
             elif self.current_char == "]":
                 tokens.append(Token(TT_RSQUARE, pos_start=self.pos, pos_end=self.pos))
+                self.advance()
+            elif self.current_char == "%":
+                tokens.append(Token(TT_MOD, pos_start=self.pos, pos_end=self.pos))
                 self.advance()
             elif self.current_char == '"':
                 tokens.append(self.make_string())
@@ -132,6 +135,8 @@ class Lexer:
             return [Token(TT_PLUS, pos_start=pos_start, pos_end=self.pos)] , None
         elif op_str.lower() == "meno":
             return [Token(TT_MINUS, pos_start=pos_start, pos_end=self.pos)] , None
+        elif op_str.lower() == "moduleame":
+            return [Token(TT_MOD, pos_start=pos_start, pos_end=self.pos)] , None
         elif op_str.lower() == "por":
             return [Token(TT_MUL, pos_start=pos_start, pos_end=self.pos)] , None
         elif op_str.lower() == "dividido":

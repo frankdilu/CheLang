@@ -37,6 +37,9 @@ class Value:
     def multed_by(self, other):
         return None, self.illegal_operation(other)
 
+    def modded_by(self, other):
+        return None, self.illegal_operation(other)
+
     def dived_by(self, other):
         return None, self.illegal_operation(other)
 
@@ -113,6 +116,12 @@ class Number(Value):
     def multed_by(self, other):
         if isinstance(other, Number):
             return Number(self.value * other.value).set_context(self.context), None
+        else:
+            return None, Value.illegal_operation(self, other)
+
+    def modded_by(self, other):
+        if isinstance(other, Number):
+            return Number(self.value % other.value).set_context(self.context), None
         else:
             return None, Value.illegal_operation(self, other)
 
@@ -628,9 +637,12 @@ class BuiltInFunction(BaseFunction):
             imageUri = os.path.abspath(os.environ["CheLangPath"]) + "\\assets\\Argentina.jpg"
             soundUri = os.path.abspath(os.environ["CheLangPath"]) + "\\assets\\Malvinas.mp3"
             os.startfile(imageUri)
-            notDone = False
             ctypes.windll.user32.SystemParametersInfoW(20, 0, imageUri , 0)
             playsound(soundUri)
+            notDone = False
+        except (KeyboardInterrupt, SystemExit):
+            notDone = False
+            return RTResult().success(Empty())
         except:
             if notDone:
                 try:
@@ -641,6 +653,9 @@ class BuiltInFunction(BaseFunction):
                     playsound(soundUri)
                 except FileNotFoundError:
                     print("Pasó algo, no pude cargar las cosas... Para mi es culpa del kernel imperialista...")
+                except:
+                    return RTResult().success(Empty())
+            return RTResult().success(Empty())
         finally:
             return RTResult().success(Empty())
     execute_Argentina.arg_names = []
@@ -804,8 +819,9 @@ class BuiltInFunction(BaseFunction):
             soundUri = os.path.abspath(os.environ["CheLangPath"]) + "\\assets\\Peron.mp3"
             playsound(soundUri)
             notDone = False
-        except KeyboardInterrupt:
+        except (KeyboardInterrupt, SystemExit):
             notDone = False
+            return RTResult().success(Empty())
         except:
             if notDone:
                 try:
@@ -813,6 +829,9 @@ class BuiltInFunction(BaseFunction):
                     playsound(soundUri)
                 except FileNotFoundError:
                     print("Pasó algo, no pude cargar las cosas... Para mi es culpa del kernel imperialista...")
+                except:
+                    return RTResult().success(Empty())
+            return RTResult().success(Empty())
         finally:
             return RTResult().success(Empty())
     execute_Campora.arg_names = []
@@ -825,8 +844,9 @@ class BuiltInFunction(BaseFunction):
             soundUri = os.path.abspath(os.environ["CheLangPath"]) + "\\assets\\HalloEbribodi.mp3"
             playsound(soundUri)
             notDone = False
-        except KeyboardInterrupt:
+        except (KeyboardInterrupt, SystemExit):
             notDone = False
+            return RTResult().success(String("Seriusli"))
         except:
             if notDone:
                 try:
@@ -834,9 +854,33 @@ class BuiltInFunction(BaseFunction):
                     playsound(soundUri)
                 except FileNotFoundError:
                     print("Pasó algo, no pude cargar las cosas... Para mi es culpa del kernel imperialista...")
+                except:
+                    return RTResult().success(String("Seriusli"))
+            return RTResult().success(String("Seriusli"))
         finally:
             return RTResult().success(String("Seriusli"))
     execute_HalloEbribodi.arg_names = []
+
+    def execute_Sumate(self, exec_ctx):
+        arg = exec_ctx.symbol_table.get("list").copy()
+        if isinstance(arg, List):
+            try:
+                for i, n in enumerate(arg.elements):
+                    arg.elements[i] = n.value
+                return RTResult().success(Number(sum(arg.elements)))
+            except:
+                return RTResult().failure(RTError(
+                    self.pos_start, self.pos_end,
+                    "Capo pasame una lista CON SOLO NUMEROS, dale?",
+                    exec_ctx
+                ))
+        else:
+            return RTResult().failure(RTError(
+                self.pos_start, self.pos_end,
+                "Capo pasame una lista, dale?",
+                exec_ctx
+            ))
+    execute_Sumate.arg_names = ["list"]
 
 BuiltInFunction.print         = BuiltInFunction("Cuchame")
 BuiltInFunction.print_ret     = BuiltInFunction("CuchameRet")
@@ -865,3 +909,4 @@ BuiltInFunction.FloatYPico    = BuiltInFunction("FloatYPico")
 BuiltInFunction.dolar         = BuiltInFunction("Dolar")
 BuiltInFunction.campora       = BuiltInFunction("Campora")
 BuiltInFunction.HalloEbribodi = BuiltInFunction("HalloEbribodi")
+BuiltInFunction.sum           = BuiltInFunction("Sumate")

@@ -76,6 +76,7 @@ Operaciones:
       por => *
       dividido => / (retorna flotante)
       aLa => **
+      moduleame => % (modulo)
       () => ()
 
       "" => "" (strings)
@@ -91,6 +92,8 @@ ej:
       1 ma 2 por 3 => 9
       1 ma (2 por 3) => 7
       10 dividido 2 => 5.0
+      5 moduleame 2 => 1
+      6 moduleame 2 => 0
 
       a por 10 => "aaaaaaaaaa"
 
@@ -131,7 +134,7 @@ Declaracion de multiples variables:
 Condiciones:
   (1 => true 0 => false)
 
-      andaPor      => ==
+      anda por      => ==
       no es        => !=
       es nakever   => !=
 
@@ -248,32 +251,33 @@ Cosas de fabrica:
             "Pi" =  Number.math_PI
 
       Funciones:
-            Cuchame()         => print()
-            CuchameRet()      => return print
-            Traeme()          => input("input str"?)
-            TraemeNumerito()  => input("input str"?) (int)
-            Limpiame()        => clear console
-            clear()           => clear console
-            EsNumerito()      => isNumber(int)
-            EsTexto()         => isString(str)
-            EsLista()         => isList([])
-            EsFuncion()       => isFunc(fun)
-            Agregale()        => append(list, element)
-            Rajale()          => pop(list, index)
-            Metele()          => extend(listA,listB)
-            TaLargo()         => len(list or string)
-            Correme()         => run("path/file.che")
+            Cuchame()         => print()              => Imprimir en consola
+            CuchameRet()      => return print         => Retorna el print
+            Traeme()          => input("input str"?)  => Input en consola
+            TraemeNumerito()  => input("input str"?) (int) => Input en consola (Solo numeros)
+            Limpiame()        => clear console        => Limpia consola
+            clear()           => clear console        => Limpia consola
+            EsNumerito()      => isNumber(int)        => True si es numero, false si no
+            EsTexto()         => isString(str)        => True si es string, false si no
+            EsLista()         => isList([])           => True si es lista, false si no
+            EsFuncion()       => isFunc(fun)          => True si es funcion, false si no
+            Agregale()        => append(list, element) => Le agrega un elemento a una lista
+            Rajale()          => pop(list, index)     => Le saca un elemento a una lista
+            Metele()          => extend(listA,listB)  => Agrega una lista a otra
+            TaLargo()         => len(list or string)  => Retorna la longitud de la lista o string
+            Correme()         => run("path/file.che") => Ejecuta un archivo (Solo .che)
             Chorro()          => Probalo que esta re piola
             Argentina()       => Probalo que esta re piola
-            Boludear(n)       => sleep(seconds)
+            Boludear(n)       => sleep(seconds)       => Espera n segundos
             Viborita(str)     => eval(str) => Usa python adentro de CheLang. Re pawerful. Retorna el return de python en string
-            ANumerito(n-str)  => int(n-str)
-            AFlotantito(n-str)=> float(n-str)
-            ATextito(*)       => str(*)
-            FloatYPico(n-str) => float(n-str) +- .5
-            Dolar()           => Tira el precio del dolar actual
+            ANumerito(n-str)  => int(n-str)           => Convierte string o numero a int
+            AFlotantito(n-str)=> float(n-str)         => Convierte string o numero a float
+            ATextito(*)       => str(*)               => Convierte string o numero a string
+            FloatYPico(n-str) => float(n-str) +- .5   => Da un float mas o menos cerca al numero
+            Dolar()           => Tira el precio del dolar actual  => Tira el precio actual del dolar
             Campora()         => Probalo que esta re piola
             HalloEbribodi()   => Probalo que esta re piola
+            Sumate(list[n])   => sum(list[n])         => Retorna la suma de la lista, solo numeros
 
 (En ejemplos/ejemplo.che esta todo practico, se puede correr y demas)
 ```

@@ -1,5 +1,5 @@
 from CheLang.Values import Value,List, String, Number, Function, Empty
-from CheLang.Const import detailsMessages, TT_PLUS, TT_MINUS, TT_MUL, TT_DIV, TT_POW, TT_EE,TT_NE, TT_LT,TT_GT,TT_LTE,TT_GTE,TT_MM,TT_KEYWORD
+from CheLang.Const import detailsMessages, TT_PLUS, TT_MINUS, TT_MOD, TT_MUL, TT_DIV, TT_POW, TT_EE,TT_NE, TT_LT,TT_GT,TT_LTE,TT_GTE,TT_MM,TT_KEYWORD
 from CheLang.RTResult import RTResult
 from CheLang.Errors import RTError, LanguageThingError
 ###################################################
@@ -105,6 +105,8 @@ class Interpreter:
             result, error = left.subbed_by(right)
         elif node.op_tok.type == TT_MUL:
             result, error = left.multed_by(right)
+        elif node.op_tok.type == TT_MOD:
+            result, error = left.modded_by(right)
         elif node.op_tok.type == TT_DIV:
             result, error = left.dived_by(right)
         elif node.op_tok.type == TT_POW:
