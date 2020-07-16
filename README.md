@@ -1,37 +1,25 @@
-# CheLang
+# CheLang &middot; [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/frankdilu/CheLang/blob/master/LICENSE) [![Donate](https://img.shields.io/badge/Donate-MercadoPago-blueviolet)](https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=268208624-4f7bbe17-8a6c-4c99-b0c8-86c1016d2a0d) 
 
 CheLang es un lenguaje de programacion esoterico argento. Ni mas, ni menos.
 Con la agradable jerga argenta que nos identifica.
 
 ## Instalacion
 
-Clonear el repo (ultimisima version)
-o
-Vean las releases o los tags.
+Ver las [releases](https://github.com/frankdilu/CheLang/releases).
 
 Descargas:
-
-(ver la version, puede que no esten los ultimos commits.)
 
 Instalador MSI (Con PATH. Es la que va. La casa lo recomienda.)
 
 ZIP Builded
 
-ZIP Source (Requiere python)
-
-## Requisitos
-
-(Solo para el Source o clone)
-Python 3.8 (No se probó con otra version)
-Modulo de Python "playsound" ( `pip install playsound` )
+ZIP Source (Requiere python y modulo "playsound")
 
 ## Uso
 
 Instalado con MSI:
 
       `chelang` (en consola (Con el PATH.))
-
-      doble click en cualquier archivo .che
 
 Con la version buildeada o con MSI:
 
@@ -323,6 +311,3 @@ El codigo esta basado en el tuto de CodePulse con modificaciones re piolas.
 
 Creador:
 Franco Di Luciano
-
-Con ayuda de:
-La comunidad de reddit. Buenos sugestores.

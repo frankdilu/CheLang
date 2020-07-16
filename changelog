@@ -8,13 +8,16 @@ scheme:
             changes
             changes
         ) commit
-16/07
+16/07 v1.2.0
     (
         added % operator
         bugfix sounds functions fix #6
         readme
         "Sumate" built-in function added 
         fix #7
+   )
+   (
+       better readme
    )
 11/07
     (
