@@ -2,7 +2,7 @@
 ###### Por Guido Dipietro ######
 ################################
 
-# Intersección de dos listas (todos los elementos en común)
+# Interseccion de dos listas (todos los elementos en comun)
 
 definime pertenece(elemento, lista)
     agarra por i es 0 hasta TaLargo(lista) tonce

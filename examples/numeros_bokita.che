@@ -2,9 +2,9 @@
 ###### Por Guido Dipietro ######
 ################################
 
-# Printea todos los números perfectos hasta un límite dado (ja, pero taaaarda, parece empleado público)
+# Printea todos los numeros perfectos hasta un limite dado (ja, pero taaaarda, parece empleado publico)
 
-# Devuelve todos los divisores de un número menores a sí mismo
+# Devuelve todos los divisores de un numero menores a si mismo
 definime dividimeSiTeLaBancas(numero)
     che messi es []
     agarra por chabon es 1 hasta numero tonce
@@ -17,7 +17,7 @@ definime esNumeroBokita(numero)
     ponele que Sumate(dividimeSiTeLaBancas(numero)) anda por numero tonce tirame 1 aLosumo tirame 0
 hastaaca
 
-# Ahora se pudre todo acá viste
+# Ahora se pudre todo aca viste
 
 Cuchame("\nCheamigo esto va a tardar un rato viste no es porque este mal hecho")
 Cuchame("son asi los numerobokita tardan en encontrarse, ademas viste que apuro tene?")

@@ -2,7 +2,7 @@
 ###### Por Guido Dipietro ######
 ################################
 
-# Printea números primos hasta el límite indicado
+# Printea numeros primos hasta el limite indicado
 
 definime redondeoParriba(numero)
     tirame ANumerito(numero) ma 1
