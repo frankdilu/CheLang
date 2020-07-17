@@ -19,14 +19,14 @@ hastaaca
 
 # Ahora se pudre todo acá viste
 
-Cuchame("Cheamigo esto va a tardar un rato viste no es porque este mal hecho")
-Cuchame("son asi los numerobokita tardan en encontrarse, ademas viste que no tenemo")
-Cuchame("todavia eso de operador resto % y longitud de una lista esas cosas viste no")
-Cuchame("son bien argentas, bien criollas papa, bien de aca, esas son para lo giles ustede")
-Cuchame("que usan esa' cosas para gatos que no se la bancan como nosotro asi que tomatela si te va lento el programa")
-Cuchame("\na y los tilde tampoco me andan y me la rrebanco")
+Cuchame("\nCheamigo esto va a tardar un rato viste no es porque este mal hecho")
+Cuchame("son asi los numerobokita tardan en encontrarse, ademas viste que apuro tene?")
+Cuchame("\nTe cuento, un numero bokita (o numero perfecto) es el numero re pistola que")
+Cuchame("vo cuando lo agarra y sumas todos sus divisores (menores a si mismo) te tira el mismo numero")
+Cuchame("Onda por ejemplo el 6 fijate que capo: 1+2+3=6")
+Cuchame("\nMira aca te los tiro: (el 3ero tarda un poquito, el 4to te va a tardar un toke, el 5to ni hablar)")
 
-che elInfinito es 10000
+che elInfinito es 35000000
 
 agarra por Argentina es 1 hasta elInfinito tonce
     ponele que esNumeroBokita(Argentina) tonce Cuchame(Argentina)

@@ -24,6 +24,8 @@ che nelsonCastro es ["fachero","argentino"]
 che billGates es ["llenoDeGuitaMal","fachero"]
 che hernanDrago es ["feo","argentino","capo"]
 
+Cuchame("Te tiro los elementos en comun de dos listas (chequeate el codigo):\n")
+
 Cuchame(interseccion(messi, billGates))
 Cuchame(interseccion(nelsonCastro, hernanDrago))
 Cuchame(interseccion(messi, nelsonCastro))

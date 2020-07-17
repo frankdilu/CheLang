@@ -16,8 +16,10 @@ definime esPrimo(numero)
     tirame 1
 hastaaca
 
-che familiaNumerosa es 100
+che familiaNumerosa es ANumerito(Traeme("Te genero todos lo numeros primos hasta el que me digas: "))
 
 agarra por pariente es 2 hasta familiaNumerosa tonce
     ponele que esPrimo(pariente) tonce Cuchame(pariente)
 hastaaca
+
+Cuchame("No re vimo!")
