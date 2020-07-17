@@ -1,0 +1,31 @@
+################################
+###### Por Guido Dipietro ######
+################################
+
+# Interseccion de dos listas (todos los elementos en comun)
+
+definime pertenece(elemento, lista)
+    agarra por i es 0 hasta TaLargo(lista) tonce
+        ponele que elemento anda por lista[i] tonce tirame 1
+    hastaaca
+    tirame 0
+hastaaca
+
+definime interseccion(listaA, listaB)
+    che gasPimienta es []
+    agarra por i es 0 hasta TaLargo(listaA) tonce
+        ponele que pertenece(listaA[i],listaB) tonce Agregale(gasPimienta,listaA[i])
+    hastaaca
+    tirame gasPimienta
+hastaaca
+
+che messi es ["humilde","fachero","capo","argentino","llenoDeGuitaMal"]
+che nelsonCastro es ["fachero","argentino"]
+che billGates es ["llenoDeGuitaMal","fachero"]
+che hernanDrago es ["feo","argentino","capo"]
+
+Cuchame("Te tiro los elementos en comun de dos listas (chequeate el codigo):\n")
+
+Cuchame(interseccion(messi, billGates))
+Cuchame(interseccion(nelsonCastro, hernanDrago))
+Cuchame(interseccion(messi, nelsonCastro))

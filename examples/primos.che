@@ -1,0 +1,25 @@
+################################
+###### Por Guido Dipietro ######
+################################
+
+# Printea numeros primos hasta el limite indicado
+
+definime redondeoParriba(numero)
+    tirame ANumerito(numero) ma 1
+hastaaca
+
+definime esPrimo(numero)
+    ponele que numero anda por 1 tonce tirame 0 # El 1 no es primo!!!
+    agarra por i es 2 hasta (redondeoParriba(numero aLa 0.5)) tonce
+        ponele que (numero moduleame i) anda por 0 tonce tirame 0
+    hastaaca
+    tirame 1
+hastaaca
+
+che familiaNumerosa es ANumerito(Traeme("Te genero todos lo numeros primos hasta el que me digas: "))
+
+agarra por pariente es 2 hasta familiaNumerosa tonce
+    ponele que esPrimo(pariente) tonce Cuchame(pariente)
+hastaaca
+
+Cuchame("No re vimo!")

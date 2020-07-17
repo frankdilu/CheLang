@@ -1,0 +1,112 @@
+################################
+###### Por Guido Dipietro ######
+################################
+
+# Tira 5 dados pseudo-aleatoriamente y dice que figura de la generala salio
+
+# Numero pseudo-aleatorio entre 1 y 6 usando Python y una funcion
+# pre-importada en CheLang (datetime)
+# Se fija en las micronesimas de segundo o algo asi
+definime dado()
+    tirame (ANumerito(Viborita("str(datetime.datetime.now())[-1]")) moduleame 6) ma 1
+hastaaca
+
+# Tira 5 dados con un pequeño Boludear() para evitar que salgan secuenciales
+definime cubilete()
+    che dados son []
+    agarra por i es 0 hasta 5 tonce
+        Boludear(0.01)
+        Agregale(dados, dado())
+    hastaaca
+    tirame dados
+hastaaca
+
+# Cuantos dados con valor N en la tirada
+# cantidadDeN([1,5,5,6,5], 5) -> 3
+definime cantidadDeN(lista, n)
+    che losQueHay es 0
+    agarra por i es 0 hasta TaLargo(lista) tonce
+        ponele que lista[i] anda por n tonce (che losQueHay es losQueHay ma 1)
+    hastaaca
+    tirame losQueHay
+hastaaca
+
+# Booleano, si hay un grupo de tamaño N de algun numero o no
+# grupoDeN([1,2,6,6,6], 3) -> 1 (true)
+definime grupoDeN(dados, N)
+    agarra por n es 1 hasta 7 tonce
+        ponele que cantidadDeN(dados, n) anda por N tonce tirame 1
+    hastaaca
+    tirame 0
+hastaaca
+
+###### AHORA SI NO SABeS JUGAR TOMATELAAA #####
+
+definime full(dados)
+    tirame (grupoDeN(dados, 3) y grupoDeN(dados, 2))
+hastaaca
+
+definime poker(dados)
+    tirame grupoDeN(dados, 4)
+hastaaca
+
+definime generala(dados)
+    tirame grupoDeN(dados, 5)
+hastaaca
+
+# Esta fue jodida, porque no hay sort() ni se puede modificar una lista
+# Solo toma '12345' y '23456'
+definime escalera(dados)
+    che loco es 0
+    che vamos es 0
+    agarra por i es 0 hasta 5 tonce
+        che loco es loco ma cantidadDeN(dados, dados[i])
+    hastaaca
+    ponele que loco anda por 5 tonce
+        agarra por j es 2 hasta 6 tonce
+            che vamos es vamos ma cantidadDeN(dados, j)
+        hastaaca
+    hastaaca
+    ponele que vamos anda por 4 tonce tirame 1 aLoSumo tirame 0
+hastaaca
+
+###############################################################
+############ DALE CUBILETE, VOS PODeS, DAME SUERTE ############
+###############################################################
+
+Cuchame("\nAhora vos mandale 'enter' y te tira unos dados")
+Cuchame("despues una red neuronal de inteligencia argentina superior programada en CheLang")
+Cuchame("te tira el puntaje maximo que tenes con esos 5 dados")
+Cuchame("Pero como lo hicimo un viernes y ya pinta siesta solo te doy 1 tiro por turno jEj\n")
+
+Traeme("")
+
+che repe es "r"
+
+definime rutina()
+    mientras repe anda por "r" tonce
+        che tirada es cubilete()
+
+        Cuchame("")
+        Cuchame(tirada)
+
+        ponele que escalera(tirada) tonce
+            Cuchame("Una escalera hasta la estratosfera, altoke (20 puntos)")
+        oSi full(tirada) tonce
+            Cuchame("Tamo a full (30 puntos)")
+        oSi generala(tirada) tonce
+            Cuchame("DALE BOOOOOO, DALE BOOOOKAAAAA (50 PUNTOS BIEN AHI CHABON)")
+            Campora()
+        oSi poker(tirada) tonce
+            Cuchame("OOOOOSOOO casi, ta bien igual anotate el POKAR chabon bien ahi (40 puntos)")
+        aLoSumo
+            Cuchame("ah pero vo so malisimo... naaaa te toy jodiendo (anotate algo a los numeros)")
+        hastaaca
+
+        che repe es Traeme("che tiramo de nuevo? 'r' para mandarle rosca, enter para rajarte: ")
+    hastaaca
+hastaaca
+
+rutina()
+
+# asies #

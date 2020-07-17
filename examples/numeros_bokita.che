@@ -1,0 +1,35 @@
+################################
+###### Por Guido Dipietro ######
+################################
+
+# Printea todos los numeros perfectos hasta un limite dado (ja, pero taaaarda, parece empleado publico)
+
+# Devuelve todos los divisores de un numero menores a si mismo
+definime dividimeSiTeLaBancas(numero)
+    che messi es []
+    agarra por chabon es 1 hasta numero tonce
+        ponele que (numero moduleame chabon) anda por 0 tonce (Agregale(messi,chabon))
+    hastaaca
+    tirame messi
+hastaaca
+
+definime esNumeroBokita(numero)
+    ponele que Sumate(dividimeSiTeLaBancas(numero)) anda por numero tonce tirame 1 aLosumo tirame 0
+hastaaca
+
+# Ahora se pudre todo aca viste
+
+Cuchame("\nCheamigo esto va a tardar un rato viste no es porque este mal hecho")
+Cuchame("son asi los numerobokita tardan en encontrarse, ademas viste que apuro tene?")
+Cuchame("\nTe cuento, un numero bokita (o numero perfecto) es el numero re pistola que")
+Cuchame("vo cuando lo agarra y sumas todos sus divisores (menores a si mismo) te tira el mismo numero")
+Cuchame("Onda por ejemplo el 6 fijate que capo: 1+2+3=6")
+Cuchame("\nMira aca te los tiro: (el 3ero tarda un poquito, el 4to te va a tardar un toke, el 5to ni hablar)")
+
+che elInfinito es 35000000
+
+agarra por Argentina es 1 hasta elInfinito tonce
+    ponele que esNumeroBokita(Argentina) tonce Cuchame(Argentina)
+hastaaca
+
+# 6, 28, 496, 8128, ...
