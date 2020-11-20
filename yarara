@@ -1,0 +1,3 @@
+#!/bin/bash
+program=$1
+python ${program//ya/py} ${@:2}
