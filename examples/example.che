@@ -43,11 +43,20 @@
 #      che (nombreDeVariable) es (valor)
 #      che (nombreDeVariable) seigual (valor)
 #      che (nombreDeVariable) son (valor)
+      
+#      digamos que (nombreDeVariable) es (valor)
+#      digamos que (nombreDeVariable) seigual (valor)
+#      digamos que (nombreDeVariable) son (valor)
+      
 
- che messi es 10
- che mate es "la que va"
- che sueldo seigual 0
- che doYdo son 4
+      che messi es 10
+      che messi es "grosso"
+      che sueldo seigual 0
+      che doYdo son 4
+
+      digamos que sueldo seigual 0
+      digamos que doYdo son 4
+
 
  mate               # => la que va
  messi               # => 10

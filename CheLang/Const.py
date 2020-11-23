@@ -75,6 +75,7 @@ TT_EOF = "EOF"
 ###############################
 KEYWORDS = [
     "che",
+    "digamos",
     "y",
     "o",
     "no",

@@ -175,6 +175,11 @@ class Lexer:
                     pos_start, self.pos,
                     detailsMessages["languajeSyntaxError"] + "que'"
                     )
+            elif op_str.lower() == "digamos":
+                if self.take_str().lower() != "que": return [], InvalidSyntaxError(
+                    pos_start, self.pos,
+                    detailsMessages["languajeSyntaxError"] + "que'"
+                    )
             elif op_str.lower() == "agarra":
                 if self.take_str().lower() != "por": return [], InvalidSyntaxError(
                     pos_start, self.pos,

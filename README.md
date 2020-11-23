@@ -98,11 +98,19 @@ Declaracion de variables:
       che (nombreDeVariable) es (valor)
       che (nombreDeVariable) seigual (valor)
       che (nombreDeVariable) son (valor)
+      
+      digamos que (nombreDeVariable) es (valor)
+      digamos que (nombreDeVariable) seigual (valor)
+      digamos que (nombreDeVariable) son (valor)
+      
 
       che messi es 10
       che messi es "grosso"
       che sueldo seigual 0
       che doYdo son 4
+
+      digamos que sueldo seigual 0
+      digamos que doYdo son 4
 
       messi  => 10
       sueldo => 0

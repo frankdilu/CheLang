@@ -638,7 +638,7 @@ class Parser:
     ###############################
     def expr(self):
         res = ParseResult()
-        if self.current_tok.matches(TT_KEYWORD, "che"):
+        if self.current_tok.matches(TT_KEYWORD, "che") or self.current_tok.matches(TT_KEYWORD, "digamos"):
             res.register_advancement()
             self.advance()
 

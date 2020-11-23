@@ -15,6 +15,9 @@ scheme:
     (
         Constante "AltoGuiso" = 15 added
     )
+    (
+        added "digamos que" declaration
+    )
 16/07 v1.2.0
     (
         added % operator
