@@ -232,6 +232,7 @@ Cosas de fabrica:
       Constantes:
             "Milanesa" = "Carne"
             "Macri" = "Gato"
+            "AltoGuiso" = 15
             "Vacio" =  Empty (Ojo que no se puede operar con esto. Es como un cirujano con parkinson)
             "Inviable" =  Number.null
             "Chamuyo" =  Number.false
@@ -266,6 +267,7 @@ Cosas de fabrica:
             Campora()         => Probalo que esta re piola
             HalloEbribodi()   => Probalo que esta re piola
             Sumate(list[n])   => sum(list[n])         => Retorna la suma de la lista, solo numeros
+            ElMasGrande()     => Probalo que esta re piola
 
 (En ejemplos/ejemplo.che esta todo practico, se puede correr y demas)
 ```

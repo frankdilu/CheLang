@@ -217,6 +217,7 @@
 #      Constantes:
             Milanesa  # = "Carne"
             Macri     # = "Gato"
+            AltoGuiso # = 15
             Vacio     # =  Empty (Ojo que con esto no se puede operar. Es como un cirujano con parkinson)
             Inviable  # =  Number.null
             Chamuyo   # =  Number.false
@@ -251,3 +252,4 @@
 #            Campora()         => Probalo que esta re piola
 #            HalloEbribodi()   => Probalo que esta re piola
 #            Sumate(list[n])   => sum(list[n])         => Retorna la suma de la lista, solo numeros
+#            ElMasGrande()     => Probalo que esta re piola

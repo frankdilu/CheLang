@@ -8,6 +8,13 @@ scheme:
             changes
             changes
         ) commit
+23/11
+    (
+        Merged #17PR: Added function "ElMasGrande"
+    )
+    (
+        Constante "AltoGuiso" = 15 added
+    )
 16/07 v1.2.0
     (
         added % operator
