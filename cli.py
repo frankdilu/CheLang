@@ -3,6 +3,8 @@ import sys
 import os
 import ctypes
 import datetime
+import pkg_resources
+
 try:
     # name of console
     ctypes.windll.kernel32.SetConsoleTitleW("Consola CheLang")
@@ -21,6 +23,13 @@ def signal_handler(sig, frame):
 # set ctrl + c function
 signal.signal(signal.SIGINT, signal_handler)
 
+# check for playsound module
+try:
+    dist = pkg_resources.get_distribution('playsound')
+    print("{} ({}) ta' instalado, a agarrar la pala".format(dist.key, dist.version))
+except pkg_resources.DistributionNotFound:
+    print('e ameo, instalame el {} o sino no laburamo'.format('playsound'))
+    sys.exit(0)
 
 def cli():
     # sacamo los argumentos opcionales
