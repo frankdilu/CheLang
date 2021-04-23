@@ -66,7 +66,7 @@ Operaciones:
       aLa => **
       moduleame => % (modulo)
       () => ()
-
+      
       "" => "" (strings)
       [a,b,c] => [a,b,c]
 
@@ -75,23 +75,23 @@ ej:
       2.3 ma 2 => 4.3
       .8 ma 2 => 2.8
       .8 meno 2 => -1.2
-      2 por 5 => 20
+      2 por 5 => 10
       2 aLa 2 => 4
-      1 ma 2 por 3 => 9
-      1 ma (2 por 3) => 7
+      1 ma 2 por 3 => 7
+      (1 ma 2) por 3 => 9
       10 dividido 2 => 5.0
       5 moduleame 2 => 1
       6 moduleame 2 => 0
 
-      a por 10 => "aaaaaaaaaa"
+      "a" por 10 => "aaaaaaaaaa"
 
       "marado " ma "marado" => "marado marado"
 
-      [a,b,c] + d => [a,b,c,d]
-      [a,b,c] + [d,e] => [a,b,c,d,e]
-      [a,b] * 3 => [a,b,a,b,a,b]
+      [a,b,c] ma d => [a,b,c,d]
+      [a,b,c] ma [d,e] => [a,b,c,d,e]
+      [a,b] por 3 => [a,b,a,b,a,b]
       [a,b][0] => a 
-
+      (Siendo a, b, c, d y e variables declaradas previamente, vite.)
 
 Declaracion de variables:
 
