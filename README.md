@@ -132,7 +132,7 @@ Condiciones:
 
       anda por      => ==
       no es        => !=
-      es nakever   => !=
+      es nakever   => !==
 
       es unCachitoMeno =>   <
       es menorOIgual   =>   <=
