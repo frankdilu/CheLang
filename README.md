@@ -1,4 +1,4 @@
-# CheLang &middot; [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/frankdilu/CheLang/blob/master/LICENSE) [![Donate](https://img.shields.io/badge/Donate-MercadoPago-blueviolet)](https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=268208624-4f7bbe17-8a6c-4c99-b0c8-86c1016d2a0d) 
+# CheLang &middot; [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/frankdilu/CheLang/blob/master/LICENSE) [![Comprame yerba pal mate](https://img.shields.io/badge/Donate-MercadoPago-blueviolet)](https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=268208624-4f7bbe17-8a6c-4c99-b0c8-86c1016d2a0d) 
 
 CheLang es un lenguaje de programacion esoterico argento. Ni mas, ni menos.
 Con la agradable jerga argenta que nos identifica.
