@@ -282,8 +282,9 @@ Cosas de fabrica:
 
 ## Progreso
 
-El lenguaje NO ESTA TERMINADO. Seguimo trabajando y tamo agregando cosas. 
 Cualquier sugerencia o idea es bienvenida.
+Tambien se aceptan Pull Requests. 
+Actualmente por falta de tiempo el desarrollo esta pausado, pero si hay PR o Issues los reviso.
 
 Este programa se crea, modifica y usa con un mate en la mano. Si no estas con un mate, anda a hacerte uno. Ya.
 
