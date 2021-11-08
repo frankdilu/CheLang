@@ -41,6 +41,8 @@ Se puede revisar el precio del dolar con su funcion "Dolar()". Pero tenes que es
 
 Podes llamar a la "Campora()" cuando quieras y vas a notar su presencia tan particular. Tene en cuenta que, cada vez que se los llama, hay inflacion. Por lo que el "Dolar()" se ve afectado.
 
+Y no nos olvidemos que somos inclusivEs. Por eso, recordá convertir tus estrin a modo inclusivo con: 'HaceloInclusivoMacho("todos") = "todes"'. Y si te viene un estrin de arafue, chequealo con 'EInclusivo("todes") = True'.
+
 Claramente somos inclusivos y aceptamos a los que hablan ingles, entonces pidiendo un "HalloEbribodi()" un expresidente (defraudado por una reconocida cantante que no lo esperó) les va a dar la bienvenida con su magnifico nivel de ingles y queriendo tirar unos pasos.
 
 Como somos patrios ante todo, podemos hacerle honor a la Patria diciendo "Argentina()".
@@ -248,34 +250,36 @@ Cosas de fabrica:
             "Pi" =  Number.math_PI
 
       Funciones:
-            Cuchame()         => print()              => Imprimir en consola
-            CuchameRet()      => return print         => Retorna el print
-            Traeme()          => input("input str"?)  => Input en consola
-            TraemeNumerito()  => input("input str"?) (int) => Input en consola (Solo numeros)
-            Limpiame()        => clear console        => Limpia consola
-            clear()           => clear console        => Limpia consola
-            EsNumerito()      => isNumber(int)        => True si es numero, false si no
-            EsTexto()         => isString(str)        => True si es string, false si no
-            EsLista()         => isList([])           => True si es lista, false si no
-            EsFuncion()       => isFunc(fun)          => True si es funcion, false si no
-            Agregale()        => append(list, element) => Le agrega un elemento a una lista
-            Rajale()          => pop(list, index)     => Le saca un elemento a una lista
-            Metele()          => extend(listA,listB)  => Agrega una lista a otra
-            TaLargo()         => len(list or string)  => Retorna la longitud de la lista o string
-            Correme()         => run("path/file.che") => Ejecuta un archivo (Solo .che)
-            Chorro()          => Probalo que esta re piola
-            Argentina()       => Probalo que esta re piola
-            Boludear(n)       => sleep(seconds)       => Espera n segundos
-            Viborita(str)     => eval(str) => Usa python adentro de CheLang. Re pawerful. Retorna el return de python en string
-            ANumerito(n-str)  => int(n-str)           => Convierte string o numero a int
-            AFlotantito(n-str)=> float(n-str)         => Convierte string o numero a float
-            ATextito(*)       => str(*)               => Convierte string o numero a string
-            FloatYPico(n-str) => float(n-str) +- .5   => Da un float mas o menos cerca al numero
-            Dolar()           => Tira el precio del dolar actual  => Tira el precio actual del dolar
-            Campora()         => Probalo que esta re piola
-            HalloEbribodi()   => Probalo que esta re piola
-            Sumate(list[n])   => sum(list[n])         => Retorna la suma de la lista, solo numeros
-            ElMasGrande()     => Probalo que esta re piola
+            Cuchame()                   => print()              => Imprimir en consola
+            CuchameRet()                => return print         => Retorna el print
+            Traeme()                    => input("input str"?)  => Input en consola
+            TraemeNumerito()            => input("input str"?) (int) => Input en consola (Solo numeros)
+            Limpiame()                  => clear console        => Limpia consola
+            clear()                     => clear console        => Limpia consola
+            EsNumerito()                => isNumber(int)        => True si es numero, false si no
+            EsTexto()                   => isString(str)        => True si es string, false si no
+            EsLista()                   => isList([])           => True si es lista, false si no
+            EsFuncion()                 => isFunc(fun)          => True si es funcion, false si no
+            Agregale()                  => append(list, element) => Le agrega un elemento a una lista
+            Rajale()                    => pop(list, index)     => Le saca un elemento a una lista
+            Metele()                    => extend(listA,listB)  => Agrega una lista a otra
+            TaLargo()                   => len(list or string)  => Retorna la longitud de la lista o string
+            Correme()                   => run("path/file.che") => Ejecuta un archivo (Solo .che)
+            Chorro()                    => Probalo que esta re piola
+            Argentina()                 => Probalo que esta re piola
+            Boludear(n)                 => sleep(seconds)       => Espera n segundos
+            Viborita(str)               => eval(str) => Usa python adentro de CheLang. Re pawerful. Retorna el return de python en string
+            ANumerito(n-str)            => int(n-str)           => Convierte string o numero a int
+            AFlotantito(n-str)          => float(n-str)         => Convierte string o numero a float
+            ATextito(*)                 => str(*)               => Convierte string o numero a string
+            FloatYPico(n-str)           => float(n-str) +- .5   => Da un float mas o menos cerca al numero
+            Dolar()                     => Tira el precio del dolar actual  => Tira el precio actual del dolar
+            Campora()                   => Probalo que esta re piola
+            HalloEbribodi()             => Probalo que esta re piola
+            Sumate(list[n])             => sum(list[n])         => Retorna la suma de la lista, solo numeros
+            ElMasGrande()               => Probalo que esta re piola
+            HaceloInclusivoMacho(str)   => Convierte un string a su forma inclusiva. Ejemplo: Todas => Todes.
+            EInclusivo(str)             => Devuelve true si el string es inclusivo. Ejemplo: Todes => True. Todos => False.
 
 (En ejemplos/ejemplo.che esta todo practico, se puede correr y demas)
 ```
