@@ -1,0 +1,15 @@
+definime fizzbuzz()
+    agarra por i es 1 hasta 100 tonce
+        ponele que i moduleame 3 anda por 0 y i moduleame 5 anda por 0 tonce
+            Cuchame("FizzBuzz")
+        oSi i moduleame 3 anda por 0 tonce
+            Cuchame("Fizz")
+        oSi i moduleame 5 anda por 0 tonce
+            Cuchame("Buzz")
+        aLoSumo
+            Cuchame(i)
+        hastaaca
+    hastaaca
+hastaaca
+
+fizzbuzz()
