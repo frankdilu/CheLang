@@ -3,6 +3,18 @@
 CheLang es un lenguaje de programacion esoterico argento. Ni mas, ni menos.
 Con la agradable jerga argenta que nos identifica.
 
+## Buildear del source
+
+      $ git clone https://github.com/frankdilu/CheLang
+      $ cd CheLang
+      $ python3 -m pip install --upgrade build
+      $ python3 -m build
+      $ python3 -m pip install dist/chelang-0.0.1.tar.gz
+
+El programa estará listo para usarse.
+
+      $ python3 -m chelang
+
 ## Instalacion
 
 Ver las [releases](https://github.com/frankdilu/CheLang/releases).
