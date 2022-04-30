@@ -1,5 +1,5 @@
-from CheLang.Values import String, Number, BuiltInFunction, Empty
-from CheLang.SymbolTable import SymbolTable
+from .Values import String, Number, BuiltInFunction, Empty
+from .SymbolTable import SymbolTable
 ###############################
 # BUILT-IN CONST 
 ###############################

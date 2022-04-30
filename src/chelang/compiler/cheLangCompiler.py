@@ -1,8 +1,8 @@
-from CheLang.Lexer import Lexer
-from CheLang.Parser import Parser
-from CheLang.Interpreter import Interpreter
-from CheLang.Context import Context
-from CheLang.BuiltInConst import global_symbol_table
+from .Lexer import Lexer
+from .Parser import Parser
+from .Interpreter import Interpreter
+from .Context import Context
+from .BuiltInConst import global_symbol_table
 
 ###################################################
 # RUN                      - usain bolt un poroto -
