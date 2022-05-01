@@ -11,8 +11,8 @@ try:
 except:
     pass
 
-from CheLang.cheLangCompiler import run  
-from CheLang.Values import Empty
+from .compiler.cheLangCompiler import run  
+from .compiler.Values import Empty
 
 
 # ctrl + c function

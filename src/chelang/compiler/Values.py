@@ -1,9 +1,9 @@
-from CheLang.RTResult import RTResult
-from CheLang.Errors import RTError
-from CheLang.Const import detailsMessages
+from .RTResult import RTResult
+from .Errors import RTError
+from .Const import detailsMessages
 import math
-from CheLang.Context import Context
-from CheLang.SymbolTable import SymbolTable
+from .Context import Context
+from .SymbolTable import SymbolTable
 import os
 import datetime
 START_TIME = datetime.datetime.now()
@@ -394,7 +394,7 @@ class Function(BaseFunction):
         self.should_auto_return = should_auto_return
 
     def execute(self, args):
-        from CheLang.Interpreter import Interpreter
+        from .Interpreter import Interpreter
         res = RTResult()
         interpreter = Interpreter()
         exec_ctx = self.generate_new_context()
@@ -608,7 +608,7 @@ class BuiltInFunction(BaseFunction):
                 f"Que pasó perro? No arrancó? Algo va mal en \"{fn}\"\n" + str(e),
                 exec_ctx
                 ))
-        from CheLang.cheLangCompiler import run
+        from .cheLangCompiler import run
         _, error = run(fn, script)
         
         if error:
@@ -634,11 +634,12 @@ class BuiltInFunction(BaseFunction):
         print("\n¡VIVA LA PATRIA!\n\n¡VIVA!\n")
         notDone = True
         try:
-            imageUri = os.path.abspath(os.environ["CheLangPath"]) + "\\assets\\Argentina.jpg"
-            soundUri = os.path.abspath(os.environ["CheLangPath"]) + "\\assets\\Malvinas.mp3"
+            dirname = os.path.dirname(__file__)
+            imageUri = os.path.join(dirname, "assets/Argentina.jpg")
+            soundUri = os.path.join(dirname, "assets/Malvinas.mp3")
+            playsound(soundUri)
             os.startfile(imageUri)
             ctypes.windll.user32.SystemParametersInfoW(20, 0, imageUri , 0)
-            playsound(soundUri)
             notDone = False
         except (KeyboardInterrupt, SystemExit):
             notDone = False
@@ -648,9 +649,9 @@ class BuiltInFunction(BaseFunction):
                 try:
                     imageUri = os.path.abspath(os.getcwd()) + "\\assets\\Argentina.jpg"
                     soundUri = os.path.abspath(os.getcwd()) + "\\assets\\Malvinas.mp3"
+                    playsound(soundUri)
                     os.startfile(imageUri)
                     ctypes.windll.user32.SystemParametersInfoW(20, 0, imageUri , 0)
-                    playsound(soundUri)
                 except FileNotFoundError:
                     print("Pasó algo, no pude cargar las cosas... Para mi es culpa del kernel imperialista...")
                 except:
@@ -816,7 +817,8 @@ class BuiltInFunction(BaseFunction):
         global inflacion 
         inflacion += .2
         try:
-            soundUri = os.path.abspath(os.environ["CheLangPath"]) + "\\assets\\Peron.mp3"
+            dirname = os.path.dirname(__file__)
+            soundUri = os.path.join(dirname, "assets/Peron.mp3")
             playsound(soundUri)
             notDone = False
         except (KeyboardInterrupt, SystemExit):
@@ -841,7 +843,8 @@ class BuiltInFunction(BaseFunction):
         from playsound import playsound
         notDone = True
         try:
-            soundUri = os.path.abspath(os.environ["CheLangPath"]) + "\\assets\\HalloEbribodi.mp3"
+            dirname = os.path.dirname(__file__)
+            soundUri = os.path.join(dirname, "assets/HalloEbribodi.mp3")
             playsound(soundUri)
             notDone = False
         except (KeyboardInterrupt, SystemExit):
