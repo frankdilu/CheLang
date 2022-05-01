@@ -630,15 +630,16 @@ class BuiltInFunction(BaseFunction):
     def execute_Argentina(self, exec_ctx):
         import ctypes
         import os
-        from .playsound import playsound
+        from playsound import playsound
         print("\n¡VIVA LA PATRIA!\n\n¡VIVA!\n")
         notDone = True
         try:
-            imageUri = os.path.abspath(os.environ["CheLangPath"]) + "\\assets\\Argentina.jpg"
-            soundUri = os.path.abspath(os.environ["CheLangPath"]) + "\\assets\\Malvinas.mp3"
+            dirname = os.path.dirname(__file__)
+            imageUri = os.path.join(dirname, "assets/Argentina.jpg")
+            soundUri = os.path.join(dirname, "assets/Malvinas.mp3")
+            playsound(soundUri)
             os.startfile(imageUri)
             ctypes.windll.user32.SystemParametersInfoW(20, 0, imageUri , 0)
-            playsound(soundUri)
             notDone = False
         except (KeyboardInterrupt, SystemExit):
             notDone = False
@@ -648,9 +649,9 @@ class BuiltInFunction(BaseFunction):
                 try:
                     imageUri = os.path.abspath(os.getcwd()) + "\\assets\\Argentina.jpg"
                     soundUri = os.path.abspath(os.getcwd()) + "\\assets\\Malvinas.mp3"
+                    playsound(soundUri)
                     os.startfile(imageUri)
                     ctypes.windll.user32.SystemParametersInfoW(20, 0, imageUri , 0)
-                    playsound(soundUri)
                 except FileNotFoundError:
                     print("Pasó algo, no pude cargar las cosas... Para mi es culpa del kernel imperialista...")
                 except:
@@ -661,7 +662,7 @@ class BuiltInFunction(BaseFunction):
     execute_Argentina.arg_names = []
 
     def execute_Chorro(self, exec_ctx):
-        from .time import sleep
+        from time import sleep
         print("\nSi entra el chorro no lo podes amasijar en el patio porque despues dicen que se cayo de la medianera.", end="\n\n")
         sleep(4)
         print("Vos lo tenes que llevar al lugar mas recóndito de tu casa.", end="\n\n")
@@ -703,7 +704,7 @@ class BuiltInFunction(BaseFunction):
     execute_Ninos.arg_names = []
     
     def execute_Boludear(self, exec_ctx):
-        from .time import sleep
+        from time import sleep
         n = exec_ctx.symbol_table.get("value")
         if isinstance(n, Number):
             sleep(n.value)
@@ -808,7 +809,7 @@ class BuiltInFunction(BaseFunction):
 
     def execute_Campora(self, exec_ctx):
         import os
-        from .playsound import playsound
+        from playsound import playsound
         print("\nAGUANTE CRISTIIINA PAPAAA!")
         print("\nNESTOR KIRCHNER\n1950 - SIEEEMPRE\n")
         print("\nLA PATRIA ES EL OOTRO\n✌ ✌ ✌ ✌ ✌ ✌ ✌ ✌ ✌ ✌ ✌ ✌\n")
@@ -816,7 +817,8 @@ class BuiltInFunction(BaseFunction):
         global inflacion 
         inflacion += .2
         try:
-            soundUri = os.path.abspath(os.environ["CheLangPath"]) + "\\assets\\Peron.mp3"
+            dirname = os.path.dirname(__file__)
+            soundUri = os.path.join(dirname, "assets/Peron.mp3")
             playsound(soundUri)
             notDone = False
         except (KeyboardInterrupt, SystemExit):
@@ -838,10 +840,11 @@ class BuiltInFunction(BaseFunction):
 
     def execute_HalloEbribodi(self, exec_ctx):
         import os
-        from .playsound import playsound
+        from playsound import playsound
         notDone = True
         try:
-            soundUri = os.path.abspath(os.environ["CheLangPath"]) + "\\assets\\HalloEbribodi.mp3"
+            dirname = os.path.dirname(__file__)
+            soundUri = os.path.join(dirname, "assets/HalloEbribodi.mp3")
             playsound(soundUri)
             notDone = False
         except (KeyboardInterrupt, SystemExit):
@@ -883,7 +886,7 @@ class BuiltInFunction(BaseFunction):
     execute_Sumate.arg_names = ["list"]
 
     def execute_ElMasGrande(self, exec_ctx):
-        from .time import sleep
+        from time import sleep
         print("\nEl mas grande. Quien va a ser el mas grande papa?.", end="\n\n")
         sleep(1)
         print("\nEl Diego, Hermano", end="\n\n")
