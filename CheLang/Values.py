@@ -475,7 +475,7 @@ class BuiltInFunction(BaseFunction):
     execute_TraemeNumerito.arg_names = ["inputValue?"]
 
     def execute_Limpiame(self, exec_ctx):
-        os.system('cls' if os.name == 'nt' else 'cls') 
+        os.system('cls' if os.name == 'nt' else 'clear') 
         return RTResult().success(Empty())
     execute_Limpiame.arg_names = []
 
