@@ -938,7 +938,44 @@ class BuiltInFunction(BaseFunction):
         sleep(1)
         return RTResult().success(Empty())
     execute_ElMasGrande.arg_names = []
-    
+
+    def execute_HaceloInclusivoMacho(self, exec_ctx):
+        s = exec_ctx.symbol_table.get("palabrita")
+
+        if isinstance(s, String):
+            return RTResult().success(String(self.hacelo_inclusivo_macho(str(s.value))))
+
+        return RTResult().failure(RTError(
+            self.pos_start, self.pos_end,
+            "Aceptamo solo un estrin, mostre.",
+            exec_ctx
+        ))
+
+    execute_HaceloInclusivoMacho.arg_names = ["palabrita"]
+
+    def execute_EInclusivo(self, exec_ctx):
+        s = exec_ctx.symbol_table.get("palabrita")
+
+        if isinstance(s, String):
+            res = Number.true if (str(s.value) == self.hacelo_inclusivo_macho(str(s.value))) else Number.false
+
+            return RTResult().success(res)
+
+        return RTResult().failure(RTError(
+            self.pos_start, self.pos_end,
+            "Aceptamo solo un estrin, mostre.",
+            exec_ctx
+        ))
+
+    execute_EInclusivo.arg_names = ["palabrita"]
+
+    def hacelo_inclusivo_macho(self, s):
+        if s.endswith("a") or s.endswith("o"):
+            s = s[:-1] + "e"
+        elif s.endswith("as") or s.endswith("os"):
+            s = s[:-2] + "es"
+
+        return s
 
 BuiltInFunction.print         = BuiltInFunction("Cuchame")
 BuiltInFunction.print_ret     = BuiltInFunction("CuchameRet")
@@ -969,3 +1006,5 @@ BuiltInFunction.campora       = BuiltInFunction("Campora")
 BuiltInFunction.HalloEbribodi = BuiltInFunction("HalloEbribodi")
 BuiltInFunction.sum           = BuiltInFunction("Sumate")
 BuiltInFunction.ElMasGrande   = BuiltInFunction("ElMasGrande")
+BuiltInFunction.HaceloInclusivoMacho    = BuiltInFunction("HaceloInclusivoMacho")
+BuiltInFunction.EInclusivo              = BuiltInFunction("EInclusivo")
